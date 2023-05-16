@@ -1,28 +1,28 @@
 name: movies_application
 description: A new Flutter project.
-publish_to: 'none' 
+publish_to: 'none'
 version: 1.0.0+1
 environment:
   sdk: '>=2.18.5 <3.0.0'
 
 dependencies:
+  cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
 
 dev_dependencies:
+  bloc: ^8.1.1
+  equatable: ^2.0.5
+  flutter_bloc: ^8.1.2
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
 
 flutter:
 
   uses-material-design: true
-
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
-
   # fonts:
   #   - family: Schyler
   #     fonts:
@@ -34,4 +34,3 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
-
