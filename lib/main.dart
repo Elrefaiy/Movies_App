@@ -4,5 +4,3 @@ import 'package:movies_application/app.dart';
 void main() {
   runApp(const MoviesApp());
 }
-
-
