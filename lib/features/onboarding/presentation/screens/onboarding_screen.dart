@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../cubit/onboarding_cubit.dart';
 import '../widgets/onboarding_widget.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -8,17 +10,28 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
+    final cubit = OnboardingCubit.get(context);
+    Stack body() {
+      return Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          PageView(
-            children: [
-              OnboardingWidget(),
-              OnboardingWidget(),
-              OnboardingWidget(),
-              OnboardingWidget(),
-            ],
+          BlocBuilder<OnboardingCubit, OnboardingState>(
+            builder: (context, state) {
+              return PageView(
+                onPageChanged: (index) {
+                  cubit.pageChanged(index);
+                },
+                controller: cubit.pageController,
+                children: List.generate(
+                  cubit.onboardingData.length,
+                  (index) {
+                    return OnboardingWidget(
+                      item: cubit.onboardingData[index],
+                    );
+                  },
+                ),
+              );
+            },
           ),
           Column(
             mainAxisSize: MainAxisSize.min,
@@ -33,35 +46,47 @@ class OnboardingScreen extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                child: TextButton(
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Next',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                        ),
+                child: BlocBuilder<OnboardingCubit, OnboardingState>(
+                  builder: (context, state) {
+                    return TextButton(
+                      onPressed: () {
+                        cubit.pageController.nextPage(
+                          duration: Duration(milliseconds: 600),
+                          curve: Curves.fastOutSlowIn,
+                        );
+                        cubit.currentIndex++;
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            cubit.currentIndex == 3 ? 'Finish' : 'Next',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Icon(
+                            cubit.currentIndex == 3
+                                ? Icons.done
+                                : Icons.arrow_forward,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ],
                       ),
-                      SizedBox(width: 5),
-                      Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
               ),
-              SizedBox(height: 90),
+              SizedBox(height: 70),
               Row(
                 children: [
                   SizedBox(width: 20),
                   SmoothPageIndicator(
-                    controller: PageController(),
-                    count: 4,
+                    controller: cubit.pageController,
+                    count: cubit.onboardingData.length,
                     effect: ExpandingDotsEffect(
                       dotWidth: 10,
                       dotHeight: 10,
@@ -72,7 +97,9 @@ class OnboardingScreen extends StatelessWidget {
                   ),
                   Spacer(),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      cubit.pageController.jumpToPage(3);
+                    },
                     child: Text(
                       'Skip',
                       style: TextStyle(
@@ -88,7 +115,11 @@ class OnboardingScreen extends StatelessWidget {
             ],
           )
         ],
-      ),
+      );
+    }
+
+    return Scaffold(
+      body: body(),
     );
   }
 }

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import '../../domain/entities/onboarding.dart';
 
 class OnboardingWidget extends StatelessWidget {
-  const OnboardingWidget({super.key});
+  final Onboarding item;
+  const OnboardingWidget({
+    required this.item,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -10,9 +14,11 @@ class OnboardingWidget extends StatelessWidget {
         Column(
           children: [
             Expanded(
+              flex: 2,
               child: Image(
+                width: double.infinity,
                 image: AssetImage(
-                  'assets/images/img1.jpg',
+                  item.image,
                 ),
                 fit: BoxFit.cover,
               ),
@@ -27,19 +33,15 @@ class OnboardingWidget extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
-              colors: const [
-                Color(0xFF213538),
-                Color(0xFF3A5C63),
-                Color(0x006B9098),
-              ],
+              colors: item.gradiant,
             ),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 150),
+              SizedBox(height: 200),
               Text(
-                'REAL TIME',
+                item.title,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 35,
@@ -47,7 +49,7 @@ class OnboardingWidget extends StatelessWidget {
               ),
               SizedBox(height: 15),
               Text(
-                'Movie & TV information and updates movie trailer',
+                item.content,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,

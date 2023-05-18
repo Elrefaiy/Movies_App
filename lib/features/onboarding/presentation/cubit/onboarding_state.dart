@@ -8,3 +8,5 @@ abstract class OnboardingState extends Equatable {
 }
 
 class OnboardingInitial extends OnboardingState {}
+
+class PageChangedState extends OnboardingState {}
