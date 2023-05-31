@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
+import '../../../../config/routes/app_routes.dart';
 import '../cubit/onboarding_cubit.dart';
 import '../widgets/onboarding_widget.dart';
 
@@ -50,11 +50,19 @@ class OnboardingScreen extends StatelessWidget {
                   builder: (context, state) {
                     return TextButton(
                       onPressed: () {
-                        cubit.pageController.nextPage(
-                          duration: Duration(milliseconds: 600),
-                          curve: Curves.fastOutSlowIn,
-                        );
-                        cubit.currentIndex++;
+                        if (cubit.currentIndex == 3) {
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            Routes.auth,
+                            (route) => false,
+                          );
+                        } else {
+                          cubit.pageController.nextPage(
+                            duration: Duration(milliseconds: 600),
+                            curve: Curves.fastOutSlowIn,
+                          );
+                          cubit.currentIndex++;
+                        }
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
