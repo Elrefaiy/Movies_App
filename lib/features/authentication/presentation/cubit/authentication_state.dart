@@ -8,3 +8,5 @@ abstract class AuthenticationState extends Equatable {
 }
 
 class AuthenticationInitial extends AuthenticationState {}
+
+class ChangeIndexState extends AuthenticationState {}

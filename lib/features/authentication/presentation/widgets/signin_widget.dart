@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import '../cubit/authentication_cubit.dart';
 import 'input_field.dart';
 
 import '../../../../core/utils/app_strings.dart';
@@ -6,6 +8,8 @@ import '../../../../core/utils/app_strings.dart';
 class SignInWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final cubit = AuthenticationCubit.get(context);
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
@@ -75,7 +79,13 @@ class SignInWidget extends StatelessWidget {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    cubit.chageIndex(1);
+                    cubit.pageController.nextPage(
+                      duration: 500.ms,
+                      curve: Curves.linearToEaseOut,
+                    );
+                  },
                   child: Text(
                     'Sign up now',
                     style: TextStyle(

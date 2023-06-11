@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:movies_application/features/authentication/presentation/widgets/signup_widget.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../cubit/authentication_cubit.dart';
 import '../widgets/signin_widget.dart';
+import '../widgets/signup_widget.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
@@ -28,41 +31,68 @@ class AuthScreen extends StatelessWidget {
               horizontal: 25,
               vertical: 35,
             ),
-            child: Row(
-              children: [
-                Spacer(),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        width: 2,
-                        color: Colors.white,
+            child: BlocBuilder<AuthenticationCubit, AuthenticationState>(
+              builder: (context, state) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            cubit.chageIndex(0);
+                            cubit.pageController.previousPage(
+                              duration: 500.ms,
+                              curve: Curves.linearToEaseOut,
+                            );
+                          },
+                          child: Text(
+                            'SIGN IN',
+                            style: TextStyle(
+                              color: cubit.currentIndex == 0
+                                  ? Colors.white
+                                  : Colors.white.withOpacity(.6),
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        TextButton(
+                          onPressed: () {
+                            cubit.chageIndex(1);
+                            cubit.pageController.nextPage(
+                              duration: 500.ms,
+                              curve: Curves.linearToEaseOut,
+                            );
+                          },
+                          child: Text(
+                            'SIGN UP',
+                            style: TextStyle(
+                              color: cubit.currentIndex == 1
+                                  ? Colors.white
+                                  : Colors.white.withOpacity(.6),
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SmoothPageIndicator(
+                      controller: cubit.pageController,
+                      count: 2,
+                      effect: WormEffect(
+                        dotWidth: 64,
+                        radius: 2,
+                        dotHeight: 2,
+                        spacing: 10,
+                        dotColor: Colors.transparent,
+                        activeDotColor: Colors.white,
                       ),
                     ),
-                  ),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'SIGN IN',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 15),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'SIGN Up',
-                    style: TextStyle(
-                      color: Colors.white.withOpacity(.6),
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
-              ],
+                  ],
+                );
+              },
             ),
           ),
         ],

@@ -14,5 +14,6 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   void chageIndex(int index) {
     emit(AuthenticationInitial());
     currentIndex = index;
+    emit(ChangeIndexState());
   }
 }
