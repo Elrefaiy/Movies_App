@@ -16,12 +16,19 @@ class OnboardingWidget extends StatelessWidget {
           children: [
             Expanded(
               flex: 2,
-              child: Image(
-                width: double.infinity,
-                image: AssetImage(
-                  item.image,
+              child: Animate(
+                effects: [
+                  FadeEffect(
+                    duration: 500.ms,
+                  )
+                ],
+                child: Image(
+                  width: double.infinity,
+                  image: AssetImage(
+                    item.image,
+                  ),
+                  fit: BoxFit.cover,
                 ),
-                fit: BoxFit.cover,
               ),
             ),
             Spacer(),
