@@ -16,20 +16,13 @@ class OnboardingWidget extends StatelessWidget {
           children: [
             Expanded(
               flex: 2,
-              child: Animate(
-                effects: [
-                  FadeEffect(
-                    duration: 500.ms,
-                  )
-                ],
-                child: Image(
-                  width: double.infinity,
-                  image: AssetImage(
-                    item.image,
-                  ),
-                  fit: BoxFit.cover,
+              child: Image(
+                width: double.infinity,
+                image: AssetImage(
+                  item.image,
                 ),
-              ),
+                fit: BoxFit.cover,
+              ).animate().fade(duration: 500.ms),
             ),
             Spacer(),
           ],
@@ -44,35 +37,28 @@ class OnboardingWidget extends StatelessWidget {
               colors: item.gradiant,
             ),
           ),
-          child: Animate(
-            effects: [
-              FadeEffect(
-                duration: 1200.ms,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 200),
+              Text(
+                item.title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 35,
+                ),
+              ),
+              SizedBox(height: 15),
+              Text(
+                item.content,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
+                textAlign: TextAlign.center,
               ),
             ],
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: 200),
-                Text(
-                  item.title,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 35,
-                  ),
-                ),
-                SizedBox(height: 15),
-                Text(
-                  item.content,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          ),
+          ).animate().fade(duration: 500.ms),
         ),
       ],
     );

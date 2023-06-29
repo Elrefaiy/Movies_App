@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import '../../../movies_lists/presentation/screens/home.dart';
 import 'input_field.dart';
 
 import '../../../../core/utils/app_strings.dart';
@@ -57,7 +58,15 @@ class SignInWidget extends StatelessWidget {
                 ),
               ),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                    (route) => false,
+                  );
+                },
                 child: Text(
                   'SIGN IN',
                   style: TextStyle(

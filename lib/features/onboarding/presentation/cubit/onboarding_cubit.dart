@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movies_application/core/utils/app_strings.dart';
 import '../../domain/entities/onboarding.dart';
 
 part 'onboarding_state.dart';
@@ -14,7 +15,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
 
   List<Onboarding> onboardingData = [
     Onboarding(
-      image: 'assets/images/img1.jpg',
+      image: '${AppStrings.assetImage}img1.jpg',
       title: 'REAL TIME',
       content: 'movie & TV information and updates movie trailer',
       gradiant: [
@@ -25,7 +26,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
       ],
     ),
     Onboarding(
-      image: 'assets/images/img2.jpg',
+      image: '${AppStrings.assetImage}img2.jpg',
       title: 'FIND MOVIE',
       content: 'watch and find that bring your mood back',
       gradiant: [
@@ -36,7 +37,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
       ],
     ),
     Onboarding(
-      image: 'assets/images/img3.jpg',
+      image: '${AppStrings.assetImage}img3.jpg',
       title: 'INVITE FRIENDS',
       content: 'create your personal movie night space with friends',
       gradiant: [
@@ -47,7 +48,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
       ],
     ),
     Onboarding(
-      image: 'assets/images/img4.jpg',
+      image: '${AppStrings.assetImage}img4.jpg',
       title: 'NEWEST MOVIES',
       content: 'join us now and keep up with newest released movies',
       gradiant: [
