@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '../../../movies_lists/presentation/screens/home.dart';
+import 'package:movies_application/features/movies_lists/presentation/screens/movies_home.dart';
 import 'input_field.dart';
 
 import '../../../../core/utils/app_strings.dart';
@@ -62,7 +62,7 @@ class SignInWidget extends StatelessWidget {
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
+                      builder: (context) => MoviesHome(),
                     ),
                     (route) => false,
                   );
