@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+
 import '../../domain/entities/onboarding.dart';
 
 class OnboardingWidget extends StatelessWidget {

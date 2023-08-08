@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:movies_application/features/movies_lists/presentation/screens/movies_home.dart';
-import 'input_field.dart';
 
 import '../../../../core/utils/app_strings.dart';
+import '../../../movies_lists/presentation/screens/movies_home.dart';
 import '../cubit/authentication_cubit.dart';
+import 'input_field.dart';
 
 class SignInWidget extends StatelessWidget {
   @override
@@ -62,7 +62,7 @@ class SignInWidget extends StatelessWidget {
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MoviesHome(),
+                      builder: (context) => MoviesHomeScreen(),
                     ),
                     (route) => false,
                   );

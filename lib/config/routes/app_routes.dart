@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../features/movies_lists/presentation/screens/movies_home.dart';
 
 import '../../features/authentication/presentation/screens/auth_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
@@ -7,6 +8,7 @@ class Routes {
   // static const String initial = '/';
   static const String onboarding = '/onboarding';
   static const String auth = '/authentication';
+  static const String moviesHome = '/moviesHome';
 }
 
 class AppRoutes {
@@ -19,6 +21,10 @@ class AppRoutes {
       case Routes.auth:
         return MaterialPageRoute(
           builder: (context) => AuthScreen(),
+        );
+      case Routes.moviesHome:
+        return MaterialPageRoute(
+          builder: (context) => MoviesHomeScreen(),
         );
       default:
         return undefinedRoute();

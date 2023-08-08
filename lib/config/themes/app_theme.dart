@@ -5,7 +5,8 @@ import '../../core/utils/app_colors.dart';
 
 ThemeData AppTheme() {
   return ThemeData(
-    primarySwatch: Colors.red,
+    scaffoldBackgroundColor: Colors.black,
+    primarySwatch: AppColors.primary,
     primaryColor: AppColors.primary,
     hintColor: AppColors.hint,
     appBarTheme: AppBarTheme(

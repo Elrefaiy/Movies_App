@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static Color primary = Colors.red;
-  static Color hint = Colors.grey;
+  static final primary = Colors.red;
+  static final hint = Colors.grey;
 }

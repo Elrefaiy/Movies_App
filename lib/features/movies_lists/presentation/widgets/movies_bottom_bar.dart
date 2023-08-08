@@ -1,20 +1,23 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../cubit/movies_lists_cubit.dart';
 
 class MoviesBottomBar extends StatelessWidget {
   const MoviesBottomBar({super.key});
 
-  Column tap(int index, IconData icon) {
-    int currentindex = 0;
+  Column tap(context, int index, IconData icon) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            MoviesListsCubit.get(context).changeCurrentListIndex(index);
+          },
           child: Icon(
             icon,
-            color: index == currentindex
+            color: index == MoviesListsCubit.get(context).currentListIndex
                 ? Colors.white
                 : Colors.white.withOpacity(.6),
             size: 30,
@@ -23,7 +26,7 @@ class MoviesBottomBar extends StatelessWidget {
         SizedBox(
           height: 5,
         ),
-        if (index == currentindex)
+        if (index == MoviesListsCubit.get(context).currentListIndex)
           Icon(
             Icons.circle,
             color: Colors.white,
@@ -50,10 +53,10 @@ class MoviesBottomBar extends StatelessWidget {
           overlay: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              tap(0, Icons.play_arrow_rounded),
-              tap(1, Icons.sentiment_neutral_sharp),
-              tap(2, Icons.star_rate_rounded),
-              tap(3, Icons.access_time_filled_rounded),
+              tap(context, 0, Icons.play_arrow_rounded),
+              tap(context, 1, Icons.sentiment_neutral_sharp),
+              tap(context, 2, Icons.star_rate_rounded),
+              tap(context, 3, Icons.access_time_filled_rounded),
             ],
           ),
         ),

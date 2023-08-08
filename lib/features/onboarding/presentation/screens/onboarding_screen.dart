@@ -53,7 +53,7 @@ class OnboardingScreen extends StatelessWidget {
                         if (cubit.currentIndex == 3) {
                           Navigator.pushNamedAndRemoveUntil(
                             context,
-                            Routes.auth,
+                            Routes.moviesHome,
                             (route) => false,
                           );
                         } else {
