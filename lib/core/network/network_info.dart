@@ -4,9 +4,9 @@ abstract class NetworkInfo {
   Future<bool> get hasConnection;
 }
 
-class NetworkInfompl implements NetworkInfo {
+class NetworkInfoImpl implements NetworkInfo {
   final InternetConnectionChecker connectionChecker;
-  const NetworkInfompl({
+  const NetworkInfoImpl({
     required this.connectionChecker,
   });
 

@@ -1,10 +1,10 @@
-import 'dart:math';
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../widgets/movies_list.dart';
 import '../cubit/movies_lists_cubit.dart';
 
 import '../widgets/header.dart';
-import '../widgets/movie.dart';
 import '../widgets/movies_bottom_bar.dart';
 
 class MoviesHomeScreen extends StatefulWidget {
@@ -15,9 +15,9 @@ class MoviesHomeScreen extends StatefulWidget {
 }
 
 class _MoviesHomeScreenState extends State<MoviesHomeScreen> {
-  double top = -300;
-  double left = -300;
-  final columns = sqrt(100).toInt();
+  double top = -280;
+  double left = -755;
+  final columns = 8;
 
   @override
   void initState() {
@@ -28,13 +28,17 @@ class _MoviesHomeScreenState extends State<MoviesHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-        backgroundColor: Colors.black.withOpacity(.8),
-        width: 270,
+        backgroundColor: Colors.black.withOpacity(.5),
+        width: double.infinity,
         elevation: 0,
+        child: Blur(
+          child: Column(),
+          blurColor: Colors.black,
+          blur: 10,
+        ),
       ),
       body: GestureDetector(
         onPanUpdate: (details) {
-          //set the state
           setState(
             () {
               top = top + (details.delta.dy * 2);
@@ -47,24 +51,10 @@ class _MoviesHomeScreenState extends State<MoviesHomeScreen> {
           builder: (context, state) {
             return Stack(
               children: [
-                AnimatedPositioned(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeOut,
+                MoviesList(
                   top: top,
                   left: left,
-                  child: SizedBox(
-                    width: columns * 320,
-                    child: Wrap(
-                      spacing: 20,
-                      children: List.generate(
-                        100,
-                        (index) => Transform.translate(
-                          offset: Offset(0, index.isEven ? 240 : 0),
-                          child: Movie(),
-                        ),
-                      ),
-                    ),
-                  ),
+                  currentIndex: MoviesListsCubit.get(context).currentListIndex,
                 ),
                 Header(),
                 MoviesBottomBar(),

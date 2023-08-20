@@ -1,5 +1,6 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+
 import '../../../../core/utils/app_colors.dart';
 import '../cubit/movies_lists_cubit.dart';
 
@@ -44,7 +45,8 @@ class MoviesBottomBar extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 20),
         child: Blur(
           blur: 5,
-          colorOpacity: .3,
+          blurColor: AppColors.blur,
+          colorOpacity: .4,
           borderRadius: BorderRadius.circular(25),
           child: SizedBox(
             width: 250,

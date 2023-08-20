@@ -10,3 +10,9 @@ abstract class MoviesListsState extends Equatable {
 class MoviesListsInitial extends MoviesListsState {}
 
 class ChangeCurrentListIndex extends MoviesListsState {}
+
+class LoadingMovieList extends MoviesListsState {}
+
+class MovieListLoadingError extends MoviesListsState {}
+
+class MovieListLoadedSuccessfully extends MoviesListsState {}
