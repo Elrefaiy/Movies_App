@@ -16,5 +16,13 @@ ThemeData AppTheme() {
         statusBarColor: Colors.transparent,
       ),
     ),
+    textTheme: TextTheme(
+      displayLarge: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w700,
+        fontSize: 18,
+        color: Colors.white,
+      ),
+    ),
   );
 }

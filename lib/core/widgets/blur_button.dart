@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import '../utils/app_colors.dart';
 
 class BlurButton extends StatelessWidget {
-  final void Function() onTap;
+  final void Function() onPressed;
   final IconData icon;
   const BlurButton({
     super.key,
-    required this.onTap,
+    required this.onPressed,
     required this.icon,
   });
 
@@ -23,9 +23,9 @@ class BlurButton extends StatelessWidget {
         width: 50,
         height: 50,
       ),
-      overlay: GestureDetector(
-        onTap: onTap,
-        child: Icon(
+      overlay: IconButton(
+        onPressed: onPressed,
+        icon: Icon(
           icon,
           color: Colors.white,
         ),

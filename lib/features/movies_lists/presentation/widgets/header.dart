@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/widgets/blur_button.dart';
 import '../cubit/movies_lists_cubit.dart';
 
@@ -17,7 +16,7 @@ class Header extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BlurButton(
-            onTap: () {
+            onPressed: () {
               Scaffold.of(context).openDrawer();
             },
             icon: Icons.menu_rounded,
@@ -27,12 +26,12 @@ class Header extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               BlurButton(
-                onTap: () {},
+                onPressed: () {},
                 icon: Icons.search_rounded,
               ),
               SizedBox(height: 20),
               BlurButton(
-                onTap: () {
+                onPressed: () {
                   MoviesListsCubit.get(context).getNowPlaying();
                 },
                 icon: Icons.add_rounded,
