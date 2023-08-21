@@ -54,7 +54,7 @@ class MoviesBottomBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               tap(context, 0, Icons.play_arrow_rounded),
-              tap(context, 1, Icons.sentiment_neutral_sharp),
+              tap(context, 1, Icons.emoji_emotions_rounded),
               tap(context, 2, Icons.star_rate_rounded),
               tap(context, 3, Icons.access_time_filled_rounded),
             ],

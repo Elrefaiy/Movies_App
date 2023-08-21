@@ -36,8 +36,7 @@ class _MoviesHomeScreenState extends State<MoviesHomeScreen> {
             },
           );
         },
-        child: BlocConsumer<MoviesListsCubit, MoviesListsState>(
-          listener: (context, state) {},
+        child: BlocBuilder<MoviesListsCubit, MoviesListsState>(
           builder: (context, state) {
             return Stack(
               children: [

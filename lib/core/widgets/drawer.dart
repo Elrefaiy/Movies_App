@@ -34,6 +34,50 @@ class AppDrawer extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(height: 20),
+              Text(
+                'Movies',
+                style: Theme.of(context).textTheme.displayMedium,
+              ),
+              SizedBox(height: 10),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: <Color>[
+                      Color.fromARGB(108, 229, 45, 39),
+                      Color.fromARGB(0, 179, 18, 23),
+                    ],
+                    begin: AlignmentDirectional.centerStart,
+                    end: AlignmentDirectional.centerEnd,
+                  ),
+                  border: Border(
+                    left: BorderSide(
+                      width: 5,
+                      color: Colors.red,
+                    ),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Text(
+                      'Now Playing',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.keyboard_arrow_right_rounded,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

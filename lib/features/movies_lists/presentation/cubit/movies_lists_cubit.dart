@@ -47,12 +47,12 @@ class MoviesListsCubit extends Cubit<MoviesListsState> {
         await getNowPlayingUsecase(nowPlayingLastPageLoaded);
     emit(
       response.fold(
-        (failure) => MovieListLoadingError(),
+        (failure) => NowPlayingLoadingError(),
         (moviesList) {
           nowPlayingMovies.addAll(moviesList.results);
           if (nowPlayingLastPageLoaded < moviesList.totalPages)
             nowPlayingLastPageLoaded++;
-          return MovieListLoadedSuccessfully();
+          return NowPlayingLoadedSuccessfully();
         },
       ),
     );
@@ -66,12 +66,12 @@ class MoviesListsCubit extends Cubit<MoviesListsState> {
         await getPopularUsecase(popularLastPageLoaded);
     emit(
       response.fold(
-        (failure) => MovieListLoadingError(),
+        (failure) => PopularLoadingError(),
         (moviesList) {
           popularMovies.addAll(moviesList.results);
           if (popularLastPageLoaded < moviesList.totalPages)
             popularLastPageLoaded++;
-          return MovieListLoadedSuccessfully();
+          return PopularLoadedSuccessfully();
         },
       ),
     );
@@ -85,12 +85,12 @@ class MoviesListsCubit extends Cubit<MoviesListsState> {
         await getTopRatedUsecase(popularLastPageLoaded);
     emit(
       response.fold(
-        (failure) => MovieListLoadingError(),
+        (failure) => TopRatedLoadingError(),
         (moviesList) {
           topRatedMovies.addAll(moviesList.results);
           if (topRatedLastPageLoaded < moviesList.totalPages)
             topRatedLastPageLoaded++;
-          return MovieListLoadedSuccessfully();
+          return TopRatedLoadedSuccessfully();
         },
       ),
     );
@@ -104,12 +104,12 @@ class MoviesListsCubit extends Cubit<MoviesListsState> {
         await getUpcomingUsecase(popularLastPageLoaded);
     emit(
       response.fold(
-        (failure) => MovieListLoadingError(),
+        (failure) => UpComingLoadingError(),
         (moviesList) {
           upcomingMovies.addAll(moviesList.results);
           if (upcomingLastPageLoaded < moviesList.totalPages)
             upcomingLastPageLoaded++;
-          return MovieListLoadedSuccessfully();
+          return UpComingLoadedSuccessfully();
         },
       ),
     );

@@ -17,7 +17,6 @@ dependencies:
     sdk: flutter
   flutter_animate: ^4.1.1+1
   flutter_bloc: ^8.1.2
-  font_awesome_flutter: ^10.5.0
   get_it: ^7.6.0
   internet_connection_checker: ^1.0.0+1
   intl: ^0.18.1
@@ -38,7 +37,7 @@ flutter:
     - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins-Light.ttf
-          weight: 400
+          weight: 200
         - asset: assets/fonts/Poppins-Regular.ttf
           weight: 500
         - asset: assets/fonts/Poppins-SemiBold.ttf

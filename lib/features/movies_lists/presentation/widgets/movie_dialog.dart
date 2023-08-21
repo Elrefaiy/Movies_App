@@ -26,7 +26,7 @@ class MovieDialog extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.star_rounded,
-                    color: Colors.grey.shade800,
+                    color: Colors.amberAccent,
                     size: 20,
                   ),
                   SizedBox(width: 5),
@@ -36,8 +36,8 @@ class MovieDialog extends StatelessWidget {
                   ),
                   SizedBox(width: 20),
                   Icon(
-                    Icons.emoji_emotions_rounded,
-                    color: Colors.grey.shade800,
+                    Icons.favorite_rounded,
+                    color: Colors.redAccent,
                     size: 20,
                   ),
                   SizedBox(width: 5),
@@ -48,7 +48,7 @@ class MovieDialog extends StatelessWidget {
                   SizedBox(width: 20),
                   Icon(
                     Icons.calendar_month_rounded,
-                    color: Colors.grey.shade800,
+                    color: Colors.blueAccent.shade100,
                     size: 20,
                   ),
                   SizedBox(width: 5),
