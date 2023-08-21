@@ -26,9 +26,15 @@ class MoviesListsCubit extends Cubit<MoviesListsState> {
 
   static MoviesListsCubit get(context) => BlocProvider.of(context);
 
+  //screen position
+  double top = -280;
+  double left = -755;
+
   int currentListIndex = 0;
   void changeCurrentListIndex(index) {
     emit(MoviesListsInitial());
+    top = -280;
+    left = -755;
     currentListIndex = index;
     emit(ChangeCurrentListIndex());
   }
@@ -36,6 +42,7 @@ class MoviesListsCubit extends Cubit<MoviesListsState> {
   List<Result> nowPlayingMovies = [];
   int nowPlayingLastPageLoaded = 1;
   Future<void> getNowPlaying() async {
+    emit(LoadingMovieList());
     Either<Failure, MoviesList> response =
         await getNowPlayingUsecase(nowPlayingLastPageLoaded);
     emit(
@@ -54,6 +61,7 @@ class MoviesListsCubit extends Cubit<MoviesListsState> {
   List<Result> popularMovies = [];
   int popularLastPageLoaded = 1;
   Future<void> getPopular() async {
+    emit(LoadingMovieList());
     Either<Failure, MoviesList> response =
         await getPopularUsecase(popularLastPageLoaded);
     emit(
@@ -72,6 +80,7 @@ class MoviesListsCubit extends Cubit<MoviesListsState> {
   List<Result> topRatedMovies = [];
   int topRatedLastPageLoaded = 1;
   Future<void> getTopRated() async {
+    emit(LoadingMovieList());
     Either<Failure, MoviesList> response =
         await getTopRatedUsecase(popularLastPageLoaded);
     emit(
@@ -90,6 +99,7 @@ class MoviesListsCubit extends Cubit<MoviesListsState> {
   List<Result> upcomingMovies = [];
   int upcomingLastPageLoaded = 1;
   Future<void> getUpComing() async {
+    emit(LoadingMovieList());
     Either<Failure, MoviesList> response =
         await getUpcomingUsecase(popularLastPageLoaded);
     emit(

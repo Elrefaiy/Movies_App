@@ -20,8 +20,20 @@ ThemeData AppTheme() {
       displayLarge: TextStyle(
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w700,
+        fontSize: 26,
+        color: Colors.white,
+      ),
+      displayMedium: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w600,
         fontSize: 18,
         color: Colors.white,
+      ),
+      displaySmall: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w200,
+        fontSize: 13,
+        color: Colors.grey,
       ),
     ),
   );

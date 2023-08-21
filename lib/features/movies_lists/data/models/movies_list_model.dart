@@ -35,6 +35,9 @@ class ResultModel extends Result {
     required String posterPath,
     required String releaseDate,
     required double voteAverage,
+    required double popularity,
+    required String title,
+    required int voteCount,
   }) : super(
           backdropPath: backdropPath,
           id: id,
@@ -43,6 +46,9 @@ class ResultModel extends Result {
           posterPath: posterPath,
           releaseDate: releaseDate,
           voteAverage: voteAverage,
+          popularity: popularity,
+          title: title,
+          voteCount: voteCount,
         );
 
   factory ResultModel.fromJson(Map<String, dynamic> json) => ResultModel(
@@ -53,6 +59,9 @@ class ResultModel extends Result {
         posterPath: json["poster_path"],
         releaseDate: json["release_date"],
         voteAverage: json["vote_average"]?.toDouble(),
+        popularity: json["popularity"]?.toDouble(),
+        title: json["title"],
+        voteCount: json["vote_count"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -63,5 +72,8 @@ class ResultModel extends Result {
         "poster_path": posterPath,
         "release_date": releaseDate,
         "vote_average": voteAverage,
+        "popularity": popularity,
+        "title": title,
+        "vote_count": voteCount,
       };
 }

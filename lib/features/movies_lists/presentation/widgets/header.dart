@@ -1,4 +1,7 @@
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/blur_button.dart';
 import '../cubit/movies_lists_cubit.dart';
 
@@ -30,11 +33,34 @@ class Header extends StatelessWidget {
                 icon: Icons.search_rounded,
               ),
               SizedBox(height: 20),
-              BlurButton(
-                onPressed: () {
-                  MoviesListsCubit.get(context).getNowPlaying();
+              BlocBuilder<MoviesListsCubit, MoviesListsState>(
+                builder: (context, state) {
+                  if (state is LoadingMovieList)
+                    return Blur(
+                      blur: 5,
+                      blurColor: AppColors.blur,
+                      colorOpacity: .4,
+                      borderRadius: BorderRadius.circular(25),
+                      child: SizedBox(
+                        width: 50,
+                        height: 50,
+                      ),
+                      overlay: Padding(
+                        padding: const EdgeInsets.all(13),
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 2,
+                        ),
+                      ),
+                    );
+                  else
+                    return BlurButton(
+                      onPressed: () {
+                        MoviesListsCubit.get(context).getNowPlaying();
+                      },
+                      icon: Icons.add_rounded,
+                    );
                 },
-                icon: Icons.add_rounded,
               ),
             ],
           ),

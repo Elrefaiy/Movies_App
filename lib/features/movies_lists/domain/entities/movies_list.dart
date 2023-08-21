@@ -14,10 +14,13 @@ class Result {
   String backdropPath;
   int id;
   String originalTitle;
+  String title;
   String overview;
   String posterPath;
   String releaseDate;
   double voteAverage;
+  int voteCount;
+  double popularity;
 
   Result({
     required this.backdropPath,
@@ -27,5 +30,8 @@ class Result {
     required this.posterPath,
     required this.releaseDate,
     required this.voteAverage,
+    required this.popularity,
+    required this.title,
+    required this.voteCount,
   });
 }

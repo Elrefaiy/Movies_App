@@ -24,9 +24,7 @@ class MoviesBottomBar extends StatelessWidget {
             size: 30,
           ),
         ),
-        SizedBox(
-          height: 5,
-        ),
+        SizedBox(height: 5),
         if (index == MoviesListsCubit.get(context).currentListIndex)
           Icon(
             Icons.circle,

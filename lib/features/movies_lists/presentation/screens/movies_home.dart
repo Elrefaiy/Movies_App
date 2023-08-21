@@ -1,6 +1,6 @@
-import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_application/core/widgets/drawer.dart';
 import '../widgets/movies_list.dart';
 import '../cubit/movies_lists_cubit.dart';
 
@@ -17,7 +17,6 @@ class MoviesHomeScreen extends StatefulWidget {
 class _MoviesHomeScreenState extends State<MoviesHomeScreen> {
   double top = -280;
   double left = -755;
-  final columns = 8;
 
   @override
   void initState() {
@@ -27,22 +26,13 @@ class _MoviesHomeScreenState extends State<MoviesHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        backgroundColor: Colors.black.withOpacity(.5),
-        width: double.infinity,
-        elevation: 0,
-        child: Blur(
-          child: Column(),
-          blurColor: Colors.black,
-          blur: 10,
-        ),
-      ),
+      drawer: AppDrawer(),
       body: GestureDetector(
         onPanUpdate: (details) {
           setState(
             () {
-              top = top + (details.delta.dy * 2);
-              left = left + (details.delta.dx * 2);
+              top = top + (details.delta.dy * 3);
+              left = left + (details.delta.dx * 3);
             },
           );
         },
