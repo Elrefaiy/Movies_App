@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:movies_application/config/routes/app_routes.dart';
+import 'package:movies_application/features/movies/presentation/cubit/movies_cubit.dart';
 import 'package:movies_application/features/movies_lists/presentation/widgets/movie_dialog.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -19,6 +21,15 @@ class Movie extends StatelessWidget {
         ),
       ],
       child: GestureDetector(
+        onTap: () {
+          MoviesCubit.get(context).getMovieDetails(
+            id: movie.id,
+          );
+          Navigator.pushNamed(
+            context,
+            Routes.movieDetails,
+          );
+        },
         onLongPress: () {
           showDialog(
             context: context,
@@ -30,43 +41,35 @@ class Movie extends StatelessWidget {
         child: Stack(
           alignment: AlignmentDirectional.topEnd,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(25),
-                child: Image(
-                  width: 250,
-                  height: 450,
-                  image: NetworkImage(
-                    '${AppStrings.imageBase}${movie.posterPath}',
-                  ),
-                  fit: BoxFit.cover,
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null)
-                      return child
-                        ..animate(
-                          effects: [
-                            FadeEffect(duration: 1.seconds),
-                          ],
-                        );
-                    else
-                      return Shimmer.fromColors(
-                        baseColor: Colors.grey.shade900,
-                        highlightColor: Colors.grey.shade800,
-                        child: Container(
-                          width: 250,
-                          height: 450,
-                          color: Colors.grey[900],
-                        ),
-                      );
-                  },
+            ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: Image(
+                width: 250,
+                height: 450,
+                image: NetworkImage(
+                  '${AppStrings.imageBase}${movie.posterPath}',
                 ),
+                fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null)
+                    return child;
+                  else
+                    return Shimmer.fromColors(
+                      baseColor: Colors.grey.shade900,
+                      highlightColor: Colors.grey.shade800,
+                      child: Container(
+                        width: 250,
+                        height: 450,
+                        color: Colors.grey[900],
+                      ),
+                    );
+                },
               ),
             ),
             Container(
               margin: const EdgeInsets.symmetric(
                 horizontal: 20,
-                vertical: 40,
+                vertical: 20,
               ),
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
@@ -85,7 +88,7 @@ class Movie extends StatelessWidget {
                   ),
                   Icon(
                     Icons.star_rounded,
-                    color: Colors.amber,
+                    color: Colors.amberAccent,
                     size: 20,
                   )
                 ],

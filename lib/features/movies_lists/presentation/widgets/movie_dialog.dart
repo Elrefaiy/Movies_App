@@ -71,8 +71,9 @@ class MovieDialog extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: Image(
+                  height: 300,
                   image: NetworkImage(
-                    '${AppStrings.imageBase}${movie.posterPath}',
+                    '${AppStrings.imageBase}${movie.backdropPath}',
                   ),
                   fit: BoxFit.cover,
                 ),

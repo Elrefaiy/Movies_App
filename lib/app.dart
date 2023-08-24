@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_application/features/movies/presentation/cubit/movies_cubit.dart';
 
 import 'config/routes/app_routes.dart';
 import 'config/themes/app_theme.dart';
@@ -17,10 +18,10 @@ class MoviesApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => OnboardingCubit(),
+          create: (context) => di.sl<OnboardingCubit>(),
         ),
         BlocProvider(
-          create: (context) => AuthenticationCubit(),
+          create: (context) => di.sl<AuthenticationCubit>(),
         ),
         BlocProvider(
           create: (context) => di.sl<MoviesListsCubit>()
@@ -28,6 +29,9 @@ class MoviesApp extends StatelessWidget {
             ..getPopular()
             ..getTopRated()
             ..getUpComing(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<MoviesCubit>(),
         ),
       ],
       child: MaterialApp(

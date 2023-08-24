@@ -16,7 +16,7 @@ class MoviesHomeScreen extends StatefulWidget {
 
 class _MoviesHomeScreenState extends State<MoviesHomeScreen> {
   double top = -280;
-  double left = -755;
+  double left = -215;
 
   @override
   void initState() {

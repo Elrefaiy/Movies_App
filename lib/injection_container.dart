@@ -1,6 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:movies_application/features/movies/data/datasources/movie_details_remote.dart';
+import 'package:movies_application/features/movies/data/repositories/get_movie_details_repo_impl.dart';
+import 'package:movies_application/features/movies/domain/repositories/get_movie_details.dart';
+import 'package:movies_application/features/movies/domain/usecases/get_movie_details_usecase.dart';
+import 'package:movies_application/features/movies/presentation/cubit/movies_cubit.dart';
 import 'core/api/api_consumer.dart';
 import 'core/api/dio_consumer.dart';
 import 'features/authentication/presentation/cubit/authentication_cubit.dart';
@@ -41,6 +46,11 @@ Future<void> init() async {
       getUpcomingUsecase: sl(),
     ),
   );
+  sl.registerFactory<MoviesCubit>(
+    () => MoviesCubit(
+      getMovieDetailsUsecase: sl(),
+    ),
+  );
 
   // Use cases
   sl.registerLazySingleton<GetNowPlayingUsecase>(
@@ -54,6 +64,10 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<GetUpcomingUsecase>(
     () => GetUpcomingUsecase(getUpcomingRepo: sl()),
+  );
+
+  sl.registerLazySingleton<GetMovieDetailsUsecase>(
+    () => GetMovieDetailsUsecase(getMovieDetailsRepo: sl()),
   );
 
   // Repository
@@ -82,6 +96,13 @@ Future<void> init() async {
     ),
   );
 
+  sl.registerLazySingleton<GetMovieDetailsRepo>(
+    () => GetMovieDetailsRepoImpl(
+      remoteDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
+
   // Data Sources
   sl.registerLazySingleton<NowPlayingRemoteDataSource>(
     () => NowPlayingRemoteDataSourceImpl(
@@ -100,6 +121,12 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<UpcomingRemoteDataSource>(
     () => UpcomingRemoteDataSourceImpl(
+      apiConsumer: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<MovieDetailsRemoteDataSource>(
+    () => MovieDetailsRemoteDataSourceImpl(
       apiConsumer: sl(),
     ),
   );

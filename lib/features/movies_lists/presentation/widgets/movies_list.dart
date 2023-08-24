@@ -48,9 +48,10 @@ class MoviesList extends StatelessWidget {
       top: top,
       left: left,
       child: SizedBox(
-        width: 5 * 320,
+        width: 80 + (4 * 250),
         child: Wrap(
           spacing: 20,
+          runSpacing: 20,
           children: List.generate(
             length,
             (index) => Transform.translate(
