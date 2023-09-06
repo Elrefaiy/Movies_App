@@ -25,6 +25,9 @@ class Movie extends StatelessWidget {
           MoviesCubit.get(context).getMovieDetails(
             id: movie.id,
           );
+          MoviesCubit.get(context).getMoviesVideos(
+            id: movie.id,
+          );
           Navigator.pushNamed(
             context,
             Routes.movieDetails,

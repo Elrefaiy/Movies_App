@@ -14,3 +14,9 @@ class GetMovieDetailsLoading extends MoviesState {}
 class GetMovieDetailsSuccessfully extends MoviesState {}
 
 class GetMovieDetailsError extends MoviesState {}
+
+class GetMovieVideosLoading extends MoviesState {}
+
+class GetMovieVideosSuccessfully extends MoviesState {}
+
+class GetMovieVideosError extends MoviesState {}

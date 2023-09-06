@@ -2,13 +2,17 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:movies_application/features/movies/data/datasources/movie_details_remote.dart';
+import 'package:movies_application/features/movies/data/datasources/movie_videos_remote.dart';
 import 'package:movies_application/features/movies/data/repositories/get_movie_details_repo_impl.dart';
 import 'package:movies_application/features/movies/domain/repositories/get_movie_details.dart';
+import 'package:movies_application/features/movies/domain/repositories/get_movie_videos_repo.dart';
 import 'package:movies_application/features/movies/domain/usecases/get_movie_details_usecase.dart';
+import 'package:movies_application/features/movies/domain/usecases/get_movie_videos.dart';
 import 'package:movies_application/features/movies/presentation/cubit/movies_cubit.dart';
 import 'core/api/api_consumer.dart';
 import 'core/api/dio_consumer.dart';
 import 'features/authentication/presentation/cubit/authentication_cubit.dart';
+import 'features/movies/data/repositories/get_movie_videos_repo_impl.dart';
 import 'features/movies_lists/data/datasources/popular_remote.dart';
 import 'features/movies_lists/data/datasources/now_playing_remote.dart';
 import 'features/movies_lists/data/datasources/upcoming_remote.dart';
@@ -49,6 +53,7 @@ Future<void> init() async {
   sl.registerFactory<MoviesCubit>(
     () => MoviesCubit(
       getMovieDetailsUsecase: sl(),
+      getMovieVideosUsecase: sl(),
     ),
   );
 
@@ -68,6 +73,10 @@ Future<void> init() async {
 
   sl.registerLazySingleton<GetMovieDetailsUsecase>(
     () => GetMovieDetailsUsecase(getMovieDetailsRepo: sl()),
+  );
+
+  sl.registerLazySingleton<GetMovieVideosUsecase>(
+    () => GetMovieVideosUsecase(getMovieVideosRepo: sl()),
   );
 
   // Repository
@@ -103,6 +112,13 @@ Future<void> init() async {
     ),
   );
 
+  sl.registerLazySingleton<GetMovieVideosRepo>(
+    () => GetMovieVideosRepoImpl(
+      remoteDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
+
   // Data Sources
   sl.registerLazySingleton<NowPlayingRemoteDataSource>(
     () => NowPlayingRemoteDataSourceImpl(
@@ -127,6 +143,12 @@ Future<void> init() async {
 
   sl.registerLazySingleton<MovieDetailsRemoteDataSource>(
     () => MovieDetailsRemoteDataSourceImpl(
+      apiConsumer: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<MovieVideosRemoteDataSource>(
+    () => MovieVideosRemoteImpl(
       apiConsumer: sl(),
     ),
   );

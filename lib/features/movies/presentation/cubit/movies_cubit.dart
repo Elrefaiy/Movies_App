@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_application/features/movies/domain/entities/video.dart';
+import 'package:movies_application/features/movies/domain/usecases/get_movie_videos.dart';
 import '../../domain/usecases/get_movie_details_usecase.dart';
 import '../../domain/entities/movie_details.dart';
 
@@ -7,8 +9,10 @@ part 'movies_state.dart';
 
 class MoviesCubit extends Cubit<MoviesState> {
   GetMovieDetailsUsecase getMovieDetailsUsecase;
+  GetMovieVideosUsecase getMovieVideosUsecase;
   MoviesCubit({
     required this.getMovieDetailsUsecase,
+    required this.getMovieVideosUsecase,
   }) : super(MoviesInitial());
 
   static MoviesCubit get(context) => BlocProvider.of(context);
@@ -24,6 +28,27 @@ class MoviesCubit extends Cubit<MoviesState> {
       (movieDetails) {
         movie = movieDetails;
         emit(GetMovieDetailsSuccessfully());
+      },
+    );
+  }
+
+  List<Results> videos = [];
+  late Results trailer;
+  Future<void> getMoviesVideos({
+    required int id,
+  }) async {
+    // emit(GetMovieVideosLoading());
+    final response = await getMovieVideosUsecase(id);
+    response.fold(
+      (failure) => emit(GetMovieVideosError()),
+      (moviesVideos) {
+        videos = moviesVideos.results;
+        videos.forEach(
+          (element) {
+            if (element.type == 'Trailer') trailer = element;
+          },
+        );
+        // emit(GetMovieVideosSuccessfully());
       },
     );
   }

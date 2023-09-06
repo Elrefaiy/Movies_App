@@ -5,4 +5,5 @@ class AppStrings {
   static const String appJson = 'application/json';
   static const String assetImage = 'assets/images/';
   static const String imageBase = 'https://image.tmdb.org/t/p/original/';
+  static const String YoutubeBase = 'https://www.youtube.com/watch?v=';
 }

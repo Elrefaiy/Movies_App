@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_application/core/widgets/drawer.dart';
 import '../widgets/movies_list.dart';
 import '../cubit/movies_lists_cubit.dart';
-
 import '../widgets/header.dart';
 import '../widgets/movies_bottom_bar.dart';
 
@@ -31,8 +30,8 @@ class _MoviesHomeScreenState extends State<MoviesHomeScreen> {
         onPanUpdate: (details) {
           setState(
             () {
-              top = top + (details.delta.dy * 3);
-              left = left + (details.delta.dx * 3);
+              top = top + (details.delta.dy * 1.8);
+              left = left + (details.delta.dx * 1.8);
             },
           );
         },
