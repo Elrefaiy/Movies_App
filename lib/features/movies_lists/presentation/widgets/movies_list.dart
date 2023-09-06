@@ -20,22 +20,23 @@ class MoviesList extends StatelessWidget {
   Widget build(BuildContext context) {
     int length = 0;
     List<Result> movies = [];
+    final MoviesListsCubit cubit = MoviesListsCubit.get(context);
     switch (currentIndex) {
       case 0:
-        movies = MoviesListsCubit.get(context).nowPlayingMovies;
-        length = MoviesListsCubit.get(context).nowPlayingMovies.length;
+        movies = cubit.nowPlayingMovies;
+        length = cubit.nowPlayingMovies.length;
         break;
       case 1:
-        movies = MoviesListsCubit.get(context).popularMovies;
-        length = MoviesListsCubit.get(context).popularMovies.length;
+        movies = cubit.popularMovies;
+        length = cubit.popularMovies.length;
         break;
       case 2:
-        movies = MoviesListsCubit.get(context).topRatedMovies;
-        length = MoviesListsCubit.get(context).topRatedMovies.length;
+        movies = cubit.topRatedMovies;
+        length = cubit.topRatedMovies.length;
         break;
       case 3:
-        movies = MoviesListsCubit.get(context).upcomingMovies;
-        length = MoviesListsCubit.get(context).upcomingMovies.length;
+        movies = cubit.upcomingMovies;
+        length = cubit.upcomingMovies.length;
         print(length);
         break;
       default:
@@ -48,7 +49,7 @@ class MoviesList extends StatelessWidget {
       top: top,
       left: left,
       child: SizedBox(
-        width: 80 + (4 * 250),
+        width: 1080,
         child: Wrap(
           spacing: 20,
           runSpacing: 20,

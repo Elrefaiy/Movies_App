@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_application/features/movies/presentation/cubit/movies_cubit.dart';
-
+import 'features/movies/presentation/cubit/movies_cubit.dart';
 import 'config/routes/app_routes.dart';
 import 'config/themes/app_theme.dart';
 import 'features/authentication/presentation/cubit/authentication_cubit.dart';

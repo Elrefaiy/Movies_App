@@ -10,6 +10,7 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final MoviesListsCubit cubit = MoviesListsCubit.get(context);
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 20,
@@ -56,7 +57,21 @@ class Header extends StatelessWidget {
                   else
                     return BlurButton(
                       onPressed: () {
-                        MoviesListsCubit.get(context).getNowPlaying();
+                        switch (cubit.currentListIndex) {
+                          case 0:
+                            cubit.getNowPlaying();
+                            break;
+                          case 1:
+                            cubit.getPopular();
+                            break;
+                          case 2:
+                            cubit.getTopRated();
+                            break;
+                          case 3:
+                            cubit.getUpComing();
+                            break;
+                          default:
+                        }
                       },
                       icon: Icons.add_rounded,
                     );

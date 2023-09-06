@@ -9,7 +9,7 @@ class Routes {
   static const String onboarding = '/onboarding';
   static const String auth = '/authentication';
   static const String moviesHome = '/moviesHome';
-  static const String movieDetails = '';
+  static const String movieDetails = '/movieDetails';
 }
 
 class AppRoutes {

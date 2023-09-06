@@ -82,7 +82,7 @@ class MoviesListsCubit extends Cubit<MoviesListsState> {
   Future<void> getTopRated() async {
     emit(LoadingMovieList());
     Either<Failure, MoviesList> response =
-        await getTopRatedUsecase(popularLastPageLoaded);
+        await getTopRatedUsecase(topRatedLastPageLoaded);
     emit(
       response.fold(
         (failure) => TopRatedLoadingError(),
@@ -101,7 +101,7 @@ class MoviesListsCubit extends Cubit<MoviesListsState> {
   Future<void> getUpComing() async {
     emit(LoadingMovieList());
     Either<Failure, MoviesList> response =
-        await getUpcomingUsecase(popularLastPageLoaded);
+        await getUpcomingUsecase(upcomingLastPageLoaded);
     emit(
       response.fold(
         (failure) => UpComingLoadingError(),
