@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_application/features/movies/presentation/screens/trailer_screen.dart';
+import '../../features/movies/presentation/screens/trailer_screen.dart';
 import '../../features/movies/presentation/screens/movie_screen.dart';
 import '../../features/movies_lists/presentation/screens/movies_home.dart';
 import '../../features/authentication/presentation/screens/auth_screen.dart';

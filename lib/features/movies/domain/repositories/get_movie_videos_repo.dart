@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:movies_application/core/errors/failures.dart';
-import 'package:movies_application/features/movies/domain/entities/video.dart';
+import '../../../../core/errors/failures.dart';
+import '../entities/video.dart';
 
 abstract class GetMovieVideosRepo {
   Future<Either<Failure, Videos>> getMovieVideos({

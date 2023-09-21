@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_application/features/movies/domain/entities/video.dart';
-import 'package:movies_application/features/movies/domain/usecases/get_movie_videos.dart';
+import '../../domain/entities/video.dart';
+import '../../domain/usecases/get_movie_videos.dart';
 import '../../domain/usecases/get_movie_details_usecase.dart';
 import '../../domain/entities/movie_details.dart';
 
@@ -27,6 +27,7 @@ class MoviesCubit extends Cubit<MoviesState> {
       (failure) => emit(GetMovieDetailsError()),
       (movieDetails) {
         movie = movieDetails;
+        getMoviesVideos(id: id);
         emit(GetMovieDetailsSuccessfully());
       },
     );
@@ -37,7 +38,8 @@ class MoviesCubit extends Cubit<MoviesState> {
   Future<void> getMoviesVideos({
     required int id,
   }) async {
-    // emit(GetMovieVideosLoading());
+    emit(GetMovieVideosLoading());
+    videos = [];
     final response = await getMovieVideosUsecase(id);
     response.fold(
       (failure) => emit(GetMovieVideosError()),
@@ -48,7 +50,7 @@ class MoviesCubit extends Cubit<MoviesState> {
             if (element.type == 'Trailer') trailer = element;
           },
         );
-        // emit(GetMovieVideosSuccessfully());
+        emit(GetMovieVideosSuccessfully());
       },
     );
   }

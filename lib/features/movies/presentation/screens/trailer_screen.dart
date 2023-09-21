@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies_application/core/utils/app_strings.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:flutter/services.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+import '../../../../core/utils/app_strings.dart';
 
 class TrailerScreen extends StatefulWidget {
   final String movieKey;
@@ -18,7 +19,10 @@ class _TrailerScreenState extends State<TrailerScreen> {
 
   @override
   void initState() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: [],
+    );
     final videoUrl = '${AppStrings.YoutubeBase}${widget.movieKey}';
     final videoId = YoutubePlayer.convertUrlToId(videoUrl);
     _controller = YoutubePlayerController(

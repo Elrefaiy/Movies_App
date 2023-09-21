@@ -1,5 +1,5 @@
-import 'package:movies_application/core/api/api_consumer.dart';
-import 'package:movies_application/core/api/end_points.dart';
+import '../../../../core/api/api_consumer.dart';
+import '../../../../core/api/end_points.dart';
 
 import '../models/movie_details_model.dart';
 

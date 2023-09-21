@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:movies_application/core/errors/exceptions.dart';
-import 'package:movies_application/core/errors/failures.dart';
-import 'package:movies_application/core/network/network_info.dart';
-import 'package:movies_application/features/movies/data/datasources/movie_videos_remote.dart';
-import 'package:movies_application/features/movies/domain/entities/video.dart';
-import 'package:movies_application/features/movies/domain/repositories/get_movie_videos_repo.dart';
+import '../../../../core/errors/exceptions.dart';
+import '../../../../core/errors/failures.dart';
+import '../../../../core/network/network_info.dart';
+import '../datasources/movie_videos_remote.dart';
+import '../../domain/entities/video.dart';
+import '../../domain/repositories/get_movie_videos_repo.dart';
 
 class GetMovieVideosRepoImpl implements GetMovieVideosRepo {
   final NetworkInfo networkInfo;

@@ -1,6 +1,6 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_application/core/widgets/blur_button.dart';
+import 'blur_button.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});

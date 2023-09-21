@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_application/core/widgets/drawer.dart';
+import '../../../../core/widgets/drawer.dart';
 import '../widgets/movies_list.dart';
 import '../cubit/movies_lists_cubit.dart';
 import '../widgets/header.dart';

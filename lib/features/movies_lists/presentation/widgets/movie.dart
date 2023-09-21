@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:movies_application/config/routes/app_routes.dart';
-import 'package:movies_application/features/movies/presentation/cubit/movies_cubit.dart';
-import 'package:movies_application/features/movies_lists/presentation/widgets/movie_dialog.dart';
+import '../../../../config/routes/app_routes.dart';
+import '../../../movies/presentation/cubit/movies_cubit.dart';
+import 'movie_dialog.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/utils/app_strings.dart';
@@ -23,9 +23,6 @@ class Movie extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           MoviesCubit.get(context).getMovieDetails(
-            id: movie.id,
-          );
-          MoviesCubit.get(context).getMoviesVideos(
             id: movie.id,
           );
           Navigator.pushNamed(

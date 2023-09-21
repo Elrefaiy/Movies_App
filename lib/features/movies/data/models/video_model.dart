@@ -1,4 +1,4 @@
-import 'package:movies_application/features/movies/domain/entities/video.dart';
+import '../../domain/entities/video.dart';
 
 class VideosModel extends Videos {
   VideosModel({

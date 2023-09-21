@@ -12,7 +12,7 @@ class MovieInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(10),

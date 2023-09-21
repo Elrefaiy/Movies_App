@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'features/movies/presentation/cubit/movies_cubit.dart';
+
 import 'config/routes/app_routes.dart';
 import 'config/themes/app_theme.dart';
 import 'features/authentication/presentation/cubit/authentication_cubit.dart';
+import 'features/movies/presentation/cubit/movies_cubit.dart';
 import 'features/movies_lists/presentation/cubit/movies_lists_cubit.dart';
 import 'features/movies_lists/presentation/screens/movies_home.dart';
 import 'features/onboarding/presentation/cubit/onboarding_cubit.dart';

@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
+
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/entities/movies_list.dart';
-
 import '../../domain/repositories/get_top_rated.dart';
 import '../datasources/top_rated_remote.dart';
 

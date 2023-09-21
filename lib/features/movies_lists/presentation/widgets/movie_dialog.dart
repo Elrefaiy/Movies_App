@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/blur_button.dart';
 import '../../domain/entities/movies_list.dart';

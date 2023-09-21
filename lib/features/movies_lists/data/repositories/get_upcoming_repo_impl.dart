@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
+
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
-import '../datasources/upcoming_remote.dart';
 import '../../domain/entities/movies_list.dart';
 import '../../domain/repositories/get_upcoming.dart';
+import '../datasources/upcoming_remote.dart';
 
 class GetUpcomingRepoImpl implements GetUpcomingRepo {
   final NetworkInfo networkInfo;
