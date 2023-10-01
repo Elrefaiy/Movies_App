@@ -1,18 +1,23 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../domain/entities/video.dart';
-import '../../domain/usecases/get_movie_videos.dart';
-import '../../domain/usecases/get_movie_details_usecase.dart';
+
+import '../../domain/entities/credit.dart';
 import '../../domain/entities/movie_details.dart';
+import '../../domain/entities/video.dart';
+import '../../domain/usecases/get_credit_usecase.dart';
+import '../../domain/usecases/get_movie_details_usecase.dart';
+import '../../domain/usecases/get_movie_videos.dart';
 
 part 'movies_state.dart';
 
 class MoviesCubit extends Cubit<MoviesState> {
   GetMovieDetailsUsecase getMovieDetailsUsecase;
   GetMovieVideosUsecase getMovieVideosUsecase;
+  GetCreditUsecase getCreditUsecase;
   MoviesCubit({
     required this.getMovieDetailsUsecase,
     required this.getMovieVideosUsecase,
+    required this.getCreditUsecase,
   }) : super(MoviesInitial());
 
   static MoviesCubit get(context) => BlocProvider.of(context);
@@ -28,6 +33,7 @@ class MoviesCubit extends Cubit<MoviesState> {
       (movieDetails) {
         movie = movieDetails;
         getMoviesVideos(id: id);
+        getCredit(id: id);
         emit(GetMovieDetailsSuccessfully());
       },
     );
@@ -51,6 +57,21 @@ class MoviesCubit extends Cubit<MoviesState> {
           },
         );
         emit(GetMovieVideosSuccessfully());
+      },
+    );
+  }
+
+  List<Cast> casts = [];
+  List<Crew> crew = [];
+  Future<void> getCredit({required int id}) async {
+    emit(GetCreditLoading());
+    final response = await getCreditUsecase(id);
+    response.fold(
+      (failure) => emit(GetCreditError()),
+      (credit) {
+        casts = credit.casts;
+        crew = credit.crew;
+        emit(GetCreditSuccessfully());
       },
     );
   }

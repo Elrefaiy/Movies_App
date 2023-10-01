@@ -1,6 +1,8 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../widgets/cast.dart';
+import '../widgets/crew.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../cubit/movies_cubit.dart';
 import '../widgets/header.dart';
@@ -122,6 +124,46 @@ class MovieScreen extends StatelessWidget {
                       Text(
                         movie.overview,
                         style: Theme.of(context).textTheme.displaySmall,
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Casts',
+                        style: Theme.of(context).textTheme.displayMedium,
+                      ),
+                      SizedBox(height: 10),
+                      SizedBox(
+                        height: 210,
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return CastCard(cast: cubit.casts[index]);
+                          },
+                          separatorBuilder: (context, index) {
+                            return SizedBox(width: 10);
+                          },
+                          itemCount: cubit.casts.length,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Crew',
+                        style: Theme.of(context).textTheme.displayMedium,
+                      ),
+                      SizedBox(height: 10),
+                      SizedBox(
+                        height: 210,
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return CrewCard(crew: cubit.crew[index]);
+                          },
+                          separatorBuilder: (context, index) {
+                            return SizedBox(width: 10);
+                          },
+                          itemCount: cubit.crew.length,
+                        ),
                       ),
                     ],
                   ),

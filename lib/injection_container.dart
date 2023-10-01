@@ -1,6 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'features/movies/data/datasources/credit_remote.dart';
+import 'features/movies/data/repositories/get_credit_repo_impl.dart';
+import 'features/movies/domain/repositories/get_credit_repo.dart';
+import 'features/movies/domain/usecases/get_credit_usecase.dart';
 import 'features/movies/data/datasources/movie_details_remote.dart';
 import 'features/movies/data/datasources/movie_videos_remote.dart';
 import 'features/movies/data/repositories/get_movie_details_repo_impl.dart';
@@ -54,6 +58,7 @@ Future<void> init() async {
     () => MoviesCubit(
       getMovieDetailsUsecase: sl(),
       getMovieVideosUsecase: sl(),
+      getCreditUsecase: sl(),
     ),
   );
 
@@ -77,6 +82,10 @@ Future<void> init() async {
 
   sl.registerLazySingleton<GetMovieVideosUsecase>(
     () => GetMovieVideosUsecase(getMovieVideosRepo: sl()),
+  );
+
+  sl.registerLazySingleton<GetCreditUsecase>(
+    () => GetCreditUsecase(getCreditRepo: sl()),
   );
 
   // Repository
@@ -119,6 +128,13 @@ Future<void> init() async {
     ),
   );
 
+  sl.registerLazySingleton<GetCreditRepo>(
+    () => GetCreditRepoImpl(
+      remoteDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
+
   // Data Sources
   sl.registerLazySingleton<NowPlayingRemoteDataSource>(
     () => NowPlayingRemoteDataSourceImpl(
@@ -149,6 +165,12 @@ Future<void> init() async {
 
   sl.registerLazySingleton<MovieVideosRemoteDataSource>(
     () => MovieVideosRemoteImpl(
+      apiConsumer: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<CreditRemoteDataSource>(
+    () => CreditRemoteDataSourceImpl(
       apiConsumer: sl(),
     ),
   );

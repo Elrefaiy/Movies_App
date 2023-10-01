@@ -1,30 +1,27 @@
 import 'package:dartz/dartz.dart';
+import '../models/credit_model.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
-import '../../domain/entities/video.dart';
-import '../../domain/repositories/get_movie_videos_repo.dart';
-import '../datasources/movie_videos_remote.dart';
+import '../../domain/repositories/get_credit_repo.dart';
+import '../datasources/credit_remote.dart';
 
-class GetMovieVideosRepoImpl implements GetMovieVideosRepo {
+class GetCreditRepoImpl implements GetCreditRepo {
   final NetworkInfo networkInfo;
-  final MovieVideosRemoteDataSource remoteDataSource;
+  final CreditRemoteDataSource remoteDataSource;
 
-  GetMovieVideosRepoImpl({
+  GetCreditRepoImpl({
     required this.networkInfo,
     required this.remoteDataSource,
   });
-
   @override
-  Future<Either<Failure, Videos>> getMovieVideos({
-    required int id,
-  }) async {
+  Future<Either<Failure, CreditModel>> GetCredit({required int movieId}) async {
     if (await networkInfo.hasConnection) {
       try {
-        final response = await remoteDataSource.getVideosRemote(id: id);
+        final response = await remoteDataSource.getCreditRemote(id: movieId);
         return Right(response);
-      } catch (error) {
+      } on ServerException {
         return Left(ServerFailure());
       }
     } else {

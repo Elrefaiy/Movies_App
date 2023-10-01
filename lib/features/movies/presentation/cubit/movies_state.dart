@@ -20,3 +20,9 @@ class GetMovieVideosLoading extends MoviesState {}
 class GetMovieVideosSuccessfully extends MoviesState {}
 
 class GetMovieVideosError extends MoviesState {}
+
+class GetCreditLoading extends MoviesState {}
+
+class GetCreditSuccessfully extends MoviesState {}
+
+class GetCreditError extends MoviesState {}

@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
+
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
-import '../datasources/movie_details_remote.dart';
 import '../../domain/entities/movie_details.dart';
 import '../../domain/repositories/get_movie_details.dart';
+import '../datasources/movie_details_remote.dart';
 
 class GetMovieDetailsRepoImpl implements GetMovieDetailsRepo {
   final NetworkInfo networkInfo;

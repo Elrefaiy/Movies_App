@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/widgets/drawer.dart';
-import '../widgets/movies_list.dart';
 import '../cubit/movies_lists_cubit.dart';
 import '../widgets/header.dart';
 import '../widgets/movies_bottom_bar.dart';
+import '../widgets/movies_list.dart';
 
 class MoviesHomeScreen extends StatefulWidget {
   const MoviesHomeScreen({super.key});
