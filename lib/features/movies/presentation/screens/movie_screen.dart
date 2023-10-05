@@ -44,129 +44,134 @@ class MovieScreen extends StatelessWidget {
                   SizedBox(height: 10),
                 ],
               ),
-              overlay: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15,
-                    vertical: 50,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      MoviesHeader(),
-                      SizedBox(height: 25),
-                      MovieInfo(movie: movie),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            Routes.movieTrailer,
-                            arguments: cubit.trailer.key,
-                          );
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          height: 45,
-                          margin: const EdgeInsets.symmetric(vertical: 25),
-                          decoration: BoxDecoration(
-                            color: Colors.redAccent,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.play_arrow_rounded,
-                                size: 34,
-                                color: Colors.white,
+              overlay: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                  vertical: 50,
+                ),
+                child: Stack(
+                  children: [
+                    SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 75),
+                          MovieInfo(movie: movie),
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                Routes.movieTrailer,
+                                arguments: cubit.trailer.key,
+                              );
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: 45,
+                              margin: const EdgeInsets.symmetric(vertical: 25),
+                              decoration: BoxDecoration(
+                                color: Colors.redAccent,
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                              Text(
-                                'Play Trailer',
-                                style:
-                                    Theme.of(context).textTheme.displayMedium,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.play_arrow_rounded,
+                                    size: 34,
+                                    color: Colors.white,
+                                  ),
+                                  Text(
+                                    'Play Trailer',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displayMedium,
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
+                          Divider(
+                            color: Colors.grey.shade800,
+                          ),
+                          SizedBox(height: 10),
+                          SizedBox(
+                            height: 150,
+                            child: ListView.separated(
+                              physics: BouncingScrollPhysics(),
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: cubit.videos.length,
+                              itemBuilder: (context, index) {
+                                return VideoWidget(
+                                  videoKey: cubit.videos[index].key,
+                                );
+                              },
+                              separatorBuilder: (context, index) {
+                                return SizedBox(
+                                  width: 10,
+                                );
+                              },
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Divider(
+                            color: Colors.grey.shade800,
+                          ),
+                          Text(
+                            'Summaries',
+                            style: Theme.of(context).textTheme.displayMedium,
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            movie.overview,
+                            style: Theme.of(context).textTheme.displaySmall,
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'Casts',
+                            style: Theme.of(context).textTheme.displayMedium,
+                          ),
+                          SizedBox(height: 10),
+                          SizedBox(
+                            height: 210,
+                            child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return CastCard(cast: cubit.casts[index]);
+                              },
+                              separatorBuilder: (context, index) {
+                                return SizedBox(width: 10);
+                              },
+                              itemCount: cubit.casts.length,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'Crew',
+                            style: Theme.of(context).textTheme.displayMedium,
+                          ),
+                          SizedBox(height: 10),
+                          SizedBox(
+                            height: 210,
+                            child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return CrewCard(crew: cubit.crew[index]);
+                              },
+                              separatorBuilder: (context, index) {
+                                return SizedBox(width: 10);
+                              },
+                              itemCount: cubit.crew.length,
+                            ),
+                          ),
+                        ],
                       ),
-                      Divider(
-                        color: Colors.grey.shade800,
-                      ),
-                      SizedBox(height: 10),
-                      SizedBox(
-                        height: 150,
-                        child: ListView.separated(
-                          physics: BouncingScrollPhysics(),
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: cubit.videos.length,
-                          itemBuilder: (context, index) {
-                            return VideoWidget(
-                              videoKey: cubit.videos[index].key,
-                            );
-                          },
-                          separatorBuilder: (context, index) {
-                            return SizedBox(
-                              width: 10,
-                            );
-                          },
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Divider(
-                        color: Colors.grey.shade800,
-                      ),
-                      Text(
-                        'Summaries',
-                        style: Theme.of(context).textTheme.displayMedium,
-                      ),
-                      SizedBox(height: 5),
-                      Text(
-                        movie.overview,
-                        style: Theme.of(context).textTheme.displaySmall,
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'Casts',
-                        style: Theme.of(context).textTheme.displayMedium,
-                      ),
-                      SizedBox(height: 10),
-                      SizedBox(
-                        height: 210,
-                        child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return CastCard(cast: cubit.casts[index]);
-                          },
-                          separatorBuilder: (context, index) {
-                            return SizedBox(width: 10);
-                          },
-                          itemCount: cubit.casts.length,
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'Crew',
-                        style: Theme.of(context).textTheme.displayMedium,
-                      ),
-                      SizedBox(height: 10),
-                      SizedBox(
-                        height: 210,
-                        child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return CrewCard(crew: cubit.crew[index]);
-                          },
-                          separatorBuilder: (context, index) {
-                            return SizedBox(width: 10);
-                          },
-                          itemCount: cubit.crew.length,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                    MoviesHeader(),
+                  ],
                 ),
               ),
             ),

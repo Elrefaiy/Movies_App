@@ -25,7 +25,6 @@ class _VideoWidgetState extends State<VideoWidget> {
       flags: const YoutubePlayerFlags(
         disableDragSeek: true,
         autoPlay: false,
-        enableCaption: true,
       ),
     );
     super.initState();
