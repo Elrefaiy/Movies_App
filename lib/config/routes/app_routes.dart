@@ -5,6 +5,7 @@ import '../../features/movies/presentation/screens/movie_screen.dart';
 import '../../features/movies/presentation/screens/trailer_screen.dart';
 import '../../features/movies_lists/presentation/screens/movies_home.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
+import '../../features/search/presentation/screens/search_movie_screen.dart';
 
 class Routes {
   // static const String initial = '/';
@@ -13,6 +14,7 @@ class Routes {
   static const String moviesHome = '/moviesHome';
   static const String movieDetails = '/movieDetails';
   static const String movieTrailer = '/movieTrailer';
+  static const String searchMovie = '/searchMovie';
 }
 
 class AppRoutes {
@@ -43,6 +45,10 @@ class AppRoutes {
             ),
           );
         }
+      case Routes.searchMovie:
+        return MaterialPageRoute(
+          builder: (context) => SearchMovieScreen(),
+        );
       default:
         return undefinedRoute();
     }

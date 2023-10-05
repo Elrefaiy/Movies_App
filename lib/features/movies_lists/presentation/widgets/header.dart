@@ -1,6 +1,7 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_application/config/routes/app_routes.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/blur_button.dart';
@@ -31,7 +32,12 @@ class Header extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               BlurButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    Routes.searchMovie,
+                  );
+                },
                 icon: Icons.search_rounded,
               ),
               SizedBox(height: 20),

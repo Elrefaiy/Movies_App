@@ -29,6 +29,7 @@ ThemeData AppTheme() {
         fontWeight: FontWeight.w600,
         fontSize: 18,
         color: Colors.white,
+        height: 1,
       ),
       displaySmall: TextStyle(
         fontFamily: 'Poppins',

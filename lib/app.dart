@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'features/search/presentation/cubit/search_cubit.dart';
 import 'config/routes/app_routes.dart';
 import 'config/themes/app_theme.dart';
 import 'features/authentication/presentation/cubit/authentication_cubit.dart';
@@ -32,6 +32,9 @@ class MoviesApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => di.sl<MoviesCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<SearchCubit>(),
         ),
       ],
       child: MaterialApp(
