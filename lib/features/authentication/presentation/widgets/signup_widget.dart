@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import '../../../../core/utils/app_strings.dart';
 import '../cubit/authentication_cubit.dart';
 import 'input_field.dart';
-
-import '../../../../core/utils/app_strings.dart';
 
 class SignUpWidget extends StatelessWidget {
   @override

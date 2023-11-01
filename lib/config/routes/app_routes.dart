@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../../features/movies/presentation/screens/images_screen.dart';
 import '../../features/authentication/presentation/screens/auth_screen.dart';
 import '../../features/movies/presentation/screens/movie_screen.dart';
 import '../../features/movies/presentation/screens/trailer_screen.dart';
@@ -15,6 +15,7 @@ class Routes {
   static const String movieDetails = '/movieDetails';
   static const String movieTrailer = '/movieTrailer';
   static const String searchMovie = '/searchMovie';
+  static const String movieImages = '/movieImages';
 }
 
 class AppRoutes {
@@ -48,6 +49,10 @@ class AppRoutes {
       case Routes.searchMovie:
         return MaterialPageRoute(
           builder: (context) => SearchMovieScreen(),
+        );
+      case Routes.movieImages:
+        return MaterialPageRoute(
+          builder: (context) => ImagesScreen(),
         );
       default:
         return undefinedRoute();

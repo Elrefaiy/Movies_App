@@ -1,11 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:movies_application/features/search/data/datasources/search_movie_remote.dart';
-import 'package:movies_application/features/search/data/repositories/search_movie_repo_impl.dart';
-import 'package:movies_application/features/search/domain/repositories/search_movie_repo.dart';
-import 'package:movies_application/features/search/domain/usecases/search_movie_usecase.dart';
-import 'package:movies_application/features/search/presentation/cubit/search_cubit.dart';
+import 'package:movies_application/features/movies/data/datasources/movie_images_remote.dart';
+import 'package:movies_application/features/movies/data/repositories/get_movie_images_repo_impl.dart';
+import 'package:movies_application/features/movies/domain/repositories/get_movie_images.dart';
+import 'package:movies_application/features/movies/domain/usecases/get_movie_images_usecase.dart';
+import 'features/search/data/datasources/search_movie_remote.dart';
+import 'features/search/data/repositories/search_movie_repo_impl.dart';
+import 'features/search/domain/repositories/search_movie_repo.dart';
+import 'features/search/domain/usecases/search_movie_usecase.dart';
+import 'features/search/presentation/cubit/search_cubit.dart';
 import 'features/movies/data/datasources/credit_remote.dart';
 import 'features/movies/data/repositories/get_credit_repo_impl.dart';
 import 'features/movies/domain/repositories/get_credit_repo.dart';
@@ -61,10 +65,10 @@ Future<void> init() async {
   );
   sl.registerFactory<MoviesCubit>(
     () => MoviesCubit(
-      getMovieDetailsUsecase: sl(),
-      getMovieVideosUsecase: sl(),
-      getCreditUsecase: sl(),
-    ),
+        getMovieDetailsUsecase: sl(),
+        getMovieVideosUsecase: sl(),
+        getCreditUsecase: sl(),
+        getMovieImagesUsecase: sl()),
   );
   sl.registerFactory<SearchCubit>(
     () => SearchCubit(
@@ -100,6 +104,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<SearchMovieUsecase>(
     () => SearchMovieUsecase(searchMovieRepo: sl()),
+  );
+  sl.registerLazySingleton<GetMovieImagesUsecase>(
+    () => GetMovieImagesUsecase(getMovieImagesRepo: sl()),
   );
 
   // Repository
@@ -154,6 +161,12 @@ Future<void> init() async {
       networkInfo: sl(),
     ),
   );
+  sl.registerLazySingleton<GetMovieImagesRepo>(
+    () => GetMovieImagesRepoImpl(
+      remoteDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
 
   // Data Sources
   sl.registerLazySingleton<NowPlayingRemoteDataSource>(
@@ -197,6 +210,12 @@ Future<void> init() async {
 
   sl.registerLazySingleton<SearchMovieRemoteDataSource>(
     () => SearchMovieRemoteDataSourceImpl(
+      apiConsumer: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<GetMovieImagesRemoteDataSorce>(
+    () => GetMovieImagesRemoteDSImpl(
       apiConsumer: sl(),
     ),
   );

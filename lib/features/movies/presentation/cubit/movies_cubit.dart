@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_application/features/movies/domain/entities/image.dart';
+import 'package:movies_application/features/movies/domain/usecases/get_movie_images_usecase.dart';
 
 import '../../domain/entities/credit.dart';
 import '../../domain/entities/movie_details.dart';
@@ -14,10 +16,13 @@ class MoviesCubit extends Cubit<MoviesState> {
   GetMovieDetailsUsecase getMovieDetailsUsecase;
   GetMovieVideosUsecase getMovieVideosUsecase;
   GetCreditUsecase getCreditUsecase;
+  GetMovieImagesUsecase getMovieImagesUsecase;
+
   MoviesCubit({
     required this.getMovieDetailsUsecase,
     required this.getMovieVideosUsecase,
     required this.getCreditUsecase,
+    required this.getMovieImagesUsecase,
   }) : super(MoviesInitial());
 
   static MoviesCubit get(context) => BlocProvider.of(context);
@@ -72,6 +77,23 @@ class MoviesCubit extends Cubit<MoviesState> {
         casts = credit.casts;
         crew = credit.crew;
         emit(GetCreditSuccessfully());
+      },
+    );
+  }
+
+  List<ImageDetails> logos = [];
+  List<ImageDetails> posters = [];
+  List<ImageDetails> backdrops = [];
+  Future<void> getImages({required int id}) async {
+    emit(GetImagesLoading());
+    final response = await getMovieImagesUsecase.call(id);
+    response.fold(
+      (failure) => emit(GetImagesError()),
+      (images) {
+        logos = images.logos;
+        posters = images.posters;
+        backdrops = images.backdrops;
+        emit(GetImagesSuccessfully());
       },
     );
   }

@@ -7,5 +7,6 @@ class EndPoints {
   static const String movie = '$baseUrl/3/movie/';
   static String videos(int id) => '$baseUrl/3/movie/$id/videos';
   static String credits(int id) => '$baseUrl/3/movie/$id/credits';
+  static String images(int id) => '$baseUrl/3/movie/$id/images';
   static const String searchMovie = '$baseUrl/3/search/movie';
 }

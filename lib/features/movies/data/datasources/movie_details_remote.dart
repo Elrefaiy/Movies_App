@@ -1,6 +1,5 @@
 import '../../../../core/api/api_consumer.dart';
 import '../../../../core/api/end_points.dart';
-
 import '../models/movie_details_model.dart';
 
 abstract class MovieDetailsRemoteDataSource {

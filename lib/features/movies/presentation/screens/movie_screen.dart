@@ -44,14 +44,14 @@ class MovieScreen extends StatelessWidget {
                   SizedBox(height: 10),
                 ],
               ),
-              overlay: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                  vertical: 50,
-                ),
-                child: Stack(
-                  children: [
-                    SingleChildScrollView(
+              overlay: Stack(
+                children: [
+                  SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 50,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -95,25 +95,25 @@ class MovieScreen extends StatelessWidget {
                             color: Colors.grey.shade800,
                           ),
                           SizedBox(height: 10),
-                          SizedBox(
-                            height: 150,
-                            child: ListView.separated(
-                              physics: BouncingScrollPhysics(),
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: cubit.videos.length,
-                              itemBuilder: (context, index) {
-                                return VideoWidget(
-                                  videoKey: cubit.videos[index].key,
-                                );
-                              },
-                              separatorBuilder: (context, index) {
-                                return SizedBox(
-                                  width: 10,
-                                );
-                              },
-                            ),
-                          ),
+                          // SizedBox(
+                          //   height: 150,
+                          //   child: ListView.separated(
+                          //     physics: BouncingScrollPhysics(),
+                          //     shrinkWrap: true,
+                          //     scrollDirection: Axis.horizontal,
+                          //     itemCount: cubit.videos.length,
+                          //     itemBuilder: (context, index) {
+                          //       return VideoWidget(
+                          //         videoKey: cubit.videos[index].key,
+                          //       );
+                          //     },
+                          //     separatorBuilder: (context, index) {
+                          //       return SizedBox(
+                          //         width: 10,
+                          //       );
+                          //     },
+                          //   ),
+                          // ),
                           SizedBox(height: 10),
                           Divider(
                             color: Colors.grey.shade800,
@@ -170,9 +170,11 @@ class MovieScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    MoviesHeader(),
-                  ],
-                ),
+                  ),
+                  MoviesHeader(
+                    id: movie.id,
+                  ),
+                ],
               ),
             ),
           );

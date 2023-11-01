@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '../../../../config/routes/app_routes.dart';
-import '../../../movies/presentation/cubit/movies_cubit.dart';
-import 'movie_dialog.dart';
 import 'package:shimmer/shimmer.dart';
-
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_strings.dart';
+import '../../../movies/presentation/cubit/movies_cubit.dart';
 import '../../domain/entities/movies_list.dart';
+import 'movie_dialog.dart';
 
 class Movie extends StatelessWidget {
   final Result movie;

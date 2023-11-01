@@ -1,11 +1,10 @@
 import 'package:dartz/dartz.dart';
-import '../models/credit_model.dart';
-
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/get_credit_repo.dart';
 import '../datasources/credit_remote.dart';
+import '../models/credit_model.dart';
 
 class GetCreditRepoImpl implements GetCreditRepo {
   final NetworkInfo networkInfo;
