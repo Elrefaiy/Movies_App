@@ -25,7 +25,8 @@ class GetNowPlayingRepoImpl implements GetNowPlayingRepo {
         return Left(ServerFailure());
       }
     } else {
-      throw NoInternetConnectionException();
+      // throw NoInternetConnectionException();
+      return Left(ServerFailure());
     }
   }
 }

@@ -25,7 +25,8 @@ class GetUpcomingRepoImpl implements GetUpcomingRepo {
         return Left(ServerFailure());
       }
     } else {
-      throw NoInternetConnectionException();
+      // throw NoInternetConnectionException();
+      return Left(ServerFailure());
     }
   }
 }

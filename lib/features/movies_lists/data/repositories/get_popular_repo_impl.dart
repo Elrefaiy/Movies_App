@@ -25,7 +25,8 @@ class GetPopularRepoImpl implements GetPopularRepo {
         return Left(ServerFailure());
       }
     } else {
-      throw NoInternetConnectionException();
+      // throw NoInternetConnectionException();
+      return Left(ServerFailure());
     }
   }
 }

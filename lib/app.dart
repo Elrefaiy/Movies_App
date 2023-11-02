@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_application/features/movies/presentation/screens/images_screen.dart';
-import 'package:movies_application/features/movies_lists/presentation/screens/movies_home.dart';
-import 'features/onboarding/presentation/screens/onboarding_screen.dart';
+import 'features/movies_lists/presentation/screens/movies_home.dart';
 import 'features/search/presentation/cubit/search_cubit.dart';
 import 'features/authentication/presentation/cubit/authentication_cubit.dart';
 import 'features/movies/presentation/cubit/movies_cubit.dart';
@@ -26,11 +24,7 @@ class MoviesApp extends StatelessWidget {
           create: (context) => di.sl<AuthenticationCubit>(),
         ),
         BlocProvider(
-          create: (context) => di.sl<MoviesListsCubit>()
-            ..getNowPlaying()
-            ..getPopular()
-            ..getTopRated()
-            ..getUpComing(),
+          create: (context) => di.sl<MoviesListsCubit>()..getNowPlaying(),
         ),
         BlocProvider(
           create: (context) => di.sl<MoviesCubit>(),

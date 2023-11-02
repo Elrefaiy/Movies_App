@@ -17,6 +17,7 @@ dependencies:
     sdk: flutter
   flutter_animate: ^4.1.1+1
   flutter_bloc: ^8.1.2
+  flutter_native_splash: ^2.3.5
   get_it: ^7.6.0
   internet_connection_checker: ^1.0.0+1
   intl: ^0.18.1
@@ -28,6 +29,19 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/app_icon.png"
+
+flutter_native_splash:
+  color: "#000000"
+  image: assets/icons/splash_icon.png
+  android: true
+  ios: true
+
 
 flutter:
   uses-material-design: true

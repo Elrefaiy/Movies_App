@@ -21,6 +21,21 @@ class AppDrawer extends StatelessWidget {
       onTap: () {
         Navigator.pop(context);
         MoviesListsCubit.get(context).changeCurrentListIndex(index);
+        switch (MoviesListsCubit.get(context).currentListIndex) {
+          case 0:
+            MoviesListsCubit.get(context).getNowPlaying();
+            break;
+          case 1:
+            MoviesListsCubit.get(context).getPopular();
+            break;
+          case 2:
+            MoviesListsCubit.get(context).getTopRated();
+            break;
+          case 3:
+            MoviesListsCubit.get(context).getUpComing();
+            break;
+          default:
+        }
       },
       child: Container(
         padding: const EdgeInsets.symmetric(

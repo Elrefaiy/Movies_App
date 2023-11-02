@@ -13,18 +13,12 @@ class ChangeCurrentListIndex extends MoviesListsState {}
 
 class LoadingMovieList extends MoviesListsState {}
 
-class NowPlayingLoadingError extends MoviesListsState {}
+class MovieListLoadingError extends MoviesListsState {}
 
 class NowPlayingLoadedSuccessfully extends MoviesListsState {}
 
-class PopularLoadingError extends MoviesListsState {}
-
 class PopularLoadedSuccessfully extends MoviesListsState {}
 
-class TopRatedLoadingError extends MoviesListsState {}
-
 class TopRatedLoadedSuccessfully extends MoviesListsState {}
-
-class UpComingLoadingError extends MoviesListsState {}
 
 class UpComingLoadedSuccessfully extends MoviesListsState {}

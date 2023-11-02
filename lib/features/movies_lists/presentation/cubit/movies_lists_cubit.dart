@@ -47,7 +47,7 @@ class MoviesListsCubit extends Cubit<MoviesListsState> {
         await getNowPlayingUsecase(nowPlayingLastPageLoaded);
     emit(
       response.fold(
-        (failure) => NowPlayingLoadingError(),
+        (failure) => MovieListLoadingError(),
         (moviesList) {
           nowPlayingMovies.addAll(moviesList.results);
           if (nowPlayingLastPageLoaded < moviesList.totalPages)
@@ -66,7 +66,7 @@ class MoviesListsCubit extends Cubit<MoviesListsState> {
         await getPopularUsecase(popularLastPageLoaded);
     emit(
       response.fold(
-        (failure) => PopularLoadingError(),
+        (failure) => MovieListLoadingError(),
         (moviesList) {
           popularMovies.addAll(moviesList.results);
           if (popularLastPageLoaded < moviesList.totalPages)
@@ -85,7 +85,7 @@ class MoviesListsCubit extends Cubit<MoviesListsState> {
         await getTopRatedUsecase(topRatedLastPageLoaded);
     emit(
       response.fold(
-        (failure) => TopRatedLoadingError(),
+        (failure) => MovieListLoadingError(),
         (moviesList) {
           topRatedMovies.addAll(moviesList.results);
           if (topRatedLastPageLoaded < moviesList.totalPages)
@@ -104,7 +104,7 @@ class MoviesListsCubit extends Cubit<MoviesListsState> {
         await getUpcomingUsecase(upcomingLastPageLoaded);
     emit(
       response.fold(
-        (failure) => UpComingLoadingError(),
+        (failure) => MovieListLoadingError(),
         (moviesList) {
           upcomingMovies.addAll(moviesList.results);
           if (upcomingLastPageLoaded < moviesList.totalPages)

@@ -25,7 +25,8 @@ class GetTopRatedRepoImpl implements GetTopRatedRepo {
         return Left(ServerFailure());
       }
     } else {
-      throw NoInternetConnectionException();
+      // throw NoInternetConnectionException();
+      return Left(ServerFailure());
     }
   }
 }

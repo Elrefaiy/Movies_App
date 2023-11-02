@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_application/core/widgets/no_internet.dart';
 
 import '../../../../core/widgets/drawer.dart';
 import '../cubit/movies_lists_cubit.dart';
@@ -46,11 +47,15 @@ class _MoviesHomeScreenState extends State<MoviesHomeScreen> {
           builder: (context, state) {
             return Stack(
               children: [
-                MoviesList(
-                  top: top,
-                  left: left,
-                  currentIndex: MoviesListsCubit.get(context).currentListIndex,
-                ),
+                if (state is MovieListLoadingError)
+                  NoInternetConnectionWidget()
+                else
+                  MoviesList(
+                    top: top,
+                    left: left,
+                    currentIndex:
+                        MoviesListsCubit.get(context).currentListIndex,
+                  ),
                 Header(),
                 MoviesBottomBar(),
               ],

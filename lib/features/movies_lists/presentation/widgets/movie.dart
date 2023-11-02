@@ -79,7 +79,7 @@ class Movie extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    movie.voteAverage.toString(),
+                    movie.voteAverage.toString().substring(0, 3),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
