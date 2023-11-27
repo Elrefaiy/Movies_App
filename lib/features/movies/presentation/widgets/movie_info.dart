@@ -71,25 +71,60 @@ class MovieInfo extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 5),
-                Text(
-                  'Run Time: ${(movie.runtime / 60).truncate()}h  ${movie.runtime.remainder(60)}min',
-                  style: Theme.of(context).textTheme.displaySmall,
-                ),
-                Text(
-                  'Votes: ${movie.voteCount}',
-                  style: Theme.of(context).textTheme.displaySmall,
-                ),
-                Text(
-                  'Status: ${movie.status}',
-                  style: Theme.of(context).textTheme.displaySmall,
-                ),
-                Text(
-                  'Budget: ${movie.budget} \$',
-                  style: Theme.of(context).textTheme.displaySmall,
-                ),
-                Text(
-                  'Revenue: ${movie.revenue} \$',
-                  style: Theme.of(context).textTheme.displaySmall,
+                Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Run Time:',
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                        Text(
+                          'Votes:',
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                        Text(
+                          'Status',
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                        Text(
+                          'Budget:',
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                        Text(
+                          'Revenue:',
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${(movie.runtime / 60).truncate()}h  ${movie.runtime.remainder(60)}min',
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                        Text(
+                          '${movie.voteCount} votes',
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                        Text(
+                          movie.status,
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                        Text(
+                          '${movie.budget} \$',
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                        Text(
+                          '${movie.revenue} \$',
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
                 SizedBox(height: 5),
                 Row(

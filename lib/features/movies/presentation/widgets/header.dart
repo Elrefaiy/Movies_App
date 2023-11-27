@@ -30,7 +30,7 @@ class MoviesHeader extends StatelessWidget {
                 Routes.movieImages,
               );
             },
-            icon: Icons.perm_media_outlined,
+            icon: Icons.image_outlined,
           ),
         ],
       ),

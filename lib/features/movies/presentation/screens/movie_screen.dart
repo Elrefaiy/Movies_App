@@ -30,24 +30,20 @@ class MovieScreen extends StatelessWidget {
           final movie = MoviesCubit.get(context).movie;
           return Scaffold(
             body: Blur(
-              blur: 2,
               blurColor: Colors.black,
-              child: Column(
-                children: [
-                  Image(
-                    image: NetworkImage(
-                      '${AppStrings.imageBase}${movie.backdropPath}',
-                    ),
-                    height: 300,
-                    fit: BoxFit.cover,
-                  ),
-                  SizedBox(height: 10),
-                ],
+              colorOpacity: .6,
+              child: Image(
+                height: double.infinity,
+                image: NetworkImage(
+                  '${AppStrings.imageBase}${movie.backdropPath}',
+                ),
+                fit: BoxFit.fitHeight,
               ),
               overlay: Stack(
                 children: [
                   SingleChildScrollView(
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 130),
