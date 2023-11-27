@@ -1,6 +1,4 @@
 import 'package:dartz/dartz.dart';
-
-import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/entities/movies_list.dart';

@@ -77,6 +77,34 @@ class MovieDialog extends StatelessWidget {
                     '${AppStrings.imageBase}${movie.backdropPath}',
                   ),
                   fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      height: 300,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[900],
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.error_outline_rounded,
+                            color: Colors.grey.shade700,
+                            size: 50,
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'No Image Available!',
+                            style: Theme.of(context).textTheme.displayMedium,
+                          ),
+                          Text(
+                            'try to reconnect, please',
+                            style: Theme.of(context).textTheme.displaySmall,
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

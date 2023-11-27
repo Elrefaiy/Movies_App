@@ -63,6 +63,35 @@ class Movie extends StatelessWidget {
                       ),
                     );
                 },
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    width: 250,
+                    height: 450,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[900],
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.error_outline_rounded,
+                          color: Colors.grey.shade700,
+                          size: 70,
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'No Image Available!',
+                          style: Theme.of(context).textTheme.displayMedium,
+                        ),
+                        Text(
+                          'try to reconnect, please',
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
             Container(
