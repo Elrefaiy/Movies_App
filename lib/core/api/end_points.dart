@@ -1,12 +1,13 @@
 class EndPoints {
-  static const String baseUrl = 'https://api.themoviedb.org';
-  static const String nowPlaying = '$baseUrl/3/movie/now_playing';
-  static const String popular = '$baseUrl/3/movie/popular';
-  static const String topRated = '$baseUrl/3/movie/top_rated';
-  static const String upcoming = '$baseUrl/3/movie/upcoming';
-  static const String movie = '$baseUrl/3/movie/';
-  static String videos(int id) => '$baseUrl/3/movie/$id/videos';
-  static String credits(int id) => '$baseUrl/3/movie/$id/credits';
-  static String images(int id) => '$baseUrl/3/movie/$id/images';
-  static const String searchMovie = '$baseUrl/3/search/movie';
+  static const String baseUrl = 'https://api.themoviedb.org/3';
+  static const String requestToken = '$baseUrl/authentication/token/new';
+  static const String nowPlaying = '$baseUrl/movie/now_playing';
+  static const String popular = '$baseUrl/movie/popular';
+  static const String topRated = '$baseUrl/movie/top_rated';
+  static const String upcoming = '$baseUrl/movie/upcoming';
+  static const String movie = '$baseUrl/movie/';
+  static String videos(int id) => '$baseUrl/movie/$id/videos';
+  static String credits(int id) => '$baseUrl/movie/$id/credits';
+  static String images(int id) => '$baseUrl/movie/$id/images';
+  static const String searchMovie = '$baseUrl/search/movie';
 }

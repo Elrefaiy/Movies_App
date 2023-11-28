@@ -38,8 +38,10 @@ class _TrailerScreenState extends State<TrailerScreen> {
   @override
   void dispose() {
     _controller.dispose();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: SystemUiOverlay.values); // to re-show bars
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: SystemUiOverlay.values,
+    ); // to re-show bars
 
     super.dispose();
   }

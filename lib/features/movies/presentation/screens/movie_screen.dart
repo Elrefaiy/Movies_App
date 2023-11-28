@@ -85,7 +85,7 @@ class MovieScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Videos'.padLeft(9),
+                          'Videos - ${cubit.videos.length}'.padLeft(15),
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                         SizedBox(height: 5),
@@ -124,7 +124,7 @@ class MovieScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 15),
                         Text(
-                          'Casts'.padLeft(8),
+                          'Casts - ${cubit.casts.length}'.padLeft(14),
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                         SizedBox(height: 10),
@@ -145,7 +145,7 @@ class MovieScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 10),
                         Text(
-                          'Crew'.padLeft(7),
+                          'Crew - ${cubit.crew.length}'.padLeft(13),
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                         SizedBox(height: 10),

@@ -21,7 +21,7 @@ class MovieInfo extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             child: Image(
               width: 150,
-              height: 220,
+              height: 260,
               image: NetworkImage(
                 '${AppStrings.imageBase}${movie.posterPath}',
               ),

@@ -1,6 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:movies_application/features/authentication/data/datasources/request_token_remote.dart';
+import 'package:movies_application/features/authentication/data/repositories/request_token_repo_impl.dart';
+import 'package:movies_application/features/authentication/domain/repositories/request_token_repo.dart';
+import 'package:movies_application/features/authentication/domain/usecases/request_token_usecase.dart';
 import 'package:movies_application/features/movies/data/datasources/movie_images_remote.dart';
 import 'package:movies_application/features/movies/data/repositories/get_movie_images_repo_impl.dart';
 import 'package:movies_application/features/movies/domain/repositories/get_movie_images.dart';
@@ -53,7 +57,11 @@ Future<void> init() async {
   //! Features
 
   // Blocs
-  sl.registerFactory<AuthenticationCubit>(() => AuthenticationCubit());
+  sl.registerFactory<AuthenticationCubit>(
+    () => AuthenticationCubit(
+      requestTokenUsecase: sl(),
+    ),
+  );
   sl.registerFactory<OnboardingCubit>(() => OnboardingCubit());
   sl.registerFactory<MoviesListsCubit>(
     () => MoviesListsCubit(
@@ -77,6 +85,9 @@ Future<void> init() async {
   );
 
   // Use cases
+  sl.registerLazySingleton<RequestTokenUsecase>(
+    () => RequestTokenUsecase(requestTokenRepo: sl()),
+  );
   sl.registerLazySingleton<GetNowPlayingUsecase>(
     () => GetNowPlayingUsecase(getNowPlayingRepo: sl()),
   );
@@ -110,6 +121,12 @@ Future<void> init() async {
   );
 
   // Repository
+  sl.registerLazySingleton<RequestTokenRepo>(
+    () => RequestTokenRepoImpl(
+      requestTokenRemote: sl(),
+      networkInfo: sl(),
+    ),
+  );
   sl.registerLazySingleton<GetNowPlayingRepo>(
     () => GetNowPlayingRepoImpl(
       remoteDataSource: sl(),
@@ -169,6 +186,11 @@ Future<void> init() async {
   );
 
   // Data Sources
+  sl.registerLazySingleton<RequestTokenRemote>(
+    () => RequestTokenRemoteImpl(
+      apiConsumer: sl(),
+    ),
+  );
   sl.registerLazySingleton<NowPlayingRemoteDataSource>(
     () => NowPlayingRemoteDataSourceImpl(
       apiConsumer: sl(),

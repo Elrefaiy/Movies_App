@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'features/authentication/presentation/screens/auth_screen.dart';
 import 'features/movies_lists/presentation/screens/movies_home.dart';
 import 'features/search/presentation/cubit/search_cubit.dart';
 import 'features/authentication/presentation/cubit/authentication_cubit.dart';
@@ -21,7 +22,8 @@ class MoviesApp extends StatelessWidget {
           create: (context) => di.sl<OnboardingCubit>(),
         ),
         BlocProvider(
-          create: (context) => di.sl<AuthenticationCubit>(),
+          create: (context) =>
+              di.sl<AuthenticationCubit>()..createRequestToken(),
         ),
         BlocProvider(
           create: (context) => di.sl<MoviesListsCubit>()..getNowPlaying(),
@@ -37,7 +39,7 @@ class MoviesApp extends StatelessWidget {
         onGenerateRoute: AppRoutes.onGeneratedRoute,
         theme: AppTheme(),
         debugShowCheckedModeBanner: false,
-        home: const MoviesHomeScreen(),
+        home: const AuthScreen(),
       ),
     );
   }
