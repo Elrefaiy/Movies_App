@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/usecase/usecase.dart';
-import '../../domain/entities/request_token.dart';
 import '../../domain/usecases/request_token_usecase.dart';
 
 part 'authentication_state.dart';

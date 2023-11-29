@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_application/features/authentication/presentation/screens/request_token_screen.dart';
 import 'features/authentication/presentation/screens/auth_screen.dart';
-import 'features/movies_lists/presentation/screens/movies_home.dart';
 import 'features/search/presentation/cubit/search_cubit.dart';
 import 'features/authentication/presentation/cubit/authentication_cubit.dart';
 import 'features/movies/presentation/cubit/movies_cubit.dart';
@@ -39,7 +39,7 @@ class MoviesApp extends StatelessWidget {
         onGenerateRoute: AppRoutes.onGeneratedRoute,
         theme: AppTheme(),
         debugShowCheckedModeBanner: false,
-        home: const AuthScreen(),
+        home: const RequestTokenScreen(),
       ),
     );
   }
