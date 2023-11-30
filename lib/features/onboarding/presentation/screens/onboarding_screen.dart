@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 import '../../../../config/routes/app_routes.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../../../injection_container.dart' as di;
 import '../cubit/onboarding_cubit.dart';
 import '../widgets/onboarding_widget.dart';
 
@@ -49,11 +53,15 @@ class OnboardingScreen extends StatelessWidget {
                 child: BlocBuilder<OnboardingCubit, OnboardingState>(
                   builder: (context, state) {
                     return TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (cubit.currentIndex == 3) {
+                          await di.sl<SharedPreferences>().setBool(
+                                AppStrings.firstTime,
+                                false,
+                              );
                           Navigator.pushNamedAndRemoveUntil(
                             context,
-                            Routes.moviesHome,
+                            Routes.auth,
                             (route) => false,
                           );
                         } else {

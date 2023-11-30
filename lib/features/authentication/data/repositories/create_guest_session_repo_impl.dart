@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import '../../../../core/utils/app_strings.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/api/api_consumer.dart';
 import '../../../../core/api/end_points.dart';
@@ -10,10 +12,12 @@ import '../models/guest_session_model.dart';
 class CreateGuestSessionRepoImpl implements CreateGuestSessionRepo {
   final NetworkInfo networkInfo;
   final ApiConsumer apiConsumer;
+  final SharedPreferences sharedPreferences;
 
   CreateGuestSessionRepoImpl({
     required this.networkInfo,
     required this.apiConsumer,
+    required this.sharedPreferences,
   });
   @override
   Future<Either<Failure, GuestSessionModel>> createGuestSession() async {
@@ -21,6 +25,10 @@ class CreateGuestSessionRepoImpl implements CreateGuestSessionRepo {
       try {
         var response = await apiConsumer.get(
           path: EndPoints.createGuestSession,
+        );
+        await sharedPreferences.setString(
+          AppStrings.guestSession,
+          response['guest_session_id'],
         );
         return Right(GuestSessionModel.fromJson(response));
       } catch (error) {

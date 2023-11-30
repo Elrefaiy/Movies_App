@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'features/authentication/data/datasources/request_token_remote.dart';
 import 'features/authentication/data/repositories/create_guest_session_repo_impl.dart';
@@ -145,12 +146,14 @@ Future<void> init() async {
     () => CreateSessionRepositoryImpl(
       apiConsumer: sl(),
       networkInfo: sl(),
+      sharedPreferences: sl(),
     ),
   );
   sl.registerLazySingleton<CreateGuestSessionRepo>(
     () => CreateGuestSessionRepoImpl(
       apiConsumer: sl(),
       networkInfo: sl(),
+      sharedPreferences: sl(),
     ),
   );
   sl.registerLazySingleton<GetNowPlayingRepo>(
@@ -285,4 +288,7 @@ Future<void> init() async {
       );
   sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton(() => Dio());
+
+  final sharedPreferences = await SharedPreferences.getInstance();
+  sl.registerLazySingleton(() => sharedPreferences);
 }

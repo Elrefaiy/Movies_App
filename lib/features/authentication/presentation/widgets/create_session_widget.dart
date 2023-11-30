@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/functions.dart';
-import '../../../movies_lists/presentation/screens/movies_home.dart';
 import '../cubit/authentication_cubit.dart';
 
 class SignUpWidget extends StatelessWidget {

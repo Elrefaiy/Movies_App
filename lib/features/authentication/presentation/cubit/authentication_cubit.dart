@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../domain/usecases/create_guest_session_usecase.dart';
-import '../../domain/usecases/create_session_usecase.dart';
 
 import '../../../../core/usecase/usecase.dart';
+import '../../domain/usecases/create_guest_session_usecase.dart';
+import '../../domain/usecases/create_session_usecase.dart';
 import '../../domain/usecases/request_token_usecase.dart';
 
 part 'authentication_state.dart';
@@ -51,7 +51,6 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       (fail) => emit(CreateSessionError()),
       (session) {
         userSession = session.sessionId;
-        print(userSession);
         emit(CreateSessionSuccess());
       },
     );
@@ -66,7 +65,6 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       (fail) => emit(CreateGuestSessionError()),
       (session) {
         guestSession = session.guestSessionId;
-        print(guestSession);
         emit(CreateGuestSessionSuccess());
       },
     );

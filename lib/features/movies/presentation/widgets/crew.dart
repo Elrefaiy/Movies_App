@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../domain/entities/credit.dart';
 
 import '../../../../core/utils/app_strings.dart';
+import '../../domain/entities/credit.dart';
 
 class CrewCard extends StatelessWidget {
   final Crew crew;

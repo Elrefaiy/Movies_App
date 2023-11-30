@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_application/features/authentication/presentation/screens/auth_web_screen.dart';
+import '../../features/authentication/presentation/screens/auth_web_screen.dart';
 
 import '../../features/authentication/presentation/screens/auth_screen.dart';
 import '../../features/movies/presentation/screens/images_screen.dart';

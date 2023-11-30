@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_application/config/routes/app_routes.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../movies_lists/presentation/screens/movies_home.dart';
+import '../../../../config/routes/app_routes.dart';
 import '../cubit/authentication_cubit.dart';
 import '../widgets/authorization_widget.dart';
 import '../widgets/create_session_widget.dart';
