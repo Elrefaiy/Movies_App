@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_application/core/widgets/no_internet.dart';
 
 import '../../../../core/widgets/drawer.dart';
+import '../../../../core/widgets/no_internet.dart';
 import '../cubit/movies_lists_cubit.dart';
 import '../widgets/header.dart';
 import '../widgets/movies_bottom_bar.dart';

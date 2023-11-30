@@ -1,4 +1,4 @@
-import 'package:movies_application/features/authentication/domain/entities/session.dart';
+import '../../domain/entities/session.dart';
 
 class SessionModel extends Session {
   SessionModel({

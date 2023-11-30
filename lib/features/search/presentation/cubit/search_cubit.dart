@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../domain/entities/search_movie.dart';
 import '../../domain/usecases/search_movie_usecase.dart';
 

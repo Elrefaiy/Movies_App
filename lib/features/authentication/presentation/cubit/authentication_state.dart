@@ -20,3 +20,9 @@ class CreateSessionLoading extends AuthenticationState {}
 class CreateSessionSuccess extends AuthenticationState {}
 
 class CreateSessionError extends AuthenticationState {}
+
+class CreateGuestSessionLoading extends AuthenticationState {}
+
+class CreateGuestSessionSuccess extends AuthenticationState {}
+
+class CreateGuestSessionError extends AuthenticationState {}

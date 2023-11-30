@@ -1,6 +1,5 @@
-import '../../../../core/api/end_points.dart';
-
 import '../../../../core/api/api_consumer.dart';
+import '../../../../core/api/end_points.dart';
 import '../models/search_movie_model.dart';
 
 abstract class SearchMovieRemoteDataSource {

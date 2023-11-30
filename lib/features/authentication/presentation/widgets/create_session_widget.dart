@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_application/features/movies_lists/presentation/screens/movies_home.dart';
+
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/functions.dart';
+import '../../../movies_lists/presentation/screens/movies_home.dart';
 import '../cubit/authentication_cubit.dart';
-import '../screens/auth_web_screen.dart';
 
 class SignUpWidget extends StatelessWidget {
   @override
@@ -70,11 +71,11 @@ class SignUpWidget extends StatelessWidget {
                       iconColor: Colors.greenAccent,
                       duration: 2,
                     );
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return MoviesHomeScreen();
-                      },
-                    ));
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      Routes.moviesHome,
+                      (route) => false,
+                    );
                   } else if (state is CreateRequestTokenError) {}
                 },
                 builder: (context, state) {

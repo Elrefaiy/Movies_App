@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
+
 import '../../../../core/errors/exceptions.dart';
-import '../models/search_movie_model.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/search_movie_repo.dart';
 import '../datasources/search_movie_remote.dart';
+import '../models/search_movie_model.dart';
 
 class SearchMovieRepoImpl implements SearchMovieRepo {
   final SearchMovieRemoteDataSource remoteDataSource;

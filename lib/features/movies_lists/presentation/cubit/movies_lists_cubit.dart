@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../core/errors/failures.dart';
 import '../../domain/entities/movies_list.dart';
 import '../../domain/usecases/get_now_playing_usecase.dart';
 import '../../domain/usecases/get_popular_usecase.dart';
 import '../../domain/usecases/get_top_rated_usecase.dart';
 import '../../domain/usecases/get_upcoming_usecase.dart';
-
-import '../../../../core/errors/failures.dart';
 
 part 'movies_lists_state.dart';
 

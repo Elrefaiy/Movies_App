@@ -1,6 +1,8 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+
 import '../../features/movies_lists/presentation/cubit/movies_lists_cubit.dart';
+import '../utils/app_strings.dart';
 
 class AppDrawer extends StatelessWidget {
   AppDrawer({super.key});
@@ -96,6 +98,32 @@ class AppDrawer extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 20),
+              Row(
+                children: [
+                  Image(
+                    image: AssetImage(
+                      '${AppStrings.assetImage}profile.png',
+                    ),
+                    width: 80,
+                  ),
+                  SizedBox(width: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Mr. Guest',
+                        style: Theme.of(context).textTheme.displayMedium,
+                      ),
+                      Text(
+                        'Guest User',
+                        style: Theme.of(context).textTheme.displaySmall,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
               Text(
                 'Discover',
                 style: Theme.of(context).textTheme.displayLarge,

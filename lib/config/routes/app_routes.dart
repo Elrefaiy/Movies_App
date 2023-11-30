@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../features/movies/presentation/screens/images_screen.dart';
+import 'package:movies_application/features/authentication/presentation/screens/auth_web_screen.dart';
+
 import '../../features/authentication/presentation/screens/auth_screen.dart';
+import '../../features/movies/presentation/screens/images_screen.dart';
 import '../../features/movies/presentation/screens/movie_screen.dart';
 import '../../features/movies/presentation/screens/trailer_screen.dart';
 import '../../features/movies_lists/presentation/screens/movies_home.dart';
@@ -11,6 +13,7 @@ class Routes {
   // static const String initial = '/';
   static const String onboarding = '/onboarding';
   static const String auth = '/authentication';
+  static const String authWeb = '/authenticationWeb';
   static const String moviesHome = '/moviesHome';
   static const String movieDetails = '/movieDetails';
   static const String movieTrailer = '/movieTrailer';
@@ -28,6 +31,13 @@ class AppRoutes {
       case Routes.auth:
         return MaterialPageRoute(
           builder: (context) => AuthScreen(),
+        );
+      case Routes.authWeb:
+        final requestToken = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (context) => AuthWebScreen(
+            requestToken: requestToken,
+          ),
         );
       case Routes.moviesHome:
         return MaterialPageRoute(

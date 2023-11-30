@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_application/config/routes/app_routes.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../movies_lists/presentation/screens/movies_home.dart';
 import '../cubit/authentication_cubit.dart';
 import '../widgets/authorization_widget.dart';
 import '../widgets/create_session_widget.dart';
@@ -31,7 +33,16 @@ class AuthScreen extends StatelessWidget {
               horizontal: 25,
               vertical: 35,
             ),
-            child: BlocBuilder<AuthenticationCubit, AuthenticationState>(
+            child: BlocConsumer<AuthenticationCubit, AuthenticationState>(
+              listener: (context, state) {
+                if (state is CreateGuestSessionSuccess) {
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    Routes.moviesHome,
+                    (route) => false,
+                  );
+                }
+              },
               builder: (context, state) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -92,7 +103,9 @@ class AuthScreen extends StatelessWidget {
                     ),
                     Spacer(),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        cubit.createGuestSession();
+                      },
                       child: Text(
                         'Continue as a Guest',
                         style: TextStyle(

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/functions.dart';
 import '../cubit/authentication_cubit.dart';
-import '../screens/auth_web_screen.dart';
 
 class SignInWidget extends StatelessWidget {
   @override
@@ -75,13 +76,11 @@ class SignInWidget extends StatelessWidget {
                   return TextButton(
                     onPressed: () {
                       if (cubit.requestToken.isNotEmpty) {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return AuthWebScreen(
-                              requestToken: cubit.requestToken,
-                            );
-                          },
-                        ));
+                        Navigator.pushNamed(
+                          context,
+                          Routes.authWeb,
+                          arguments: cubit.requestToken,
+                        );
                       } else {
                         cubit.createRequestToken();
                       }

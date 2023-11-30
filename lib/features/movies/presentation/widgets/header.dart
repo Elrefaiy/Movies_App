@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/widgets/blur_button.dart';
 import '../cubit/movies_cubit.dart';

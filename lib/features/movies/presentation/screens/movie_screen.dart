@@ -1,13 +1,14 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../config/routes/app_routes.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../cubit/movies_cubit.dart';
 import '../widgets/cast.dart';
 import '../widgets/crew.dart';
-import '../../../../config/routes/app_routes.dart';
-import '../cubit/movies_cubit.dart';
 import '../widgets/header.dart';
 import '../widgets/movie_info.dart';
-import '../../../../core/utils/app_strings.dart';
 import '../widgets/video.dart';
 
 class MovieScreen extends StatelessWidget {
