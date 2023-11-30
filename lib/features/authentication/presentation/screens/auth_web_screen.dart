@@ -20,22 +20,9 @@ class _AuthWebScreenState extends State<AuthWebScreen> {
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onProgress: (int progress) {
-            // Update loading bar.
-          },
-          onPageStarted: (String url) {},
-          onPageFinished: (String url) {},
-          onWebResourceError: (WebResourceError error) {},
-          onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('https://www.youtube.com/')) {
-              return NavigationDecision.prevent;
-            }
-            return NavigationDecision.navigate;
-          },
-        ),
-      )
+      ..setNavigationDelegate(NavigationDelegate(
+        onProgress: (int progress) {},
+      ))
       ..loadRequest(
         Uri.parse(
           'https://www.themoviedb.org/authenticate/${widget.requestToken}',

@@ -2,8 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:movies_application/features/authentication/data/datasources/request_token_remote.dart';
+import 'package:movies_application/features/authentication/data/repositories/create_session_repo_impl.dart';
 import 'package:movies_application/features/authentication/data/repositories/request_token_repo_impl.dart';
+import 'package:movies_application/features/authentication/domain/repositories/create_session_repo.dart';
 import 'package:movies_application/features/authentication/domain/repositories/request_token_repo.dart';
+import 'package:movies_application/features/authentication/domain/usecases/create_session_usecase.dart';
 import 'package:movies_application/features/authentication/domain/usecases/request_token_usecase.dart';
 import 'package:movies_application/features/movies/data/datasources/movie_images_remote.dart';
 import 'package:movies_application/features/movies/data/repositories/get_movie_images_repo_impl.dart';
@@ -60,6 +63,7 @@ Future<void> init() async {
   sl.registerFactory<AuthenticationCubit>(
     () => AuthenticationCubit(
       requestTokenUsecase: sl(),
+      createSessionUsecase: sl(),
     ),
   );
   sl.registerFactory<OnboardingCubit>(() => OnboardingCubit());
@@ -87,6 +91,9 @@ Future<void> init() async {
   // Use cases
   sl.registerLazySingleton<RequestTokenUsecase>(
     () => RequestTokenUsecase(requestTokenRepo: sl()),
+  );
+  sl.registerLazySingleton<CreateSessionUsecase>(
+    () => CreateSessionUsecase(createSessionRepo: sl()),
   );
   sl.registerLazySingleton<GetNowPlayingUsecase>(
     () => GetNowPlayingUsecase(getNowPlayingRepo: sl()),
@@ -124,6 +131,12 @@ Future<void> init() async {
   sl.registerLazySingleton<RequestTokenRepo>(
     () => RequestTokenRepoImpl(
       requestTokenRemote: sl(),
+      networkInfo: sl(),
+    ),
+  );
+  sl.registerLazySingleton<CreateSessionRepo>(
+    () => CreateSessionRepositoryImpl(
+      apiConsumer: sl(),
       networkInfo: sl(),
     ),
   );

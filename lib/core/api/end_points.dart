@@ -1,6 +1,7 @@
 class EndPoints {
   static const String baseUrl = 'https://api.themoviedb.org/3';
   static const String requestToken = '$baseUrl/authentication/token/new';
+  static const String createSession = '$baseUrl/authentication/session/new';
   static const String nowPlaying = '$baseUrl/movie/now_playing';
   static const String popular = '$baseUrl/movie/popular';
   static const String topRated = '$baseUrl/movie/top_rated';

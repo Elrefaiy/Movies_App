@@ -14,3 +14,9 @@ class ChangeIndexState extends AuthenticationState {}
 class CreateRequestTokenSuccess extends AuthenticationState {}
 
 class CreateRequestTokenError extends AuthenticationState {}
+
+class CreateSessionLoading extends AuthenticationState {}
+
+class CreateSessionSuccess extends AuthenticationState {}
+
+class CreateSessionError extends AuthenticationState {}

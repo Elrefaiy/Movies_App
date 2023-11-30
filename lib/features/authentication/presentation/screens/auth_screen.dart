@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../cubit/authentication_cubit.dart';
-import '../widgets/signin_widget.dart';
-import '../widgets/signup_widget.dart';
+import '../widgets/authorization_widget.dart';
+import '../widgets/create_session_widget.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
@@ -34,10 +34,10 @@ class AuthScreen extends StatelessWidget {
             child: BlocBuilder<AuthenticationCubit, AuthenticationState>(
               builder: (context, state) {
                 return Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextButton(
                           onPressed: () {
@@ -48,7 +48,7 @@ class AuthScreen extends StatelessWidget {
                             );
                           },
                           child: Text(
-                            'SIGN IN',
+                            'Authorization',
                             style: TextStyle(
                               color: cubit.currentIndex == 0
                                   ? Colors.white
@@ -67,7 +67,7 @@ class AuthScreen extends StatelessWidget {
                             );
                           },
                           child: Text(
-                            'SIGN UP',
+                            'Create Session',
                             style: TextStyle(
                               color: cubit.currentIndex == 1
                                   ? Colors.white
@@ -82,12 +82,23 @@ class AuthScreen extends StatelessWidget {
                       controller: cubit.pageController,
                       count: 2,
                       effect: WormEffect(
-                        dotWidth: 64,
+                        dotWidth: 83.2,
                         radius: 2,
                         dotHeight: 2,
                         spacing: 10,
                         dotColor: Colors.transparent,
                         activeDotColor: Colors.white,
+                      ),
+                    ),
+                    Spacer(),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Continue as a Guest',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                   ],
