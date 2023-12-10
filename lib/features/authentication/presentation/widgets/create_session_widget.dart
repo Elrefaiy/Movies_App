@@ -65,7 +65,7 @@ class SignUpWidget extends StatelessWidget {
                   if (state is CreateSessionSuccess) {
                     AppFunctions.showSnakBar(
                       context: context,
-                      lable: 'All set, you can go now!',
+                      lable: 'Welcome to your own session, have a good time!',
                       icon: Icons.done_rounded,
                       iconColor: Colors.greenAccent,
                       duration: 2,
@@ -75,14 +75,20 @@ class SignUpWidget extends StatelessWidget {
                       Routes.moviesHome,
                       (route) => false,
                     );
-                  } else if (state is CreateRequestTokenError) {}
+                  } else if (state is CreateSessionError) {
+                    AppFunctions.showSnakBar(
+                      context: context,
+                      lable: 'Error occured, try to authorize again please!',
+                      icon: Icons.close,
+                      iconColor: Colors.redAccent,
+                      duration: 2,
+                    );
+                  }
                 },
                 builder: (context, state) {
                   return TextButton(
                     onPressed: () {
-                      if (cubit.requestToken.isNotEmpty) {
-                        cubit.createSession();
-                      } else {}
+                      cubit.createSession();
                     },
                     child: Text(
                       'Get Started!',

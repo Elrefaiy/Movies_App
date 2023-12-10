@@ -70,7 +70,15 @@ class SignInWidget extends StatelessWidget {
                       iconColor: Colors.greenAccent,
                       duration: 2,
                     );
-                  } else if (state is CreateRequestTokenError) {}
+                  } else if (state is CreateRequestTokenError) {
+                    AppFunctions.showSnakBar(
+                      context: context,
+                      lable: 'Network Error, try to reconnect please!',
+                      icon: Icons.signal_wifi_connected_no_internet_4_rounded,
+                      iconColor: Colors.redAccent,
+                      duration: 2,
+                    );
+                  }
                 },
                 builder: (context, state) {
                   return TextButton(
@@ -81,8 +89,15 @@ class SignInWidget extends StatelessWidget {
                           Routes.authWeb,
                           arguments: cubit.requestToken,
                         );
+                        cubit.chageIndex(1);
+                        cubit.pageController.nextPage(
+                          duration: Duration(
+                            milliseconds: 100,
+                          ),
+                          curve: Curves.linearToEaseOut,
+                        );
                       } else {
-                        cubit.createRequestToken();
+                        cubit.createToken();
                       }
                     },
                     child: Text(

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../config/routes/app_routes.dart';
+import '../../../../core/utils/functions.dart';
 import '../cubit/authentication_cubit.dart';
 import '../widgets/authorization_widget.dart';
 import '../widgets/create_session_widget.dart';
@@ -39,6 +40,21 @@ class AuthScreen extends StatelessWidget {
                     context,
                     Routes.moviesHome,
                     (route) => false,
+                  );
+                  AppFunctions.showSnakBar(
+                    context: context,
+                    lable: 'Hello there guest, have a good time!',
+                    icon: Icons.done_rounded,
+                    iconColor: Colors.greenAccent,
+                    duration: 2,
+                  );
+                } else if (state is CreateGuestSessionError) {
+                  AppFunctions.showSnakBar(
+                    context: context,
+                    lable: 'Network Error, try to reconnect please',
+                    icon: Icons.signal_wifi_connected_no_internet_4_rounded,
+                    iconColor: Colors.redAccent,
+                    duration: 2,
                   );
                 }
               },

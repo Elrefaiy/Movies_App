@@ -11,6 +11,8 @@ class AuthenticationInitial extends AuthenticationState {}
 
 class ChangeIndexState extends AuthenticationState {}
 
+class CreateRequestTokenLoading extends AuthenticationState {}
+
 class CreateRequestTokenSuccess extends AuthenticationState {}
 
 class CreateRequestTokenError extends AuthenticationState {}

@@ -114,7 +114,11 @@ class OnboardingScreen extends StatelessWidget {
                   Spacer(),
                   TextButton(
                     onPressed: () {
-                      cubit.pageController.jumpToPage(3);
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        Routes.auth,
+                        (route) => false,
+                      );
                     },
                     child: Text(
                       'Skip',

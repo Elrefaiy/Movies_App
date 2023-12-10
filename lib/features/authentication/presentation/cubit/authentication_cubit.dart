@@ -30,7 +30,8 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   }
 
   String requestToken = '';
-  Future<void> createRequestToken() async {
+  Future<void> createToken() async {
+    emit(CreateRequestTokenLoading());
     final response = await requestTokenUsecase(NoParams());
     response.fold(
       (fail) => emit(CreateRequestTokenError()),
