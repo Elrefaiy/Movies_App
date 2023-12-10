@@ -1,5 +1,7 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_application/features/authentication/presentation/cubit/authentication_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/movies_lists/presentation/cubit/movies_lists_cubit.dart';
 import '../utils/app_strings.dart';
@@ -84,6 +86,7 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var isGuest = AuthenticationCubit.get(context).isGuest();
     return Drawer(
       backgroundColor: Colors.black.withOpacity(.4),
       width: double.infinity,
@@ -112,11 +115,13 @@ class AppDrawer extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Mr. Guest',
+                        isGuest ? 'Mr. Guest' : 'Ahmed',
                         style: Theme.of(context).textTheme.displayMedium,
                       ),
                       Text(
-                        'Guest User',
+                        !isGuest
+                            ? 'you have signed in as a guest'
+                            : 'dear user, enjoy with full cababilities',
                         style: Theme.of(context).textTheme.displaySmall,
                       ),
                     ],
