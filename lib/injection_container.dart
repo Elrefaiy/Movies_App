@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:movies_application/features/authentication/data/repositories/delete_session_repo_impl.dart';
+import 'package:movies_application/features/authentication/domain/repositories/delete_session.dart';
+import 'package:movies_application/features/authentication/domain/usecases/delete_session_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'features/authentication/data/datasources/request_token_remote.dart';
@@ -69,6 +72,7 @@ Future<void> init() async {
       requestTokenUsecase: sl(),
       createSessionUsecase: sl(),
       createGuestSessionUsecase: sl(),
+      deleteSessionUsecase: sl(),
     ),
   );
   sl.registerFactory<OnboardingCubit>(() => OnboardingCubit());
@@ -103,6 +107,10 @@ Future<void> init() async {
   sl.registerLazySingleton<CreateGuestSessionUsecase>(
     () => CreateGuestSessionUsecase(createGuestSessionRepo: sl()),
   );
+  sl.registerLazySingleton<DeleteSessionUsecase>(
+    () => DeleteSessionUsecase(deleteSessionRepo: sl()),
+  );
+
   sl.registerLazySingleton<GetNowPlayingUsecase>(
     () => GetNowPlayingUsecase(getNowPlayingRepo: sl()),
   );
@@ -156,6 +164,13 @@ Future<void> init() async {
       sharedPreferences: sl(),
     ),
   );
+  sl.registerLazySingleton<DeleteSessionRepo>(
+    () => DeleteSessionRepoImpl(
+      apiConsumer: sl(),
+      networkInfo: sl(),
+    ),
+  );
+
   sl.registerLazySingleton<GetNowPlayingRepo>(
     () => GetNowPlayingRepoImpl(
       remoteDataSource: sl(),

@@ -150,6 +150,39 @@ class AppDrawer extends StatelessWidget {
                   lable: lables[index],
                 ),
               ),
+              SizedBox(height: 20),
+              Text(
+                'Settings',
+                style: Theme.of(context).textTheme.displayLarge,
+              ),
+              if (!isGuest)
+                InkWell(
+                  onTap: () {
+                    AuthenticationCubit.get(context).deleteSession();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 10,
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Delete Session & Logout',
+                          style: TextStyle(
+                            color: Colors.redAccent,
+                            fontSize: 18,
+                          ),
+                        ),
+                        Spacer(),
+                        Icon(
+                          Icons.exit_to_app_outlined,
+                          color: Colors.grey.withOpacity(.4),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
             ],
           ),
         ),

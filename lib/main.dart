@@ -14,14 +14,12 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
   Bloc.observer = AppBlocObserver();
-  final String guestSession =
-      di.sl<SharedPreferences>().getString(AppStrings.guestSession) ?? '';
-  final String userSession =
-      di.sl<SharedPreferences>().getString(AppStrings.userSession) ?? '';
+  final String session =
+      di.sl<SharedPreferences>().getString(AppStrings.sessionId) ?? '';
   final bool firstTime =
       di.sl<SharedPreferences>().getBool(AppStrings.firstTime) ?? true;
   Widget widget = firstTime ? OnboardingScreen() : AuthScreen();
-  if (guestSession != '' || userSession != '') {
+  if (session != '') {
     widget = MoviesHomeScreen();
   }
   runApp(

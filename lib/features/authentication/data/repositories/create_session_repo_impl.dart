@@ -32,7 +32,7 @@ class CreateSessionRepositoryImpl implements CreateSessionRepo {
           },
         );
         await sharedPreferences.setString(
-          AppStrings.guestSession,
+          AppStrings.sessionId,
           response['session_id'],
         );
         return Right(SessionModel.fromJson(response));

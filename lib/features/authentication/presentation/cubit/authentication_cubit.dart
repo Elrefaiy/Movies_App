@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_application/core/utils/app_strings.dart';
+import 'package:movies_application/features/authentication/domain/usecases/delete_session_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/usecase/usecase.dart';
@@ -16,10 +17,12 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   final RequestTokenUsecase requestTokenUsecase;
   final CreateSessionUsecase createSessionUsecase;
   final CreateGuestSessionUsecase createGuestSessionUsecase;
+  final DeleteSessionUsecase deleteSessionUsecase;
   AuthenticationCubit({
     required this.requestTokenUsecase,
     required this.createSessionUsecase,
     required this.createGuestSessionUsecase,
+    required this.deleteSessionUsecase,
   }) : super(AuthenticationInitial());
   static AuthenticationCubit get(context) => BlocProvider.of(context);
 
@@ -64,18 +67,29 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     final response = await createGuestSessionUsecase(NoParams());
     response.fold(
       (fail) => emit(CreateGuestSessionError()),
-      (session) {
+      (session) async {
         guestSession = session.guestSessionId;
+        await di.sl<SharedPreferences>().setBool(AppStrings.isGeust, true);
         emit(CreateGuestSessionSuccess());
       },
     );
   }
 
+  Future<void> deleteSession() async {
+    var session =
+        await di.sl<SharedPreferences>().getString(AppStrings.sessionId)!;
+    final response = await deleteSessionUsecase(session);
+
+    response.fold(
+      (l) => emit(DeleteSessionError()),
+      (r) async {
+        await di.sl<SharedPreferences>().remove(AppStrings.sessionId);
+        emit(DeleteSessionSuccess());
+      },
+    );
+  }
+
   bool isGuest() {
-    var session = di.sl<SharedPreferences>().getString(AppStrings.guestSession);
-    if (session == null) {
-      return false;
-    }
-    return true;
+    return di.sl<SharedPreferences>().getBool(AppStrings.isGeust) ?? false;
   }
 }

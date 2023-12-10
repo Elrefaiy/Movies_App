@@ -10,7 +10,7 @@ class AppStrings {
   static const String assetImage = 'assets/images/';
   static const String imageBase = 'https://image.tmdb.org/t/p/original/';
   static const String YoutubeBase = 'https://www.youtube.com/watch?v=';
-  static const String guestSession = 'guest-session';
-  static const String userSession = 'user-session';
+  static const String sessionId = 'session-Id';
   static const String firstTime = 'first-time';
+  static const String isGeust = 'is-Guest';
 }

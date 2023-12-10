@@ -28,3 +28,7 @@ class CreateGuestSessionLoading extends AuthenticationState {}
 class CreateGuestSessionSuccess extends AuthenticationState {}
 
 class CreateGuestSessionError extends AuthenticationState {}
+
+class DeleteSessionSuccess extends AuthenticationState {}
+
+class DeleteSessionError extends AuthenticationState {}

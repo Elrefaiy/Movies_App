@@ -4,6 +4,7 @@ class EndPoints {
   static const String createSession = '$baseUrl/authentication/session/new';
   static const String createGuestSession =
       '$baseUrl/authentication/guest_session/new';
+  static const String deleteSession = '$baseUrl/authentication/session';
   static const String nowPlaying = '$baseUrl/movie/now_playing';
   static const String popular = '$baseUrl/movie/popular';
   static const String topRated = '$baseUrl/movie/top_rated';

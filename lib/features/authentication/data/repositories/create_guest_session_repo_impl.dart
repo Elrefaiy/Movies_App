@@ -27,7 +27,7 @@ class CreateGuestSessionRepoImpl implements CreateGuestSessionRepo {
           path: EndPoints.createGuestSession,
         );
         await sharedPreferences.setString(
-          AppStrings.guestSession,
+          AppStrings.sessionId,
           response['guest_session_id'],
         );
         return Right(GuestSessionModel.fromJson(response));
