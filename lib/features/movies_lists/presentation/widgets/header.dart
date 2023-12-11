@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/blur_button.dart';
+import '../../../account/presentation/cubit/account_cubit.dart';
 import '../cubit/movies_lists_cubit.dart';
 
 class Header extends StatelessWidget {
@@ -21,11 +22,15 @@ class Header extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          BlurButton(
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
+          BlocBuilder<AccountCubit, AccountState>(
+            builder: (context, state) {
+              return BlurButton(
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                icon: Icons.menu_rounded,
+              );
             },
-            icon: Icons.menu_rounded,
           ),
           Spacer(),
           Column(

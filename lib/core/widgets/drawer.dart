@@ -1,8 +1,8 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_application/features/account/presentation/cubit/account_cubit.dart';
 import 'package:movies_application/features/authentication/presentation/cubit/authentication_cubit.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../features/movies_lists/presentation/cubit/movies_lists_cubit.dart';
 import '../utils/app_strings.dart';
 
@@ -87,6 +87,7 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var isGuest = AuthenticationCubit.get(context).isGuest();
+    var details = AccountCubit.get(context).accountDetails;
     return Drawer(
       backgroundColor: Colors.black.withOpacity(.4),
       width: double.infinity,
@@ -102,31 +103,35 @@ class AppDrawer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 20),
-              Row(
-                children: [
-                  Image(
-                    image: AssetImage(
-                      '${AppStrings.assetImage}profile.png',
-                    ),
-                    width: 80,
-                  ),
-                  SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+              BlocBuilder<AccountCubit, AccountState>(
+                builder: (context, state) {
+                  return Row(
                     children: [
-                      Text(
-                        isGuest ? 'Mr. Guest' : 'Ahmed',
-                        style: Theme.of(context).textTheme.displayMedium,
+                      Image(
+                        image: AssetImage(
+                          '${AppStrings.assetImage}profile.png',
+                        ),
+                        width: 80,
                       ),
-                      Text(
-                        !isGuest
-                            ? 'you have signed in as a guest'
-                            : 'dear user, enjoy with full cababilities',
-                        style: Theme.of(context).textTheme.displaySmall,
+                      SizedBox(width: 10),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            isGuest ? 'Mr. Guest' : details.username,
+                            style: Theme.of(context).textTheme.displayMedium,
+                          ),
+                          Text(
+                            isGuest
+                                ? 'you have signed in as a guest'
+                                : details.name,
+                            style: Theme.of(context).textTheme.displaySmall,
+                          ),
+                        ],
                       ),
                     ],
-                  ),
-                ],
+                  );
+                },
               ),
               SizedBox(height: 20),
               Text(

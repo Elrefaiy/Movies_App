@@ -14,4 +14,5 @@ class EndPoints {
   static String credits(int id) => '$baseUrl/movie/$id/credits';
   static String images(int id) => '$baseUrl/movie/$id/images';
   static const String searchMovie = '$baseUrl/search/movie';
+  static const String accountDetails = '$baseUrl/account/18279617';
 }

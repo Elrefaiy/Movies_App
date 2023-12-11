@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_application/features/account/presentation/cubit/account_cubit.dart';
 
 import 'config/routes/app_routes.dart';
 import 'config/themes/app_theme.dart';
@@ -25,6 +26,9 @@ class MoviesApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => di.sl<AuthenticationCubit>()..createToken(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<AccountCubit>()..getAccountDetails(),
         ),
         BlocProvider(
           create: (context) => di.sl<MoviesListsCubit>()..getNowPlaying(),

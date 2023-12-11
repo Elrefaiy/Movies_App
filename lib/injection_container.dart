@@ -1,5 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:movies_application/features/account/data/datasources/get_details_remote.dart';
+import 'package:movies_application/features/account/data/repositories/get_details_repo_impl.dart';
+import 'package:movies_application/features/account/domain/repositories/get_details.dart';
+import 'package:movies_application/features/account/domain/usecases/get_details_usecase.dart';
+import 'package:movies_application/features/account/presentation/cubit/account_cubit.dart';
 import 'package:movies_application/features/authentication/data/repositories/delete_session_repo_impl.dart';
 import 'package:movies_application/features/authentication/domain/repositories/delete_session.dart';
 import 'package:movies_application/features/authentication/domain/usecases/delete_session_usecase.dart';
@@ -84,6 +89,11 @@ Future<void> init() async {
       getUpcomingUsecase: sl(),
     ),
   );
+  sl.registerFactory<AccountCubit>(
+    () => AccountCubit(
+      getDetailsUsecase: sl(),
+    ),
+  );
   sl.registerFactory<MoviesCubit>(
     () => MoviesCubit(
         getMovieDetailsUsecase: sl(),
@@ -109,6 +119,10 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<DeleteSessionUsecase>(
     () => DeleteSessionUsecase(deleteSessionRepo: sl()),
+  );
+
+  sl.registerLazySingleton<GetDetailsUsecase>(
+    () => GetDetailsUsecase(getDetailsRepo: sl()),
   );
 
   sl.registerLazySingleton<GetNowPlayingUsecase>(
@@ -155,6 +169,12 @@ Future<void> init() async {
       apiConsumer: sl(),
       networkInfo: sl(),
       sharedPreferences: sl(),
+    ),
+  );
+  sl.registerLazySingleton<GetDetailsRepo>(
+    () => GetDetailsRepoImpl(
+      networkInfo: sl(),
+      remoteDataSource: sl(),
     ),
   );
   sl.registerLazySingleton<CreateGuestSessionRepo>(
@@ -237,6 +257,11 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<NowPlayingRemoteDataSource>(
     () => NowPlayingRemoteDataSourceImpl(
+      apiConsumer: sl(),
+    ),
+  );
+  sl.registerLazySingleton<GetDetailsRemoteDataSource>(
+    () => GetDetailsRemoteDataSourceImpl(
       apiConsumer: sl(),
     ),
   );
