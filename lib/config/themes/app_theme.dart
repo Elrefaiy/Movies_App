@@ -10,7 +10,7 @@ ThemeData AppTheme() {
     primaryColor: AppColors.primary,
     hintColor: AppColors.hint,
     appBarTheme: AppBarTheme(
-      color: Colors.grey.shade900,
+      color: Colors.black,
       elevation: 0,
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,

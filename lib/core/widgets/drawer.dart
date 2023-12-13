@@ -1,6 +1,7 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_application/config/routes/app_routes.dart';
 import 'package:movies_application/features/account/presentation/cubit/account_cubit.dart';
 import 'package:movies_application/features/authentication/presentation/cubit/authentication_cubit.dart';
 import '../../features/movies_lists/presentation/cubit/movies_lists_cubit.dart';
@@ -153,6 +154,33 @@ class AppDrawer extends StatelessWidget {
                   context: context,
                   index: index,
                   lable: lables[index],
+                ),
+              ),
+              SizedBox(height: 20),
+              InkWell(
+                onTap: () {
+                  AccountCubit.get(context).getFavorites();
+                  Navigator.pop(context);
+                  Navigator.pushNamed(
+                    context,
+                    Routes.favorites,
+                  );
+                },
+                child: Row(
+                  children: [
+                    Text(
+                      'Favorite Movies',
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.favorite_rounded,
+                      color: Colors.grey.withOpacity(.4),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                  ],
                 ),
               ),
               SizedBox(height: 20),

@@ -1,9 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movies_application/features/account/data/datasources/get_details_remote.dart';
+import 'package:movies_application/features/account/data/datasources/get_favorites_remote.dart';
 import 'package:movies_application/features/account/data/repositories/get_details_repo_impl.dart';
+import 'package:movies_application/features/account/data/repositories/get_favorites_repo_impl.dart';
 import 'package:movies_application/features/account/domain/repositories/get_details.dart';
+import 'package:movies_application/features/account/domain/repositories/get_favorites.dart';
 import 'package:movies_application/features/account/domain/usecases/get_details_usecase.dart';
+import 'package:movies_application/features/account/domain/usecases/get_favorites_usecase.dart';
 import 'package:movies_application/features/account/presentation/cubit/account_cubit.dart';
 import 'package:movies_application/features/authentication/data/repositories/delete_session_repo_impl.dart';
 import 'package:movies_application/features/authentication/domain/repositories/delete_session.dart';
@@ -92,6 +96,7 @@ Future<void> init() async {
   sl.registerFactory<AccountCubit>(
     () => AccountCubit(
       getDetailsUsecase: sl(),
+      getFavoritesUsecase: sl(),
     ),
   );
   sl.registerFactory<MoviesCubit>(
@@ -155,6 +160,10 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<GetMovieImagesUsecase>(
     () => GetMovieImagesUsecase(getMovieImagesRepo: sl()),
+  );
+
+  sl.registerLazySingleton<GetFavoritesUsecase>(
+    () => GetFavoritesUsecase(getFavoritesRepo: sl()),
   );
 
   // Repository
@@ -248,6 +257,12 @@ Future<void> init() async {
       networkInfo: sl(),
     ),
   );
+  sl.registerLazySingleton<GetFavoritesRepo>(
+    () => GetFavoritesRepoImpl(
+      remoteDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
 
   // Data Sources
   sl.registerLazySingleton<RequestTokenRemote>(
@@ -307,6 +322,11 @@ Future<void> init() async {
 
   sl.registerLazySingleton<GetMovieImagesRemoteDataSorce>(
     () => GetMovieImagesRemoteDSImpl(
+      apiConsumer: sl(),
+    ),
+  );
+  sl.registerLazySingleton<GetFavoritesRemoteDataSource>(
+    () => GetFavoritesRemoteDataSourceImpl(
       apiConsumer: sl(),
     ),
   );
