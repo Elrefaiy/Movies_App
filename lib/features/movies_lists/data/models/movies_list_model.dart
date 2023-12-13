@@ -1,3 +1,5 @@
+import 'package:movies_application/core/utils/app_strings.dart';
+
 import '../../domain/entities/movies_list.dart';
 
 class MoviesListModel extends MoviesList {
@@ -28,7 +30,7 @@ class MoviesListModel extends MoviesList {
 
 class ResultModel extends Result {
   ResultModel({
-    required String backdropPath,
+    required String? backdropPath,
     required int id,
     required String originalTitle,
     required String overview,
@@ -52,7 +54,7 @@ class ResultModel extends Result {
         );
 
   factory ResultModel.fromJson(Map<String, dynamic> json) => ResultModel(
-        backdropPath: json["backdrop_path"],
+        backdropPath: json["backdrop_path"] ?? AppStrings.noImage,
         id: json["id"],
         originalTitle: json["original_title"],
         overview: json["overview"],

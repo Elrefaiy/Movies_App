@@ -11,7 +11,7 @@ class MoviesList {
 }
 
 class Result {
-  String backdropPath;
+  String? backdropPath;
   int id;
   String originalTitle;
   String title;
