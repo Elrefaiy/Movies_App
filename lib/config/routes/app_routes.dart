@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_application/features/account/presentation/screens/favorite_screen.dart';
+import 'package:movies_application/features/account/presentation/screens/rated_movies_screen.dart';
 import '../../features/authentication/presentation/screens/auth_web_screen.dart';
 
 import '../../features/authentication/presentation/screens/auth_screen.dart';
@@ -21,6 +22,7 @@ class Routes {
   static const String searchMovie = '/searchMovie';
   static const String movieImages = '/movieImages';
   static const String favorites = '/favorites';
+  static const String ratedMovies = '/ratedMovies';
 }
 
 class AppRoutes {
@@ -65,6 +67,10 @@ class AppRoutes {
       case Routes.favorites:
         return MaterialPageRoute(
           builder: (context) => FavoriteScreen(),
+        );
+      case Routes.ratedMovies:
+        return MaterialPageRoute(
+          builder: (context) => RatedMoviesScreen(),
         );
       case Routes.movieImages:
         return MaterialPageRoute(

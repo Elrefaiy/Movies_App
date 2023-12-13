@@ -16,4 +16,5 @@ class EndPoints {
   static const String searchMovie = '$baseUrl/search/movie';
   static const String accountDetails = '$baseUrl/account/18279617';
   static const String favorites = '$baseUrl/account/18279617/favorite/movies';
+  static const String rated = '$baseUrl/account/18279617/rated/movies';
 }

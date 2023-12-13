@@ -18,3 +18,9 @@ class GetFavoritesLoading extends AccountState {}
 class GetFavoritesSuccess extends AccountState {}
 
 class GetFavoritesError extends AccountState {}
+
+class GetRatedMoviesLoading extends AccountState {}
+
+class GetRatedMoviesSuccess extends AccountState {}
+
+class GetRatedMoviesError extends AccountState {}

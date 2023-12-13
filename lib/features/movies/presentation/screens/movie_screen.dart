@@ -1,6 +1,7 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -49,6 +50,35 @@ class MovieScreen extends StatelessWidget {
                       children: [
                         SizedBox(height: 130),
                         MovieInfo(movie: movie),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            RatingBar.builder(
+                              glowColor: Colors.amber,
+                              itemSize: 20,
+                              initialRating: 1,
+                              minRating: 1,
+                              maxRating: 5,
+                              unratedColor: Colors.grey.withOpacity(.3),
+                              direction: Axis.horizontal,
+                              allowHalfRating: true,
+                              itemCount: 5,
+                              updateOnDrag: true,
+                              itemPadding: EdgeInsets.symmetric(
+                                horizontal: 3,
+                              ),
+                              itemBuilder: (context, _) => Icon(
+                                Icons.star_rounded,
+                                color: Colors.amberAccent,
+                              ),
+                              onRatingUpdate: (rating) {
+                                print(rating);
+                              },
+                            ),
+                          ],
+                        ),
                         InkWell(
                           onTap: () {
                             Navigator.pushNamed(

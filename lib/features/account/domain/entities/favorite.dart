@@ -1,6 +1,6 @@
 class Favorite {
   int page;
-  List<Result> results;
+  List<FavResult> results;
   int totalPages;
   int totalResults;
 
@@ -12,12 +12,12 @@ class Favorite {
   });
 }
 
-class Result {
+class FavResult {
   int id;
   String posterPath;
   double voteAverage;
 
-  Result({
+  FavResult({
     required this.id,
     required this.posterPath,
     required this.voteAverage,

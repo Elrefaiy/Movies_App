@@ -1,9 +1,9 @@
-import '../../domain/entities/favorite.dart';
+import '../../domain/entities/rated.dart';
 
-class FavoriteModel extends Favorite {
-  FavoriteModel({
+class RatedModel extends Rated {
+  RatedModel({
     required int page,
-    required List<FavResultModel> results,
+    required List<RatedResultModel> results,
     required int totalPages,
     required int totalResults,
   }) : super(
@@ -13,11 +13,11 @@ class FavoriteModel extends Favorite {
           totalResults: totalResults,
         );
 
-  factory FavoriteModel.fromJson(Map<String, dynamic> json) => FavoriteModel(
+  factory RatedModel.fromJson(Map<String, dynamic> json) => RatedModel(
         page: json["page"],
-        results: List<FavResultModel>.from(
+        results: List<RatedResultModel>.from(
           json["results"].map(
-            (x) => FavResultModel.fromJson(x),
+            (x) => RatedResultModel.fromJson(x),
           ),
         ),
         totalPages: json["total_pages"],
@@ -25,20 +25,24 @@ class FavoriteModel extends Favorite {
       );
 }
 
-class FavResultModel extends FavResult {
-  FavResultModel({
+class RatedResultModel extends RatedResult {
+  RatedResultModel({
     required int id,
     required String posterPath,
     required double voteAverage,
+    required double rating,
   }) : super(
           id: id,
           posterPath: posterPath,
           voteAverage: voteAverage,
+          rating: rating,
         );
 
-  factory FavResultModel.fromJson(Map<String, dynamic> json) => FavResultModel(
+  factory RatedResultModel.fromJson(Map<String, dynamic> json) =>
+      RatedResultModel(
         id: json["id"],
         posterPath: json["poster_path"],
         voteAverage: json["vote_average"]?.toDouble(),
+        rating: json["rating"]?.toDouble(),
       );
 }

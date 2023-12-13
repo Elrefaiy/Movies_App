@@ -4,16 +4,20 @@ import 'package:movies_application/features/account/data/datasources/get_details
 import 'package:movies_application/features/account/data/datasources/get_favorites_remote.dart';
 import 'package:movies_application/features/account/data/repositories/get_details_repo_impl.dart';
 import 'package:movies_application/features/account/data/repositories/get_favorites_repo_impl.dart';
+import 'package:movies_application/features/account/data/repositories/get_rated_repo_impl.dart';
 import 'package:movies_application/features/account/domain/repositories/get_details.dart';
 import 'package:movies_application/features/account/domain/repositories/get_favorites.dart';
+import 'package:movies_application/features/account/domain/repositories/get_rated.dart';
 import 'package:movies_application/features/account/domain/usecases/get_details_usecase.dart';
 import 'package:movies_application/features/account/domain/usecases/get_favorites_usecase.dart';
+import 'package:movies_application/features/account/domain/usecases/get_rated_usecase.dart';
 import 'package:movies_application/features/account/presentation/cubit/account_cubit.dart';
 import 'package:movies_application/features/authentication/data/repositories/delete_session_repo_impl.dart';
 import 'package:movies_application/features/authentication/domain/repositories/delete_session.dart';
 import 'package:movies_application/features/authentication/domain/usecases/delete_session_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'features/account/data/datasources/get_Rated_remote.dart';
 import 'features/authentication/data/datasources/request_token_remote.dart';
 import 'features/authentication/data/repositories/create_guest_session_repo_impl.dart';
 import 'features/authentication/data/repositories/create_session_repo_impl.dart';
@@ -97,6 +101,7 @@ Future<void> init() async {
     () => AccountCubit(
       getDetailsUsecase: sl(),
       getFavoritesUsecase: sl(),
+      getRatedUsecase: sl(),
     ),
   );
   sl.registerFactory<MoviesCubit>(
@@ -164,6 +169,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<GetFavoritesUsecase>(
     () => GetFavoritesUsecase(getFavoritesRepo: sl()),
+  );
+  sl.registerLazySingleton<GetRatedUsecase>(
+    () => GetRatedUsecase(getRatedRepo: sl()),
   );
 
   // Repository
@@ -263,7 +271,12 @@ Future<void> init() async {
       networkInfo: sl(),
     ),
   );
-
+  sl.registerLazySingleton<GetRatedRepo>(
+    () => GetRatedRepoImpl(
+      remoteDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
   // Data Sources
   sl.registerLazySingleton<RequestTokenRemote>(
     () => RequestTokenRemoteImpl(
@@ -327,6 +340,11 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<GetFavoritesRemoteDataSource>(
     () => GetFavoritesRemoteDataSourceImpl(
+      apiConsumer: sl(),
+    ),
+  );
+  sl.registerLazySingleton<GetRatedRemoteDataSource>(
+    () => GetRatedRemoteDataSourceImpl(
       apiConsumer: sl(),
     ),
   );
