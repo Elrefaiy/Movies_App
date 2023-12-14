@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'features/account/data/repositories/update_favorite_repo_impl.dart';
+import 'features/account/domain/repositories/update_favorite.dart';
+import 'features/account/domain/usecases/update_favorite_usecase.dart';
 import 'features/movies/data/datasources/get_account_states_remote.dart';
 import 'features/movies/data/repositories/get_account_states_repo_impl.dart';
 import 'features/movies/domain/repositories/get_account_states.dart';
@@ -106,6 +109,7 @@ Future<void> init() async {
       getDetailsUsecase: sl(),
       getFavoritesUsecase: sl(),
       getRatedUsecase: sl(),
+      updateFavoriteUsecase: sl(),
     ),
   );
   sl.registerFactory<MoviesCubit>(
@@ -181,6 +185,9 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<GetAccountStatesUsecase>(
     () => GetAccountStatesUsecase(accountStatesRepo: sl()),
+  );
+  sl.registerLazySingleton<UpdateFavoriteUsecase>(
+    () => UpdateFavoriteUsecase(updateFavoriteRepo: sl()),
   );
 
   // Repository
@@ -289,6 +296,13 @@ Future<void> init() async {
   sl.registerLazySingleton<GetAccountStatesRepo>(
     () => GetAccountStatesRepoImpl(
       remoteDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
+  sl.registerLazySingleton<UpdateFavoriteRepo>(
+    () => UpdateFavoriteRepoImpl(
+      sharedPreferences: sl(),
+      apiConsumer: sl(),
       networkInfo: sl(),
     ),
   );

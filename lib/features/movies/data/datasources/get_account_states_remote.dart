@@ -1,8 +1,9 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../../../core/api/api_consumer.dart';
 import '../../../../core/api/end_points.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../models/account_states_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class GetAccountStatesRemoteDS {
   Future<AccountStatesModel> getAccountStates(int movieId);
@@ -19,7 +20,7 @@ class GetAccountStatesRemoteDSImpl implements GetAccountStatesRemoteDS {
 
   @override
   Future<AccountStatesModel> getAccountStates(int movieId) async {
-    bool isGuest = sharedPreferences.getBool(AppStrings.isGeust) ?? true;
+    bool isGuest = sharedPreferences.getBool(AppStrings.isGeust)!;
     String id = sharedPreferences.getString(AppStrings.sessionId)!;
 
     var response = await apiConsumer.get(

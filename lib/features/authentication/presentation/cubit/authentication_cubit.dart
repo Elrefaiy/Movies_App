@@ -54,8 +54,9 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     final response = await createSessionUsecase(requestToken);
     response.fold(
       (fail) => emit(CreateSessionError()),
-      (session) {
+      (session) async {
         userSession = session.sessionId;
+        await di.sl<SharedPreferences>().setBool(AppStrings.isGeust, false);
         emit(CreateSessionSuccess());
       },
     );

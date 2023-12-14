@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import '../../../account/presentation/cubit/account_cubit.dart';
 import '../cubit/movies_cubit.dart';
 
 class AccountStatesWidget extends StatelessWidget {
@@ -79,6 +80,16 @@ class AccountStatesWidget extends StatelessWidget {
               height: 40,
             ),
             InkWell(
+              onTap: () {
+                AccountCubit.get(context)
+                    .updateFavorite(id: states.id, favorite: !states.favorite)
+                    .then(
+                  (value) {
+                    return MoviesCubit.get(context)
+                        .getAccountStates(id: states.id);
+                  },
+                );
+              },
               child: Column(
                 children: [
                   Icon(

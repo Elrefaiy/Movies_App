@@ -16,7 +16,6 @@ Future<void> main() async {
   Bloc.observer = AppBlocObserver();
   final String session =
       di.sl<SharedPreferences>().getString(AppStrings.sessionId) ?? '';
-  print(session);
   final bool firstTime =
       di.sl<SharedPreferences>().getBool(AppStrings.firstTime) ?? true;
   Widget widget = firstTime ? OnboardingScreen() : AuthScreen();

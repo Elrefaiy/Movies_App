@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
+
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
+import '../../domain/repositories/get_account_states.dart';
 import '../datasources/get_account_states_remote.dart';
 import '../models/account_states_model.dart';
-import '../../domain/repositories/get_account_states.dart';
 
 class GetAccountStatesRepoImpl implements GetAccountStatesRepo {
   final NetworkInfo networkInfo;
@@ -21,6 +22,7 @@ class GetAccountStatesRepoImpl implements GetAccountStatesRepo {
         var response = await remoteDataSource.getAccountStates(movieId);
         return Right(response);
       } catch (error) {
+        print(error.toString());
         return Left(ServerFailure());
       }
     } else {

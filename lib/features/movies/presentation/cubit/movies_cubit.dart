@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../domain/entities/account_states.dart';
-import '../../domain/usecases/get_account_states_usecase.dart';
 
+import '../../domain/entities/account_states.dart';
 import '../../domain/entities/credit.dart';
 import '../../domain/entities/image.dart';
 import '../../domain/entities/movie_details.dart';
 import '../../domain/entities/video.dart';
+import '../../domain/usecases/get_account_states_usecase.dart';
 import '../../domain/usecases/get_credit_usecase.dart';
 import '../../domain/usecases/get_movie_details_usecase.dart';
 import '../../domain/usecases/get_movie_images_usecase.dart';
