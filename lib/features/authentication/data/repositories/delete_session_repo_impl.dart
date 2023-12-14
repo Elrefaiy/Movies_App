@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/widgets.dart';
-import '../../../../core/api/end_points.dart';
 
 import '../../../../core/api/api_consumer.dart';
+import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/delete_session.dart';

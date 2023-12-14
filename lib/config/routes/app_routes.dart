@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../../features/account/presentation/screens/favorite_screen.dart';
 import '../../features/account/presentation/screens/rated_movies_screen.dart';
-import '../../features/authentication/presentation/screens/auth_web_screen.dart';
-
 import '../../features/authentication/presentation/screens/auth_screen.dart';
+import '../../features/authentication/presentation/screens/auth_web_screen.dart';
 import '../../features/movies/presentation/screens/images_screen.dart';
 import '../../features/movies/presentation/screens/movie_screen.dart';
 import '../../features/movies/presentation/screens/trailer_screen.dart';

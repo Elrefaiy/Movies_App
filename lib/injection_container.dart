@@ -1,5 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'features/movies/data/datasources/get_account_states_remote.dart';
+import 'features/movies/data/repositories/get_account_states_repo_impl.dart';
+import 'features/movies/domain/repositories/get_account_states.dart';
+import 'features/movies/domain/usecases/get_account_states_usecase.dart';
 import 'features/account/data/datasources/get_details_remote.dart';
 import 'features/account/data/datasources/get_favorites_remote.dart';
 import 'features/account/data/repositories/get_details_repo_impl.dart';
@@ -106,10 +110,12 @@ Future<void> init() async {
   );
   sl.registerFactory<MoviesCubit>(
     () => MoviesCubit(
-        getMovieDetailsUsecase: sl(),
-        getMovieVideosUsecase: sl(),
-        getCreditUsecase: sl(),
-        getMovieImagesUsecase: sl()),
+      getMovieDetailsUsecase: sl(),
+      getMovieVideosUsecase: sl(),
+      getCreditUsecase: sl(),
+      getMovieImagesUsecase: sl(),
+      getAccountStatesUsecase: sl(),
+    ),
   );
   sl.registerFactory<SearchCubit>(
     () => SearchCubit(
@@ -172,6 +178,9 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<GetRatedUsecase>(
     () => GetRatedUsecase(getRatedRepo: sl()),
+  );
+  sl.registerLazySingleton<GetAccountStatesUsecase>(
+    () => GetAccountStatesUsecase(accountStatesRepo: sl()),
   );
 
   // Repository
@@ -277,6 +286,13 @@ Future<void> init() async {
       networkInfo: sl(),
     ),
   );
+  sl.registerLazySingleton<GetAccountStatesRepo>(
+    () => GetAccountStatesRepoImpl(
+      remoteDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
+
   // Data Sources
   sl.registerLazySingleton<RequestTokenRemote>(
     () => RequestTokenRemoteImpl(
@@ -345,6 +361,12 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<GetRatedRemoteDataSource>(
     () => GetRatedRemoteDataSourceImpl(
+      apiConsumer: sl(),
+    ),
+  );
+  sl.registerLazySingleton<GetAccountStatesRemoteDS>(
+    () => GetAccountStatesRemoteDSImpl(
+      sharedPreferences: sl(),
       apiConsumer: sl(),
     ),
   );

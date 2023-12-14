@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../../config/routes/app_routes.dart';
-import '../../domain/entities/rated.dart';
 
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../movies/presentation/cubit/movies_cubit.dart';
+import '../../domain/entities/rated.dart';
 
 class RatedItem extends StatelessWidget {
   final RatedResult movie;

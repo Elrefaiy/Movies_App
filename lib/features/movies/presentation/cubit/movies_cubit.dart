@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../domain/entities/account_states.dart';
+import '../../domain/usecases/get_account_states_usecase.dart';
 
 import '../../domain/entities/credit.dart';
 import '../../domain/entities/image.dart';
@@ -17,12 +19,14 @@ class MoviesCubit extends Cubit<MoviesState> {
   GetMovieVideosUsecase getMovieVideosUsecase;
   GetCreditUsecase getCreditUsecase;
   GetMovieImagesUsecase getMovieImagesUsecase;
+  GetAccountStatesUsecase getAccountStatesUsecase;
 
   MoviesCubit({
     required this.getMovieDetailsUsecase,
     required this.getMovieVideosUsecase,
     required this.getCreditUsecase,
     required this.getMovieImagesUsecase,
+    required this.getAccountStatesUsecase,
   }) : super(MoviesInitial());
 
   static MoviesCubit get(context) => BlocProvider.of(context);
@@ -37,6 +41,7 @@ class MoviesCubit extends Cubit<MoviesState> {
       (failure) => emit(GetMovieDetailsError()),
       (movieDetails) {
         movie = movieDetails;
+        getAccountStates(id: id);
         getMoviesVideos(id: id);
         getCredit(id: id);
         emit(GetMovieDetailsSuccessfully());
@@ -94,6 +99,19 @@ class MoviesCubit extends Cubit<MoviesState> {
         posters = images.posters;
         backdrops = images.backdrops;
         emit(GetImagesSuccessfully());
+      },
+    );
+  }
+
+  late AccountStates accountState;
+  Future<void> getAccountStates({required int id}) async {
+    emit(GetAccountStatesLoading());
+    final response = await getAccountStatesUsecase(id);
+    response.fold(
+      (failure) => emit(GetAccountStatesError()),
+      (states) {
+        accountState = states;
+        emit(GetAccountStatesSuccessfully());
       },
     );
   }

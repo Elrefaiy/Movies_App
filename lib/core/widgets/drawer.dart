@@ -1,6 +1,7 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../config/routes/app_routes.dart';
 import '../../features/account/presentation/cubit/account_cubit.dart';
 import '../../features/authentication/presentation/cubit/authentication_cubit.dart';

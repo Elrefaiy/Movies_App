@@ -32,3 +32,9 @@ class GetImagesLoading extends MoviesState {}
 class GetImagesSuccessfully extends MoviesState {}
 
 class GetImagesError extends MoviesState {}
+
+class GetAccountStatesLoading extends MoviesState {}
+
+class GetAccountStatesSuccessfully extends MoviesState {}
+
+class GetAccountStatesError extends MoviesState {}

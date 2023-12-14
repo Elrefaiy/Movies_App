@@ -1,15 +1,15 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/utils/app_strings.dart';
-import '../../domain/usecases/delete_session_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/usecase/usecase.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../../../injection_container.dart' as di;
 import '../../domain/usecases/create_guest_session_usecase.dart';
 import '../../domain/usecases/create_session_usecase.dart';
+import '../../domain/usecases/delete_session_usecase.dart';
 import '../../domain/usecases/request_token_usecase.dart';
-import '../../../../injection_container.dart' as di;
 
 part 'authentication_state.dart';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../cubit/account_cubit.dart';
-import '../widgets/rated_item.dart';
 
 import '../../../../core/widgets/blur_button.dart';
+import '../cubit/account_cubit.dart';
+import '../widgets/rated_item.dart';
 
 class RatedMoviesScreen extends StatelessWidget {
   const RatedMoviesScreen({super.key});
