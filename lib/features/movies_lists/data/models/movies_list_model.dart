@@ -1,4 +1,4 @@
-import 'package:movies_application/core/utils/app_strings.dart';
+import '../../../../core/utils/app_strings.dart';
 
 import '../../domain/entities/movies_list.dart';
 

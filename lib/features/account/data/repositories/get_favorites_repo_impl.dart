@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:movies_application/core/errors/failures.dart';
-import 'package:movies_application/core/network/network_info.dart';
-import 'package:movies_application/features/account/data/datasources/get_favorites_remote.dart';
-import 'package:movies_application/features/account/data/models/favorite_model.dart';
-import 'package:movies_application/features/account/domain/repositories/get_favorites.dart';
+import '../../../../core/errors/failures.dart';
+import '../../../../core/network/network_info.dart';
+import '../datasources/get_favorites_remote.dart';
+import '../models/favorite_model.dart';
+import '../../domain/repositories/get_favorites.dart';
 
 class GetFavoritesRepoImpl implements GetFavoritesRepo {
   final GetFavoritesRemoteDataSource remoteDataSource;

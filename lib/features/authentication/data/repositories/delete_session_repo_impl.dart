@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/widgets.dart';
-import 'package:movies_application/core/api/end_points.dart';
+import '../../../../core/api/end_points.dart';
 
 import '../../../../core/api/api_consumer.dart';
 import '../../../../core/errors/failures.dart';

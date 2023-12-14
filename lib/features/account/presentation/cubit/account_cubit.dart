@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_application/core/utils/app_strings.dart';
-import 'package:movies_application/features/account/domain/entities/details.dart';
-import 'package:movies_application/features/account/domain/entities/favorite.dart';
-import 'package:movies_application/features/account/domain/entities/rated.dart';
-import 'package:movies_application/features/account/domain/usecases/get_details_usecase.dart';
-import 'package:movies_application/features/account/domain/usecases/get_favorites_usecase.dart';
-import 'package:movies_application/features/account/domain/usecases/get_rated_usecase.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../domain/entities/details.dart';
+import '../../domain/entities/favorite.dart';
+import '../../domain/entities/rated.dart';
+import '../../domain/usecases/get_details_usecase.dart';
+import '../../domain/usecases/get_favorites_usecase.dart';
+import '../../domain/usecases/get_rated_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../injection_container.dart' as di;
 

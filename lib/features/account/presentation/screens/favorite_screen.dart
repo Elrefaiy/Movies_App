@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_application/features/account/presentation/cubit/account_cubit.dart';
-import 'package:movies_application/features/account/presentation/widgets/favorite_item.dart';
+import '../cubit/account_cubit.dart';
+import '../widgets/favorite_item.dart';
 
 import '../../../../core/widgets/blur_button.dart';
 

@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:movies_application/core/errors/failures.dart';
-import 'package:movies_application/core/usecase/usecase.dart';
-import 'package:movies_application/features/account/domain/entities/rated.dart';
-import 'package:movies_application/features/account/domain/repositories/get_rated.dart';
+import '../../../../core/errors/failures.dart';
+import '../../../../core/usecase/usecase.dart';
+import '../entities/rated.dart';
+import '../repositories/get_rated.dart';
 
 class GetRatedUsecase extends UseCase<Rated, String> {
   final GetRatedRepo getRatedRepo;

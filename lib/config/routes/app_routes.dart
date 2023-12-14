@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies_application/features/account/presentation/screens/favorite_screen.dart';
-import 'package:movies_application/features/account/presentation/screens/rated_movies_screen.dart';
+import '../../features/account/presentation/screens/favorite_screen.dart';
+import '../../features/account/presentation/screens/rated_movies_screen.dart';
 import '../../features/authentication/presentation/screens/auth_web_screen.dart';
 
 import '../../features/authentication/presentation/screens/auth_screen.dart';

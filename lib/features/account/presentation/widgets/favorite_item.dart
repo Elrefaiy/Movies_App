@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies_application/config/routes/app_routes.dart';
-import 'package:movies_application/features/account/domain/entities/favorite.dart';
+import '../../../../config/routes/app_routes.dart';
+import '../../domain/entities/favorite.dart';
 
 import '../../../../core/utils/app_strings.dart';
 import '../../../movies/presentation/cubit/movies_cubit.dart';

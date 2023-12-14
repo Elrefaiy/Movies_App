@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_application/core/utils/app_strings.dart';
-import 'package:movies_application/features/authentication/domain/usecases/delete_session_usecase.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../domain/usecases/delete_session_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/usecase/usecase.dart';

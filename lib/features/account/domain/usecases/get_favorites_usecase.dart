@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:movies_application/core/errors/failures.dart';
-import 'package:movies_application/core/usecase/usecase.dart';
-import 'package:movies_application/features/account/domain/entities/favorite.dart';
-import 'package:movies_application/features/account/domain/repositories/get_favorites.dart';
+import '../../../../core/errors/failures.dart';
+import '../../../../core/usecase/usecase.dart';
+import '../entities/favorite.dart';
+import '../repositories/get_favorites.dart';
 
 class GetFavoritesUsecase extends UseCase<Favorite, String> {
   final GetFavoritesRepo getFavoritesRepo;

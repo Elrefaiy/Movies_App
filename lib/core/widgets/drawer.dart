@@ -1,9 +1,9 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_application/config/routes/app_routes.dart';
-import 'package:movies_application/features/account/presentation/cubit/account_cubit.dart';
-import 'package:movies_application/features/authentication/presentation/cubit/authentication_cubit.dart';
+import '../../config/routes/app_routes.dart';
+import '../../features/account/presentation/cubit/account_cubit.dart';
+import '../../features/authentication/presentation/cubit/authentication_cubit.dart';
 import '../../features/movies_lists/presentation/cubit/movies_lists_cubit.dart';
 import '../utils/app_strings.dart';
 

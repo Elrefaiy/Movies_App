@@ -1,6 +1,6 @@
-import 'package:movies_application/core/api/api_consumer.dart';
-import 'package:movies_application/core/api/end_points.dart';
-import 'package:movies_application/features/account/data/models/rated_model.dart';
+import '../../../../core/api/api_consumer.dart';
+import '../../../../core/api/end_points.dart';
+import '../models/rated_model.dart';
 
 abstract class GetRatedRemoteDataSource {
   Future<RatedModel> getRated({

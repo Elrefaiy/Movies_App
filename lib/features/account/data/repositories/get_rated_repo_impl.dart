@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:movies_application/core/errors/failures.dart';
-import 'package:movies_application/core/network/network_info.dart';
-import 'package:movies_application/features/account/data/datasources/get_Rated_remote.dart';
-import 'package:movies_application/features/account/data/models/rated_model.dart';
+import '../../../../core/errors/failures.dart';
+import '../../../../core/network/network_info.dart';
+import '../datasources/get_Rated_remote.dart';
+import '../models/rated_model.dart';
 
 import '../../domain/repositories/get_rated.dart';
 

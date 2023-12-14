@@ -1,6 +1,6 @@
-import 'package:movies_application/core/api/api_consumer.dart';
-import 'package:movies_application/core/api/end_points.dart';
-import 'package:movies_application/features/account/data/models/favorite_model.dart';
+import '../../../../core/api/api_consumer.dart';
+import '../../../../core/api/end_points.dart';
+import '../models/favorite_model.dart';
 
 abstract class GetFavoritesRemoteDataSource {
   Future<FavoriteModel> getFavorites({
