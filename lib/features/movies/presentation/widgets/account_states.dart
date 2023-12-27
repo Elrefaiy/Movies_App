@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
 import '../../../account/presentation/cubit/account_cubit.dart';
 import '../cubit/movies_cubit.dart';
 

@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+
 import '../../../../core/errors/failures.dart';
 import '../../../../core/usecase/usecase.dart';
 import '../repositories/update_watchlist_repo.dart';

@@ -1,9 +1,9 @@
 import '../../../../core/api/api_consumer.dart';
 import '../../../../core/api/end_points.dart';
-import '../models/rated_model.dart';
+import '../models/saved_movie_model.dart';
 
 abstract class GetRatedRemoteDataSource {
-  Future<RatedModel> getRated({
+  Future<SavedMovieModel> getRated({
     required String sessionId,
   });
 }
@@ -16,7 +16,7 @@ class GetRatedRemoteDataSourceImpl implements GetRatedRemoteDataSource {
   });
 
   @override
-  Future<RatedModel> getRated({
+  Future<SavedMovieModel> getRated({
     required String sessionId,
   }) async {
     var response = await apiConsumer.get(
@@ -25,6 +25,6 @@ class GetRatedRemoteDataSourceImpl implements GetRatedRemoteDataSource {
         'session_id': sessionId,
       },
     );
-    return RatedModel.fromJson(response);
+    return SavedMovieModel.fromJson(response);
   }
 }

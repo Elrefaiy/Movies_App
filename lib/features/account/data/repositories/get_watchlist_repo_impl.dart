@@ -1,30 +1,31 @@
 import 'package:dartz/dartz.dart';
+import '../datasources/get_watchlist_remote.dart';
 import '../models/saved_movie_model.dart';
 
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
-import '../../domain/repositories/get_rated.dart';
-import '../datasources/get_Rated_remote.dart';
+import '../../domain/repositories/get_watchlist_repo.dart';
 
-class GetRatedRepoImpl implements GetRatedRepo {
-  final GetRatedRemoteDataSource remoteDataSource;
+class GetWatchlistRepoImpl implements GetWatchlistRepo {
+  final GetWatchlistRemoteDataSource remoteDataSource;
   final NetworkInfo networkInfo;
 
-  GetRatedRepoImpl({
+  GetWatchlistRepoImpl({
     required this.remoteDataSource,
     required this.networkInfo,
   });
   @override
-  Future<Either<Failure, SavedMovieModel>> getRatedMovies(
+  Future<Either<Failure, SavedMovieModel>> getWatchlist(
     String sessionId,
   ) async {
     if (await networkInfo.hasConnection) {
       try {
-        var response = await remoteDataSource.getRated(
+        var response = await remoteDataSource.getWatchlist(
           sessionId: sessionId,
         );
         return Right(response);
       } catch (error) {
+        print(error.toString());
         return Left(ServerFailure());
       }
     } else {

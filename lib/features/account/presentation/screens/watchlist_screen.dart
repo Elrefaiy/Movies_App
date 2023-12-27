@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../widgets/grid_item.dart';
 
 import '../../../../core/widgets/blur_button.dart';
 import '../cubit/account_cubit.dart';
-import '../widgets/grid_item.dart';
 
-class FavoriteScreen extends StatelessWidget {
-  const FavoriteScreen({super.key});
+class WatchlistScreen extends StatelessWidget {
+  const WatchlistScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class FavoriteScreen extends StatelessWidget {
       body: SafeArea(
         child: BlocBuilder<AccountCubit, AccountState>(
           builder: (context, state) {
-            if (state is GetFavoritesSuccess) {
+            if (state is GetWatchlistSuccess) {
               return Column(
                 children: [
                   Padding(
@@ -29,7 +29,7 @@ class FavoriteScreen extends StatelessWidget {
                         ),
                         SizedBox(width: 10),
                         Text(
-                          'Favorites - ${AccountCubit.get(context).favorite.totalResults}',
+                          'Watchlists - ${AccountCubit.get(context).watchlist.totalResults}',
                           style: Theme.of(context)
                               .textTheme
                               .displayLarge!
@@ -50,10 +50,11 @@ class FavoriteScreen extends StatelessWidget {
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
                       children: List.generate(
-                        AccountCubit.get(context).favResults.length,
+                        AccountCubit.get(context).watchlistResult.length,
                         (index) {
                           return GridItem(
-                            movie: AccountCubit.get(context).favResults[index],
+                            movie: AccountCubit.get(context)
+                                .watchlistResult[index],
                           );
                         },
                       ),

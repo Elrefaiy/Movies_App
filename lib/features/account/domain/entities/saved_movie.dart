@@ -1,10 +1,10 @@
-class Favorite {
+class SavedMovie {
   int page;
-  List<FavResult> results;
+  List<SMResult> results;
   int totalPages;
   int totalResults;
 
-  Favorite({
+  SavedMovie({
     required this.page,
     required this.results,
     required this.totalPages,
@@ -12,14 +12,20 @@ class Favorite {
   });
 }
 
-class FavResult {
+class SMResult {
   int id;
   String posterPath;
   double voteAverage;
 
-  FavResult({
+  SMResult({
     required this.id,
     required this.posterPath,
     required this.voteAverage,
   });
+
+  factory SMResult.fromJson(Map<String, dynamic> json) => SMResult(
+        id: json["id"],
+        posterPath: json["poster_path"],
+        voteAverage: json["vote_average"]?.toDouble(),
+      );
 }

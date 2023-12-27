@@ -36,3 +36,9 @@ class UpdateWatchlistLoading extends AccountState {}
 class UpdateWatchlistSuccess extends AccountState {}
 
 class UpdateWatchlistError extends AccountState {}
+
+class GetWatchlistLoading extends AccountState {}
+
+class GetWatchlistSuccess extends AccountState {}
+
+class GetWatchlistError extends AccountState {}

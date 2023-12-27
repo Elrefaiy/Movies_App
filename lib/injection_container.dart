@@ -1,8 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:movies_application/features/account/data/repositories/update_watchlist_repo_impl.dart';
-import 'package:movies_application/features/account/domain/repositories/update_watchlist_repo.dart';
-import 'package:movies_application/features/account/domain/usecases/update_watchlist_usecase.dart';
+import 'features/account/data/datasources/get_watchlist_remote.dart';
+import 'features/account/data/repositories/get_watchlist_repo_impl.dart';
+import 'features/account/data/repositories/update_watchlist_repo_impl.dart';
+import 'features/account/domain/repositories/get_watchlist_repo.dart';
+import 'features/account/domain/repositories/update_watchlist_repo.dart';
+import 'features/account/domain/usecases/get_watchlist_usecase.dart';
+import 'features/account/domain/usecases/update_watchlist_usecase.dart';
 import 'features/account/data/repositories/update_favorite_repo_impl.dart';
 import 'features/account/domain/repositories/update_favorite.dart';
 import 'features/account/domain/usecases/update_favorite_usecase.dart';
@@ -114,6 +118,7 @@ Future<void> init() async {
       getRatedUsecase: sl(),
       updateFavoriteUsecase: sl(),
       updateWatchlistUsecase: sl(),
+      getWatchlistUsecase: sl(),
     ),
   );
   sl.registerFactory<MoviesCubit>(
@@ -183,6 +188,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<GetFavoritesUsecase>(
     () => GetFavoritesUsecase(getFavoritesRepo: sl()),
+  );
+  sl.registerLazySingleton<GetWatchlistUsecase>(
+    () => GetWatchlistUsecase(getWatchlistRepo: sl()),
   );
   sl.registerLazySingleton<GetRatedUsecase>(
     () => GetRatedUsecase(getRatedRepo: sl()),
@@ -294,6 +302,12 @@ Future<void> init() async {
       networkInfo: sl(),
     ),
   );
+  sl.registerLazySingleton<GetWatchlistRepo>(
+    () => GetWatchlistRepoImpl(
+      remoteDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
   sl.registerLazySingleton<GetRatedRepo>(
     () => GetRatedRepoImpl(
       remoteDataSource: sl(),
@@ -384,6 +398,11 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<GetFavoritesRemoteDataSource>(
     () => GetFavoritesRemoteDataSourceImpl(
+      apiConsumer: sl(),
+    ),
+  );
+  sl.registerLazySingleton<GetWatchlistRemoteDataSource>(
+    () => GetWatchlistRemoteDataSourceImpl(
       apiConsumer: sl(),
     ),
   );

@@ -28,7 +28,9 @@ class MoviesApp extends StatelessWidget {
           create: (context) => di.sl<AuthenticationCubit>()..createToken(),
         ),
         BlocProvider(
-          create: (context) => di.sl<AccountCubit>()..getAccountDetails(),
+          create: (context) => di.sl<AccountCubit>()
+            ..getAccountDetails()
+            ..getWatchlist(),
         ),
         BlocProvider(
           create: (context) => di.sl<MoviesListsCubit>()..getNowPlaying(),

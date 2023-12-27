@@ -1,27 +1,26 @@
-import '../models/saved_movie_model.dart';
-
 import '../../../../core/api/api_consumer.dart';
 import '../../../../core/api/end_points.dart';
+import '../models/saved_movie_model.dart';
 
-abstract class GetFavoritesRemoteDataSource {
-  Future<SavedMovieModel> getFavorites({
+abstract class GetWatchlistRemoteDataSource {
+  Future<SavedMovieModel> getWatchlist({
     required String sessionId,
   });
 }
 
-class GetFavoritesRemoteDataSourceImpl implements GetFavoritesRemoteDataSource {
+class GetWatchlistRemoteDataSourceImpl implements GetWatchlistRemoteDataSource {
   final ApiConsumer apiConsumer;
 
-  GetFavoritesRemoteDataSourceImpl({
+  GetWatchlistRemoteDataSourceImpl({
     required this.apiConsumer,
   });
 
   @override
-  Future<SavedMovieModel> getFavorites({
+  Future<SavedMovieModel> getWatchlist({
     required String sessionId,
   }) async {
     var response = await apiConsumer.get(
-      path: EndPoints.favorites,
+      path: EndPoints.watchlist,
       queryParameters: {
         'session_id': sessionId,
       },

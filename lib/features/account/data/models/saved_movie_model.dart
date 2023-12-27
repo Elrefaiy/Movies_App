@@ -1,9 +1,9 @@
-import '../../domain/entities/rated.dart';
+import '../../domain/entities/saved_movie.dart';
 
-class RatedModel extends Rated {
-  RatedModel({
+class SavedMovieModel extends SavedMovie {
+  SavedMovieModel({
     required int page,
-    required List<RatedResultModel> results,
+    required List<SMResultModel> results,
     required int totalPages,
     required int totalResults,
   }) : super(
@@ -13,11 +13,12 @@ class RatedModel extends Rated {
           totalResults: totalResults,
         );
 
-  factory RatedModel.fromJson(Map<String, dynamic> json) => RatedModel(
+  factory SavedMovieModel.fromJson(Map<String, dynamic> json) =>
+      SavedMovieModel(
         page: json["page"],
-        results: List<RatedResultModel>.from(
+        results: List<SMResultModel>.from(
           json["results"].map(
-            (x) => RatedResultModel.fromJson(x),
+            (x) => SMResultModel.fromJson(x),
           ),
         ),
         totalPages: json["total_pages"],
@@ -25,24 +26,20 @@ class RatedModel extends Rated {
       );
 }
 
-class RatedResultModel extends RatedResult {
-  RatedResultModel({
+class SMResultModel extends SMResult {
+  SMResultModel({
     required int id,
     required String posterPath,
     required double voteAverage,
-    required double rating,
   }) : super(
           id: id,
           posterPath: posterPath,
           voteAverage: voteAverage,
-          rating: rating,
         );
 
-  factory RatedResultModel.fromJson(Map<String, dynamic> json) =>
-      RatedResultModel(
+  factory SMResultModel.fromJson(Map<String, dynamic> json) => SMResultModel(
         id: json["id"],
         posterPath: json["poster_path"],
         voteAverage: json["vote_average"]?.toDouble(),
-        rating: json["rating"]?.toDouble(),
       );
 }

@@ -1,11 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../../../core/api/api_consumer.dart';
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
 import '../../../../core/usecase/usecase.dart';
 import '../../../../core/utils/app_strings.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../domain/repositories/update_watchlist_repo.dart';
 
 class UpdateWatchlistRepoImpl implements UpdateWatchlistRepo {

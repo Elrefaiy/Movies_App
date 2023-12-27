@@ -211,6 +211,33 @@ class AppDrawer extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(height: 10),
+              InkWell(
+                onTap: () {
+                  AccountCubit.get(context).getWatchlist();
+                  Navigator.pop(context);
+                  Navigator.pushNamed(
+                    context,
+                    Routes.watchlist,
+                  );
+                },
+                child: Row(
+                  children: [
+                    Text(
+                      'Watchlist Movies',
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.list_rounded,
+                      color: Colors.grey.withOpacity(.4),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(height: 20),
               Text(
                 'Settings',

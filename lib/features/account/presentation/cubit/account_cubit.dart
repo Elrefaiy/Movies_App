@@ -1,14 +1,14 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_application/features/account/domain/usecases/update_watchlist_usecase.dart';
+import '../../domain/usecases/get_watchlist_usecase.dart';
+import '../../domain/usecases/update_watchlist_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/usecase/usecase.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../injection_container.dart' as di;
 import '../../domain/entities/details.dart';
-import '../../domain/entities/favorite.dart';
-import '../../domain/entities/rated.dart';
+import '../../domain/entities/saved_movie.dart';
 import '../../domain/usecases/get_details_usecase.dart';
 import '../../domain/usecases/get_favorites_usecase.dart';
 import '../../domain/usecases/get_rated_usecase.dart';
@@ -22,12 +22,14 @@ class AccountCubit extends Cubit<AccountState> {
   final GetRatedUsecase getRatedUsecase;
   final UpdateFavoriteUsecase updateFavoriteUsecase;
   final UpdateWatchlistUsecase updateWatchlistUsecase;
+  final GetWatchlistUsecase getWatchlistUsecase;
   AccountCubit({
     required this.getDetailsUsecase,
     required this.getFavoritesUsecase,
     required this.getRatedUsecase,
     required this.updateFavoriteUsecase,
     required this.updateWatchlistUsecase,
+    required this.getWatchlistUsecase,
   }) : super(AccountInitial());
 
   static AccountCubit get(context) => BlocProvider.of(context);
@@ -45,8 +47,8 @@ class AccountCubit extends Cubit<AccountState> {
     );
   }
 
-  late Favorite favorite;
-  late List<FavResult> favResults;
+  late SavedMovie favorite;
+  late List<SMResult> favResults;
   Future<void> getFavorites() async {
     emit(GetFavoritesLoading());
     String id = di.sl<SharedPreferences>().getString(AppStrings.sessionId)!;
@@ -61,8 +63,24 @@ class AccountCubit extends Cubit<AccountState> {
     );
   }
 
-  late Rated rated;
-  late List<RatedResult> ratedResults;
+  late SavedMovie watchlist;
+  late List<SMResult> watchlistResult;
+  Future<void> getWatchlist() async {
+    emit(GetWatchlistLoading());
+    String id = di.sl<SharedPreferences>().getString(AppStrings.sessionId)!;
+    var response = await getWatchlistUsecase(id);
+    response.fold(
+      (failure) => emit(GetWatchlistError()),
+      (watchlist) {
+        this.watchlist = watchlist;
+        watchlistResult = watchlist.results;
+        emit(GetWatchlistSuccess());
+      },
+    );
+  }
+
+  late SavedMovie rated;
+  late List<SMResult> ratedResults;
   Future<void> getRatedMovies() async {
     emit(GetRatedMoviesLoading());
     String id = di.sl<SharedPreferences>().getString(AppStrings.sessionId)!;
