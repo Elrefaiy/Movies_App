@@ -30,3 +30,9 @@ class UpdateFavoriteLoading extends AccountState {}
 class UpdateFavoriteSuccess extends AccountState {}
 
 class UpdateFavoriteError extends AccountState {}
+
+class UpdateWatchlistLoading extends AccountState {}
+
+class UpdateWatchlistSuccess extends AccountState {}
+
+class UpdateWatchlistError extends AccountState {}

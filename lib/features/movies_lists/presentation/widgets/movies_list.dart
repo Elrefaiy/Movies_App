@@ -37,7 +37,6 @@ class MoviesList extends StatelessWidget {
       case 3:
         movies = cubit.upcomingMovies;
         length = cubit.upcomingMovies.length;
-        print(length);
         break;
       default:
         debugPrint('OUT OF BOUND INDEX!');

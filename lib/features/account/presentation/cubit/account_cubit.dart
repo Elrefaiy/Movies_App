@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_application/features/account/domain/usecases/update_watchlist_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/usecase/usecase.dart';
@@ -20,11 +21,13 @@ class AccountCubit extends Cubit<AccountState> {
   final GetFavoritesUsecase getFavoritesUsecase;
   final GetRatedUsecase getRatedUsecase;
   final UpdateFavoriteUsecase updateFavoriteUsecase;
+  final UpdateWatchlistUsecase updateWatchlistUsecase;
   AccountCubit({
     required this.getDetailsUsecase,
     required this.getFavoritesUsecase,
     required this.getRatedUsecase,
     required this.updateFavoriteUsecase,
+    required this.updateWatchlistUsecase,
   }) : super(AccountInitial());
 
   static AccountCubit get(context) => BlocProvider.of(context);
@@ -89,6 +92,25 @@ class AccountCubit extends Cubit<AccountState> {
       (success) {
         print(success);
         emit(UpdateFavoriteSuccess());
+      },
+    );
+  }
+
+  Future<void> updateWatchlist({
+    required int id,
+    required bool watchlist,
+  }) async {
+    emit(UpdateWatchlistLoading());
+    var params = WatchlistParams(
+      mediaId: id,
+      watchlist: watchlist,
+    );
+    var response = await updateWatchlistUsecase(params);
+    response.fold(
+      (failure) => emit(UpdateWatchlistError()),
+      (success) {
+        print(success);
+        emit(UpdateWatchlistSuccess());
       },
     );
   }

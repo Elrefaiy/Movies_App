@@ -16,7 +16,20 @@ class AccountStatesWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             InkWell(
-              onTap: () {},
+              onTap: () {
+                AccountCubit.get(context)
+                    .updateWatchlist(
+                  id: states.id,
+                  watchlist: !states.watchlist,
+                )
+                    .then(
+                  (value) {
+                    return MoviesCubit.get(context).getAccountStates(
+                      id: states.id,
+                    );
+                  },
+                );
+              },
               child: Column(
                 children: [
                   Icon(
@@ -83,12 +96,10 @@ class AccountStatesWidget extends StatelessWidget {
               onTap: () {
                 AccountCubit.get(context)
                     .updateFavorite(id: states.id, favorite: !states.favorite)
-                    .then(
-                  (value) {
-                    return MoviesCubit.get(context)
-                        .getAccountStates(id: states.id);
-                  },
-                );
+                    .then((value) {
+                  return MoviesCubit.get(context)
+                      .getAccountStates(id: states.id);
+                });
               },
               child: Column(
                 children: [

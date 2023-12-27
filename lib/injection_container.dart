@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:movies_application/features/account/data/repositories/update_watchlist_repo_impl.dart';
+import 'package:movies_application/features/account/domain/repositories/update_watchlist_repo.dart';
+import 'package:movies_application/features/account/domain/usecases/update_watchlist_usecase.dart';
 import 'features/account/data/repositories/update_favorite_repo_impl.dart';
 import 'features/account/domain/repositories/update_favorite.dart';
 import 'features/account/domain/usecases/update_favorite_usecase.dart';
@@ -110,6 +113,7 @@ Future<void> init() async {
       getFavoritesUsecase: sl(),
       getRatedUsecase: sl(),
       updateFavoriteUsecase: sl(),
+      updateWatchlistUsecase: sl(),
     ),
   );
   sl.registerFactory<MoviesCubit>(
@@ -188,6 +192,9 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<UpdateFavoriteUsecase>(
     () => UpdateFavoriteUsecase(updateFavoriteRepo: sl()),
+  );
+  sl.registerLazySingleton<UpdateWatchlistUsecase>(
+    () => UpdateWatchlistUsecase(updateWatchlistRepo: sl()),
   );
 
   // Repository
@@ -301,6 +308,13 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<UpdateFavoriteRepo>(
     () => UpdateFavoriteRepoImpl(
+      sharedPreferences: sl(),
+      apiConsumer: sl(),
+      networkInfo: sl(),
+    ),
+  );
+  sl.registerLazySingleton<UpdateWatchlistRepo>(
+    () => UpdateWatchlistRepoImpl(
       sharedPreferences: sl(),
       apiConsumer: sl(),
       networkInfo: sl(),
