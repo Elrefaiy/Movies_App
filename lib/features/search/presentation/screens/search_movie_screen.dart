@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/widgets/blur_button.dart';
 import '../cubit/search_cubit.dart';
 import '../widgets/search_movie.dart';
 
@@ -16,6 +15,7 @@ class SearchMovieScreen extends StatelessWidget {
         return Scaffold(
           body: SafeArea(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(
@@ -24,16 +24,19 @@ class SearchMovieScreen extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      BlurButton(
+                      IconButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icons.keyboard_arrow_left_rounded,
+                        icon: Icon(
+                          Icons.arrow_back_rounded,
+                          color: Colors.white,
+                        ),
                       ),
-                      SizedBox(width: 15),
+                      SizedBox(width: 5),
                       Expanded(
                         child: SizedBox(
-                          height: 45,
+                          height: 40,
                           child: TextFormField(
                             controller: controller,
                             onChanged: (String title) {
@@ -48,13 +51,13 @@ class SearchMovieScreen extends StatelessWidget {
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.grey.shade900,
-                              labelText: 'Search Movie',
+                              hintText: 'Search Movie',
                               contentPadding: EdgeInsets.all(10),
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15),
-                                gapPadding: 5,
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide.none,
                               ),
-                              suffixIcon: IconButton(
+                              prefixIcon: IconButton(
                                 onPressed: () {
                                   if (controller.text.isNotEmpty)
                                     controller.text = '';
@@ -66,7 +69,7 @@ class SearchMovieScreen extends StatelessWidget {
                                   size: 20,
                                 ),
                               ),
-                              suffixIconColor: Colors.grey,
+                              prefixIconColor: Colors.grey,
                             ),
                           ),
                         ),

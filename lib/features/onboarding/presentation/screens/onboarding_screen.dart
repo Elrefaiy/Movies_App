@@ -113,7 +113,11 @@ class OnboardingScreen extends StatelessWidget {
                   ),
                   Spacer(),
                   TextButton(
-                    onPressed: () {
+                    onPressed: () async {
+                      await di.sl<SharedPreferences>().setBool(
+                            AppStrings.firstTime,
+                            false,
+                          );
                       Navigator.pushNamedAndRemoveUntil(
                         context,
                         Routes.auth,

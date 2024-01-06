@@ -6,7 +6,6 @@ import '../../config/routes/app_routes.dart';
 import '../../features/account/presentation/cubit/account_cubit.dart';
 import '../../features/authentication/presentation/cubit/authentication_cubit.dart';
 import '../../features/movies_lists/presentation/cubit/movies_lists_cubit.dart';
-import '../utils/app_strings.dart';
 
 class AppDrawer extends StatelessWidget {
   AppDrawer({super.key});
@@ -16,6 +15,11 @@ class AppDrawer extends StatelessWidget {
     'Popular',
     'Top Rated',
     'Upcoming',
+  ];
+  final List<String> lablesII = [
+    'Favorites Movies',
+    'Watchlist Movies',
+    'Rated Movies',
   ];
 
   InkWell listItem({
@@ -52,17 +56,11 @@ class AppDrawer extends StatelessWidget {
             ? BoxDecoration(
                 gradient: LinearGradient(
                   colors: <Color>[
-                    Color.fromARGB(108, 229, 45, 39),
+                    Color.fromARGB(90, 229, 45, 39),
                     Color.fromARGB(0, 179, 18, 23),
                   ],
                   begin: AlignmentDirectional.centerStart,
                   end: AlignmentDirectional.centerEnd,
-                ),
-                border: Border(
-                  left: BorderSide(
-                    width: 5,
-                    color: Colors.red,
-                  ),
                 ),
               )
             : null,
@@ -78,7 +76,68 @@ class AppDrawer extends StatelessWidget {
             Spacer(),
             Icon(
               Icons.keyboard_arrow_right_rounded,
-              color: Colors.white,
+              color: index == MoviesListsCubit.get(context).currentListIndex
+                  ? Colors.white
+                  : Colors.white.withOpacity(.3),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  InkWell listItemII({
+    required BuildContext context,
+    required int index,
+    required String lable,
+  }) {
+    return InkWell(
+      onTap: () {
+        Navigator.pop(context);
+        MoviesListsCubit.get(context).changeCurrentListIndex(index);
+        switch (MoviesListsCubit.get(context).currentListIndex) {
+          case 0:
+            AccountCubit.get(context).getFavorites();
+            Navigator.pushNamed(
+              context,
+              Routes.favorites,
+            );
+            break;
+          case 1:
+            AccountCubit.get(context).getWatchlist();
+            Navigator.pushNamed(
+              context,
+              Routes.watchlist,
+            );
+            break;
+          case 2:
+            AccountCubit.get(context).getRatedMovies();
+            Navigator.pushNamed(
+              context,
+              Routes.ratedMovies,
+            );
+            break;
+          default:
+        }
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 10,
+        ),
+        child: Row(
+          children: [
+            Text(
+              lable,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+            ),
+            Spacer(),
+            Icon(
+              Icons.keyboard_arrow_right_rounded,
+              color: Colors.white.withOpacity(.3),
             ),
           ],
         ),
@@ -99,51 +158,44 @@ class AppDrawer extends StatelessWidget {
         overlay: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
-            vertical: 40,
+            vertical: 25,
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 20),
+              CircleAvatar(
+                backgroundColor: Colors.grey.withOpacity(.15),
+                child: Icon(
+                  Icons.person_rounded,
+                  color: Colors.white.withOpacity(.2),
+                  size: 60,
+                ),
+                radius: 40,
+              ),
+              SizedBox(height: 15),
               BlocBuilder<AccountCubit, AccountState>(
                 builder: (context, state) {
-                  return Row(
-                    children: [
-                      Image(
-                        image: AssetImage(
-                          '${AppStrings.assetImage}profile.png',
-                        ),
-                        width: 80,
-                      ),
-                      SizedBox(width: 10),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            isGuest ? 'Mr. Guest' : details.username,
-                            style: Theme.of(context).textTheme.displayMedium,
-                          ),
-                          Text(
-                            isGuest
-                                ? 'you have signed in as a guest'
-                                : details.name,
-                            style: Theme.of(context).textTheme.displaySmall,
-                          ),
-                        ],
-                      ),
-                    ],
+                  return Text(
+                    isGuest ? 'Mr. Guest' : details.username,
+                    style: Theme.of(context).textTheme.displayMedium,
                   );
                 },
               ),
               SizedBox(height: 20),
-              Text(
-                'Discover',
-                style: Theme.of(context).textTheme.displayLarge,
-              ),
-              SizedBox(height: 20),
-              Text(
-                'Movies',
-                style: Theme.of(context).textTheme.displayMedium,
+              Row(
+                children: [
+                  Text(
+                    'movies',
+                    style: Theme.of(context).textTheme.displayMedium,
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: Container(
+                      color: Colors.white.withOpacity(.2),
+                      height: 1,
+                    ),
+                  ),
+                ],
               ),
               SizedBox(height: 10),
               ListView.builder(
@@ -158,119 +210,83 @@ class AppDrawer extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              InkWell(
-                onTap: () {
-                  AccountCubit.get(context).getFavorites();
-                  Navigator.pop(context);
-                  Navigator.pushNamed(
-                    context,
-                    Routes.favorites,
-                  );
-                },
-                child: Row(
-                  children: [
-                    Text(
-                      'Favorite Movies',
-                      style: Theme.of(context).textTheme.displayMedium,
+              Row(
+                children: [
+                  Text(
+                    'your lists',
+                    style: Theme.of(context).textTheme.displayMedium,
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: Container(
+                      color: Colors.white.withOpacity(.2),
+                      height: 1,
                     ),
-                    Spacer(),
-                    Icon(
-                      Icons.favorite_rounded,
-                      color: Colors.grey.withOpacity(.4),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               SizedBox(height: 10),
-              InkWell(
-                onTap: () {
-                  AccountCubit.get(context).getRatedMovies();
-                  Navigator.pop(context);
-                  Navigator.pushNamed(
-                    context,
-                    Routes.ratedMovies,
-                  );
-                },
-                child: Row(
-                  children: [
-                    Text(
-                      'Rated Movies',
-                      style: Theme.of(context).textTheme.displayMedium,
-                    ),
-                    Spacer(),
-                    Icon(
-                      Icons.star_rounded,
-                      color: Colors.grey.withOpacity(.4),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 10),
-              InkWell(
-                onTap: () {
-                  AccountCubit.get(context).getWatchlist();
-                  Navigator.pop(context);
-                  Navigator.pushNamed(
-                    context,
-                    Routes.watchlist,
-                  );
-                },
-                child: Row(
-                  children: [
-                    Text(
-                      'Watchlist Movies',
-                      style: Theme.of(context).textTheme.displayMedium,
-                    ),
-                    Spacer(),
-                    Icon(
-                      Icons.list_rounded,
-                      color: Colors.grey.withOpacity(.4),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                  ],
+              ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.all(0),
+                itemCount: 3,
+                itemBuilder: (context, index) => listItemII(
+                  context: context,
+                  index: index,
+                  lable: lablesII[index],
                 ),
               ),
               SizedBox(height: 20),
-              Text(
-                'Settings',
-                style: Theme.of(context).textTheme.displayLarge,
-              ),
-              if (!isGuest)
-                InkWell(
-                  onTap: () {
-                    AuthenticationCubit.get(context).deleteSession();
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 10,
-                    ),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Delete Session & Logout',
-                          style: TextStyle(
-                            color: Colors.redAccent,
-                            fontSize: 18,
-                          ),
-                        ),
-                        Spacer(),
-                        Icon(
-                          Icons.exit_to_app_outlined,
-                          color: Colors.grey.withOpacity(.4),
-                        ),
-                      ],
+              Row(
+                children: [
+                  Text(
+                    'settings',
+                    style: Theme.of(context).textTheme.displayMedium,
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: Container(
+                      color: Colors.white.withOpacity(.2),
+                      height: 1,
                     ),
                   ),
+                ],
+              ),
+              SizedBox(height: 10),
+              InkWell(
+                onTap: () {
+                  AuthenticationCubit.get(context).deleteSession().then(
+                        (value) => Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          Routes.auth,
+                          (route) => false,
+                        ),
+                      );
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Sign Out',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                      ),
+                      Spacer(),
+                      Icon(
+                        Icons.logout_rounded,
+                        color: Colors.redAccent.withOpacity(.5),
+                      ),
+                    ],
+                  ),
                 ),
+              ),
             ],
           ),
         ),

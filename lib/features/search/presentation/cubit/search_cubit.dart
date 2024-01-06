@@ -12,18 +12,19 @@ class SearchCubit extends Cubit<SearchState> {
   SearchCubit({required this.searchMovieUsecase}) : super(SearchInitial());
   static SearchCubit get(context) => BlocProvider.of(context);
 
+  bool isEmpty = true;
   Future<void> SearchMovie({
     required String title,
   }) async {
     emit(SearchMovieLoading());
     final response = await searchMovieUsecase(title);
-    emit(
-      response.fold(
-        (failure) => SearchMovieError(),
-        (searchResult) => SearchMovieSuccessfully(
-          result: searchResult.results,
-        ),
-      ),
+
+    response.fold(
+      (failure) => emit(SearchMovieError()),
+      (searchResult) {
+        isEmpty = false;
+        emit(SearchMovieSuccessfully(result: searchResult.results));
+      },
     );
   }
 }
