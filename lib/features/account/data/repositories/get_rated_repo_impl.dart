@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import '../models/saved_movie_model.dart';
 
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/get_rated.dart';
 import '../datasources/get_Rated_remote.dart';
+import '../models/saved_movie_model.dart';
 
 class GetRatedRepoImpl implements GetRatedRepo {
   final GetRatedRemoteDataSource remoteDataSource;

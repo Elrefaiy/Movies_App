@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:movies_application/features/movies/data/repositories/update_rating_repo_impl.dart';
-import 'package:movies_application/features/movies/domain/repositories/update_rating_repo.dart';
-import 'package:movies_application/features/movies/domain/usecases/update_rating_usecase.dart';
+import 'features/movies/data/repositories/delete_rating_repo_impl.dart';
+import 'features/movies/domain/repositories/delete_rating_repo.dart';
+import 'features/movies/domain/usecases/delete_rating_usecase.dart';
+import 'features/movies/data/repositories/update_rating_repo_impl.dart';
+import 'features/movies/domain/repositories/update_rating_repo.dart';
+import 'features/movies/domain/usecases/update_rating_usecase.dart';
 import 'features/account/data/datasources/get_watchlist_remote.dart';
 import 'features/account/data/repositories/get_watchlist_repo_impl.dart';
 import 'features/account/data/repositories/update_watchlist_repo_impl.dart';
@@ -132,6 +135,7 @@ Future<void> init() async {
       getMovieImagesUsecase: sl(),
       getAccountStatesUsecase: sl(),
       updateRatingUseCase: sl(),
+      deleteRatingUseCase: sl(),
     ),
   );
   sl.registerFactory<SearchCubit>(
@@ -152,6 +156,10 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<DeleteSessionUsecase>(
     () => DeleteSessionUsecase(deleteSessionRepo: sl()),
+  );
+
+  sl.registerLazySingleton<DeleteRatingUseCase>(
+    () => DeleteRatingUseCase(deleteRatingRepo: sl()),
   );
 
   sl.registerLazySingleton<GetDetailsUsecase>(
@@ -336,6 +344,13 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<UpdateFavoriteRepo>(
     () => UpdateFavoriteRepoImpl(
+      sharedPreferences: sl(),
+      apiConsumer: sl(),
+      networkInfo: sl(),
+    ),
+  );
+  sl.registerLazySingleton<DeleteRatingRepo>(
+    () => DeleteRatingRepoImpl(
       sharedPreferences: sl(),
       apiConsumer: sl(),
       networkInfo: sl(),

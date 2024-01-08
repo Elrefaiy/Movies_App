@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../domain/entities/saved_movie.dart';
 
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../movies/presentation/cubit/movies_cubit.dart';
+import '../../domain/entities/saved_movie.dart';
 
 class GridItem extends StatelessWidget {
   final SMResult movie;

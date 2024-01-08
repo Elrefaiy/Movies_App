@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:movies_application/features/authentication/presentation/cubit/authentication_cubit.dart';
 
 import '../../../account/presentation/cubit/account_cubit.dart';
+import '../../../authentication/presentation/cubit/authentication_cubit.dart';
 import '../cubit/movies_cubit.dart';
 
 class AccountStatesWidget extends StatelessWidget {
@@ -86,10 +86,29 @@ class AccountStatesWidget extends StatelessWidget {
                     );
                   },
                 ),
-                Text(
-                  'rate',
-                  style: Theme.of(context).textTheme.displaySmall,
-                ),
+                states.rated.value == 0
+                    ? Text(
+                        'rate',
+                        style: Theme.of(context).textTheme.displaySmall,
+                      )
+                    : InkWell(
+                        onTap: () {
+                          MoviesCubit.get(context).deleteRating(id: states.id);
+                        },
+                        child: Row(
+                          children: [
+                            Text(
+                              'remove ',
+                              style: Theme.of(context).textTheme.displaySmall,
+                            ),
+                            Icon(
+                              Icons.highlight_remove_rounded,
+                              color: Colors.white,
+                              size: 14,
+                            ),
+                          ],
+                        ),
+                      ),
               ],
             ),
             if (!isGuest)

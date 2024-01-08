@@ -1,7 +1,6 @@
-import '../models/saved_movie_model.dart';
-
 import '../../../../core/api/api_consumer.dart';
 import '../../../../core/api/end_points.dart';
+import '../models/saved_movie_model.dart';
 
 abstract class GetFavoritesRemoteDataSource {
   Future<SavedMovieModel> getFavorites({

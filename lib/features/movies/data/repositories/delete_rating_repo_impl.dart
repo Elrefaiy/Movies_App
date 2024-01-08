@@ -5,38 +5,34 @@ import '../../../../core/api/api_consumer.dart';
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
-import '../../../../core/usecase/usecase.dart';
 import '../../../../core/utils/app_strings.dart';
-import '../../domain/repositories/update_rating_repo.dart';
+import '../../domain/repositories/delete_rating_repo.dart';
 
-class UpdateRatingRepoImpl implements UpdateRatingRepo {
+class DeleteRatingRepoImpl implements DeleteRatingRepo {
   final ApiConsumer apiConsumer;
   final NetworkInfo networkInfo;
   final SharedPreferences sharedPreferences;
 
-  UpdateRatingRepoImpl({
+  DeleteRatingRepoImpl({
     required this.apiConsumer,
     required this.networkInfo,
     required this.sharedPreferences,
   });
 
   @override
-  Future<Either<Failure, String>> updateRating(RatingParams params) async {
+  Future<Either<Failure, String>> deleteRating(int params) async {
     if (await networkInfo.hasConnection) {
       try {
         var id = sharedPreferences.getString(AppStrings.sessionId);
         bool isGuest = sharedPreferences.getBool(AppStrings.isGeust)!;
         String key = isGuest ? 'guest_session_id' : 'session_id';
-        await apiConsumer.post(
-          path: EndPoints.updateRating(params.mediaId),
+        await apiConsumer.delete(
+          path: EndPoints.updateRating(params),
           queryParameters: {
             key: id,
           },
-          body: {
-            'value': params.rating * 2,
-          },
         );
-        return (Right('Rated Successfully!'));
+        return (Right('Rate Deleted Successfully!'));
       } catch (error) {
         return Left(ServerFailure());
       }

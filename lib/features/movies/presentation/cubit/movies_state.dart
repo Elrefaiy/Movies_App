@@ -42,3 +42,7 @@ class GetAccountStatesError extends MoviesState {}
 class UpdateRatingSuccessfully extends MoviesState {}
 
 class UpdateRatingError extends MoviesState {}
+
+class DeleteRatingSuccessfully extends MoviesState {}
+
+class DeleteRatingError extends MoviesState {}

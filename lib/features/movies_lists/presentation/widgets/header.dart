@@ -26,6 +26,7 @@ class Header extends StatelessWidget {
             builder: (context, state) {
               return BlurButton(
                 onPressed: () {
+                  AccountCubit.get(context).getAccountDetails();
                   Scaffold.of(context).openDrawer();
                 },
                 icon: Icons.menu_rounded,

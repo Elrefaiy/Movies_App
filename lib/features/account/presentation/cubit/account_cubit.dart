@@ -1,7 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../domain/usecases/get_watchlist_usecase.dart';
-import '../../domain/usecases/update_watchlist_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/usecase/usecase.dart';
@@ -12,7 +10,9 @@ import '../../domain/entities/saved_movie.dart';
 import '../../domain/usecases/get_details_usecase.dart';
 import '../../domain/usecases/get_favorites_usecase.dart';
 import '../../domain/usecases/get_rated_usecase.dart';
+import '../../domain/usecases/get_watchlist_usecase.dart';
 import '../../domain/usecases/update_favorite_usecase.dart';
+import '../../domain/usecases/update_watchlist_usecase.dart';
 
 part 'account_state.dart';
 

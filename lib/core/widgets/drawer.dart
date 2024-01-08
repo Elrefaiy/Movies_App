@@ -93,9 +93,7 @@ class AppDrawer extends StatelessWidget {
   }) {
     return InkWell(
       onTap: () {
-        Navigator.pop(context);
-        MoviesListsCubit.get(context).changeCurrentListIndex(index);
-        switch (MoviesListsCubit.get(context).currentListIndex) {
+        switch (index) {
           case 0:
             AccountCubit.get(context).getFavorites();
             Navigator.pushNamed(
@@ -286,14 +284,16 @@ class AppDrawer extends StatelessWidget {
                   ),
                 ),
               ),
-              Divider(
-                color: Colors.white.withOpacity(.4),
-                height: 30,
-              ),
-              Text(
-                '☛ Hint: you have to sign in to have full user\'s cababilities.',
-                style: Theme.of(context).textTheme.displaySmall,
-              ),
+              if (isGuest)
+                Divider(
+                  color: Colors.white.withOpacity(.4),
+                  height: 30,
+                ),
+              if (isGuest)
+                Text(
+                  '☛ Hint: you have to sign in to have full user\'s cababilities.',
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
             ],
           ),
         ),

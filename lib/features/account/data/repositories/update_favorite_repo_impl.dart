@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../../../core/api/api_consumer.dart';
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/failures.dart';
@@ -6,7 +8,6 @@ import '../../../../core/network/network_info.dart';
 import '../../../../core/usecase/usecase.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../domain/repositories/update_favorite.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class UpdateFavoriteRepoImpl implements UpdateFavoriteRepo {
   final ApiConsumer apiConsumer;
