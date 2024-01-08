@@ -35,6 +35,19 @@ class WatchlistParams extends Equatable {
   List<Object?> get props => [mediaType, mediaId, watchlist];
 }
 
+class RatingParams extends Equatable {
+  final int mediaId;
+  final double rating;
+
+  RatingParams({
+    required this.mediaId,
+    required this.rating,
+  });
+
+  @override
+  List<Object?> get props => [mediaId, rating];
+}
+
 class NoParams extends Equatable {
   @override
   List<Object?> get props => [];

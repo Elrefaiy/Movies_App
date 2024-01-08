@@ -38,3 +38,7 @@ class GetAccountStatesLoading extends MoviesState {}
 class GetAccountStatesSuccessfully extends MoviesState {}
 
 class GetAccountStatesError extends MoviesState {}
+
+class UpdateRatingSuccessfully extends MoviesState {}
+
+class UpdateRatingError extends MoviesState {}

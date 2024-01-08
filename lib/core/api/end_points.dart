@@ -21,4 +21,5 @@ class EndPoints {
   static const String updateFavorite = '$baseUrl/account/18279617/favorite';
   static const String updateWatchlist = '$baseUrl/account/18279617/watchlist';
   static const String watchlist = '$baseUrl/account/18279617/watchlist/movies';
+  static String updateRating(int id) => '$baseUrl/movie/$id/rating';
 }

@@ -145,6 +145,30 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
+  Widget divider({
+    required BuildContext context,
+    required String lable,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
+      child: Row(
+        children: [
+          Text(
+            lable,
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          SizedBox(width: 10),
+          Expanded(
+            child: Container(
+              color: Colors.white.withOpacity(.2),
+              height: 1,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var isGuest = AuthenticationCubit.get(context).isGuest();
@@ -181,23 +205,10 @@ class AppDrawer extends StatelessWidget {
                   );
                 },
               ),
-              SizedBox(height: 20),
-              Row(
-                children: [
-                  Text(
-                    'movies',
-                    style: Theme.of(context).textTheme.displayMedium,
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: Container(
-                      color: Colors.white.withOpacity(.2),
-                      height: 1,
-                    ),
-                  ),
-                ],
+              divider(
+                context: context,
+                lable: 'movies',
               ),
-              SizedBox(height: 10),
               ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
@@ -209,60 +220,46 @@ class AppDrawer extends StatelessWidget {
                   lable: lables[index],
                 ),
               ),
-              SizedBox(height: 20),
-              Row(
-                children: [
-                  Text(
-                    'your lists',
-                    style: Theme.of(context).textTheme.displayMedium,
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: Container(
-                      color: Colors.white.withOpacity(.2),
-                      height: 1,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 10),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.all(0),
-                itemCount: 3,
-                itemBuilder: (context, index) => listItemII(
+              if (!isGuest)
+                divider(
                   context: context,
-                  index: index,
-                  lable: lablesII[index],
+                  lable: 'your lists',
                 ),
-              ),
-              SizedBox(height: 20),
-              Row(
-                children: [
-                  Text(
-                    'settings',
-                    style: Theme.of(context).textTheme.displayMedium,
+              if (!isGuest)
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.all(0),
+                  itemCount: 3,
+                  itemBuilder: (context, index) => listItemII(
+                    context: context,
+                    index: index,
+                    lable: lablesII[index],
                   ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: Container(
-                      color: Colors.white.withOpacity(.2),
-                      height: 1,
-                    ),
-                  ),
-                ],
+                ),
+              divider(
+                context: context,
+                lable: 'settings',
               ),
-              SizedBox(height: 10),
               InkWell(
                 onTap: () {
-                  AuthenticationCubit.get(context).deleteSession().then(
-                        (value) => Navigator.pushNamedAndRemoveUntil(
+                  if (isGuest) {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      Routes.auth,
+                      (route) => false,
+                    );
+                  } else {
+                    AuthenticationCubit.get(context).deleteSession().then(
+                      (value) {
+                        return Navigator.pushNamedAndRemoveUntil(
                           context,
                           Routes.auth,
                           (route) => false,
-                        ),
-                      );
+                        );
+                      },
+                    );
+                  }
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(
@@ -272,7 +269,7 @@ class AppDrawer extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        'Sign Out',
+                        isGuest ? 'Sign In Now!' : 'Sign Out',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -280,12 +277,22 @@ class AppDrawer extends StatelessWidget {
                       ),
                       Spacer(),
                       Icon(
-                        Icons.logout_rounded,
-                        color: Colors.redAccent.withOpacity(.5),
+                        isGuest ? Icons.login_rounded : Icons.logout_rounded,
+                        color: isGuest
+                            ? Colors.greenAccent
+                            : Colors.redAccent.withOpacity(.5),
                       ),
                     ],
                   ),
                 ),
+              ),
+              Divider(
+                color: Colors.white.withOpacity(.4),
+                height: 30,
+              ),
+              Text(
+                '☛ Hint: you have to sign in to have full user\'s cababilities.',
+                style: Theme.of(context).textTheme.displaySmall,
               ),
             ],
           ),

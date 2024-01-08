@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:movies_application/features/movies/data/repositories/update_rating_repo_impl.dart';
+import 'package:movies_application/features/movies/domain/repositories/update_rating_repo.dart';
+import 'package:movies_application/features/movies/domain/usecases/update_rating_usecase.dart';
 import 'features/account/data/datasources/get_watchlist_remote.dart';
 import 'features/account/data/repositories/get_watchlist_repo_impl.dart';
 import 'features/account/data/repositories/update_watchlist_repo_impl.dart';
@@ -128,6 +131,7 @@ Future<void> init() async {
       getCreditUsecase: sl(),
       getMovieImagesUsecase: sl(),
       getAccountStatesUsecase: sl(),
+      updateRatingUseCase: sl(),
     ),
   );
   sl.registerFactory<SearchCubit>(
@@ -152,6 +156,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<GetDetailsUsecase>(
     () => GetDetailsUsecase(getDetailsRepo: sl()),
+  );
+  sl.registerLazySingleton<UpdateRatingUseCase>(
+    () => UpdateRatingUseCase(updateRatingRepo: sl()),
   );
 
   sl.registerLazySingleton<GetNowPlayingUsecase>(
@@ -214,6 +221,13 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<CreateSessionRepo>(
     () => CreateSessionRepositoryImpl(
+      apiConsumer: sl(),
+      networkInfo: sl(),
+      sharedPreferences: sl(),
+    ),
+  );
+  sl.registerLazySingleton<UpdateRatingRepo>(
+    () => UpdateRatingRepoImpl(
       apiConsumer: sl(),
       networkInfo: sl(),
       sharedPreferences: sl(),

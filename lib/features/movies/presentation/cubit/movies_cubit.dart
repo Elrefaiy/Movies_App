@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_application/core/usecase/usecase.dart';
+import 'package:movies_application/features/movies/domain/usecases/update_rating_usecase.dart';
 
 import '../../domain/entities/account_states.dart';
 import '../../domain/entities/credit.dart';
@@ -15,11 +17,12 @@ import '../../domain/usecases/get_movie_videos.dart';
 part 'movies_state.dart';
 
 class MoviesCubit extends Cubit<MoviesState> {
-  GetMovieDetailsUsecase getMovieDetailsUsecase;
-  GetMovieVideosUsecase getMovieVideosUsecase;
-  GetCreditUsecase getCreditUsecase;
-  GetMovieImagesUsecase getMovieImagesUsecase;
-  GetAccountStatesUsecase getAccountStatesUsecase;
+  final GetMovieDetailsUsecase getMovieDetailsUsecase;
+  final GetMovieVideosUsecase getMovieVideosUsecase;
+  final GetCreditUsecase getCreditUsecase;
+  final GetMovieImagesUsecase getMovieImagesUsecase;
+  final GetAccountStatesUsecase getAccountStatesUsecase;
+  final UpdateRatingUseCase updateRatingUseCase;
 
   MoviesCubit({
     required this.getMovieDetailsUsecase,
@@ -27,6 +30,7 @@ class MoviesCubit extends Cubit<MoviesState> {
     required this.getCreditUsecase,
     required this.getMovieImagesUsecase,
     required this.getAccountStatesUsecase,
+    required this.updateRatingUseCase,
   }) : super(MoviesInitial());
 
   static MoviesCubit get(context) => BlocProvider.of(context);
@@ -112,6 +116,20 @@ class MoviesCubit extends Cubit<MoviesState> {
       (states) {
         accountState = states;
         emit(GetAccountStatesSuccessfully());
+      },
+    );
+  }
+
+  Future<void> updateRating({required double rating, required int id}) async {
+    var params = RatingParams(
+      mediaId: id,
+      rating: rating,
+    );
+    final response = await updateRatingUseCase(params);
+    response.fold(
+      (failure) => emit(UpdateRatingError()),
+      (states) {
+        emit(UpdateRatingSuccessfully());
       },
     );
   }

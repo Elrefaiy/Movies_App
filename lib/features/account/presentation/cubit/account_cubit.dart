@@ -34,7 +34,11 @@ class AccountCubit extends Cubit<AccountState> {
 
   static AccountCubit get(context) => BlocProvider.of(context);
 
-  late Details accountDetails;
+  Details accountDetails = Details(
+    id: 1,
+    name: ' ',
+    username: ' ',
+  );
   Future<void> getAccountDetails() async {
     String id = di.sl<SharedPreferences>().getString(AppStrings.sessionId)!;
     var response = await getDetailsUsecase(id);
