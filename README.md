@@ -5,6 +5,6 @@
 
 >Tools:
 
- 1- Firebase (Authentication and Storage)</br>
- 2- MockAPI (Responding with mock data about pets and caregivers)</br>
- 3- Google Maps
+ 1- Flutter - Dart </br>
+ 2- The Movies Database Api - handled with Dio</br>
+ 3- Clean Architecture
